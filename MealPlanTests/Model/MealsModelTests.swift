@@ -17,5 +17,5 @@ class MealsModelTests : XCTestCase {
                         "Aloo paratha"],
                        mealsModel.getMeals())
     }
-
+    
 }

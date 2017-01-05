@@ -10,8 +10,10 @@
 		C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41845371E1AF4880042E44C /* AppDelegate.swift */; };
 		C418453A1E1AF51C0042E44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92221E1A2CBA004F0E27 /* Main.storyboard */; };
 		C418453B1E1AF51C0042E44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92271E1A2CBA004F0E27 /* LaunchScreen.storyboard */; };
-		C4CB92211E1A2CBA004F0E27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB92201E1A2CBA004F0E27 /* ViewController.swift */; };
+		C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */; };
 		C4CB92261E1A2CBA004F0E27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92251E1A2CBA004F0E27 /* Assets.xcassets */; };
+		C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */; };
+		C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */; };
 		C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD221E1C594B00811965 /* MealsModelTests.swift */; };
 		C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD251E1C5AB800811965 /* MealsModel.swift */; };
 /* End PBXBuildFile section */
@@ -30,12 +32,14 @@
 		C41845361E1AF4880042E44C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C41845371E1AF4880042E44C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4CB921B1E1A2CBA004F0E27 /* MealPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4CB92201E1A2CBA004F0E27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanViewController.swift; sourceTree = "<group>"; };
 		C4CB92231E1A2CBA004F0E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4CB92251E1A2CBA004F0E27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
 		C4CB92281E1A2CBA004F0E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4CB922F1E1A2CBA004F0E27 /* MealPlanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MealPlanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CB92351E1A2CBA004F0E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenter.swift; sourceTree = "<group>"; };
+		C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenterTests.swift; sourceTree = "<group>"; };
 		C4E1BD221E1C594B00811965 /* MealsModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModelTests.swift; sourceTree = "<group>"; };
 		C4E1BD251E1C5AB800811965 /* MealsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				C41845331E1AF3CF0042E44C /* Storyboards */,
-				C4CB92201E1A2CBA004F0E27 /* ViewController.swift */,
+				C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E1BD241E1C5A9200811965 /* Model */,
+				C4D418EF1E1EF11B002B0D66 /* Presenters */,
 				C41845341E1AF3E90042E44C /* Views */,
 				C41845351E1AF46D0042E44C /* Supporting */,
 			);
@@ -118,9 +123,26 @@
 			isa = PBXGroup;
 			children = (
 				C4E1BD271E1C5D0E00811965 /* Model */,
+				C4D418F01E1EF16A002B0D66 /* Presenters */,
 				C4CB92351E1A2CBA004F0E27 /* Info.plist */,
 			);
 			path = MealPlanTests;
+			sourceTree = "<group>";
+		};
+		C4D418EF1E1EF11B002B0D66 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		C4D418F01E1EF16A002B0D66 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */,
+			);
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		C4E1BD241E1C5A9200811965 /* Model */ = {
@@ -244,9 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,
 				C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */,
 				C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */,
-				C4CB92211E1A2CBA004F0E27 /* ViewController.swift in Sources */,
+				C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */,
 				C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
