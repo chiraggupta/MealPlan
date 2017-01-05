@@ -14,6 +14,8 @@
 		C4CB92261E1A2CBA004F0E27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92251E1A2CBA004F0E27 /* Assets.xcassets */; };
 		C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */; };
 		C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */; };
+		C4D418F61E1EFC24002B0D66 /* MealPlanViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */; };
+		C4D418FA1E1EFE55002B0D66 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F91E1EFE55002B0D66 /* TestUtils.swift */; };
 		C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD221E1C594B00811965 /* MealsModelTests.swift */; };
 		C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD251E1C5AB800811965 /* MealsModel.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +42,8 @@
 		C4CB92351E1A2CBA004F0E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenter.swift; sourceTree = "<group>"; };
 		C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenterTests.swift; sourceTree = "<group>"; };
+		C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanViewControllerTests.swift; sourceTree = "<group>"; };
+		C4D418F91E1EFE55002B0D66 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		C4E1BD221E1C594B00811965 /* MealsModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModelTests.swift; sourceTree = "<group>"; };
 		C4E1BD251E1C5AB800811965 /* MealsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,8 +126,10 @@
 		C4CB92321E1A2CBA004F0E27 /* MealPlanTests */ = {
 			isa = PBXGroup;
 			children = (
+				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4E1BD271E1C5D0E00811965 /* Model */,
 				C4D418F01E1EF16A002B0D66 /* Presenters */,
+				C4D418F81E1EFD03002B0D66 /* Utils */,
 				C4CB92351E1A2CBA004F0E27 /* Info.plist */,
 			);
 			path = MealPlanTests;
@@ -143,6 +149,22 @@
 				C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */,
 			);
 			path = Presenters;
+			sourceTree = "<group>";
+		};
+		C4D418F71E1EFC33002B0D66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C4D418F81E1EFD03002B0D66 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C4D418F91E1EFE55002B0D66 /* TestUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C4E1BD241E1C5A9200811965 /* Model */ = {
@@ -277,7 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4D418FA1E1EFE55002B0D66 /* TestUtils.swift in Sources */,
 				C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */,
+				C4D418F61E1EFC24002B0D66 /* MealPlanViewControllerTests.swift in Sources */,
 				C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
