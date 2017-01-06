@@ -3,14 +3,14 @@
 import UIKit
 
 protocol MealPlanView: class {
-    func set(meals: [String])
+    func set(meals: [Meal])
 }
 
 class MealPlanViewController: UIViewController, MealPlanView {
     @IBOutlet weak var tableView: UITableView!
 
     var presenter: MealPlanViewPresenter!
-    fileprivate var meals = [String]()
+    fileprivate var meals = [Meal]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class MealPlanViewController: UIViewController, MealPlanView {
         presenter.showMeals()
     }
 
-    func set(meals: [String]) {
+    func set(meals: [Meal]) {
         self.meals = meals
     }
 }
@@ -32,7 +32,7 @@ extension TableViewImplementation: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "MealPlanCell")
-        cell.textLabel?.text = meals[indexPath.row]
+        cell.textLabel?.text = meals[indexPath.row].title
         return cell
     }
 }

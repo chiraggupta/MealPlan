@@ -18,6 +18,7 @@
 		C4D418FA1E1EFE55002B0D66 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F91E1EFE55002B0D66 /* TestUtils.swift */; };
 		C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD221E1C594B00811965 /* MealsModelTests.swift */; };
 		C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD251E1C5AB800811965 /* MealsModel.swift */; };
+		C4E9D7261E204237008926BC /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D7251E204237008926BC /* Meal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C4D418F91E1EFE55002B0D66 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		C4E1BD221E1C594B00811965 /* MealsModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModelTests.swift; sourceTree = "<group>"; };
 		C4E1BD251E1C5AB800811965 /* MealsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
+		C4E9D7251E204237008926BC /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 		C4E1BD241E1C5A9200811965 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4E9D7251E204237008926BC /* Meal.swift */,
 				C4E1BD251E1C5AB800811965 /* MealsModel.swift */,
 			);
 			path = Model;
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E9D7261E204237008926BC /* Meal.swift in Sources */,
 				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,
 				C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */,
 				C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */,

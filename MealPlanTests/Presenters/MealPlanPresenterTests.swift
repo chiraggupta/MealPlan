@@ -6,9 +6,9 @@ import XCTest
 
 class MockMealPlanView: MealPlanView {
     private(set) fileprivate var setCalled = false
-    private(set) fileprivate var setArguments = [String]()
+    private(set) fileprivate var setArguments = [Meal]()
 
-    func set(meals: [String]) {
+    func set(meals: [Meal]) {
         setCalled = true
         setArguments = meals
     }

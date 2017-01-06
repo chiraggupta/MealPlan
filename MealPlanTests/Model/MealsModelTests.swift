@@ -8,14 +8,17 @@ class MealsModelTests : XCTestCase {
 
     func testGetAllMeals() {
         let mealsModel = MealsModel()
-        XCTAssertEqual(["Butter chicken and rice",
-                        "Quesadilla",
-                        "Pizza",
-                        "Rajma and rice",
-                        "Momos",
-                        "Broccoli pasta",
-                        "Aloo paratha"],
-                       mealsModel.getMeals())
+        XCTAssertEqual(
+            [
+                Meal(title: "Butter chicken and rice"),
+                Meal(title: "Quesadilla"),
+                Meal(title: "Pizza"),
+                Meal(title: "Rajma and rice"),
+                Meal(title: "Momos"),
+                Meal(title: "Broccoli pasta"),
+                Meal(title: "Aloo paratha")
+            ],
+            mealsModel.getMeals(), "incorrect meals")
     }
-    
+
 }

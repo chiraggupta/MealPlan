@@ -8,7 +8,7 @@ import XCTest
 
 class MockMealPlanViewPresenter: MealPlanViewPresenter {
     let view: MealPlanView
-    var stubMeals = [String]()
+    var stubMeals = [Meal]()
 
     required init(view: MealPlanView, model: MealsModel = MealsModel()) {
         self.view = view
@@ -22,7 +22,7 @@ class MockMealPlanViewPresenter: MealPlanViewPresenter {
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
     var presenter: MealPlanViewPresenter!
-    let stubMeals = ["foo", "bar"]
+    let stubMeals = [Meal(title: "foo"), Meal(title: "bar")]
 
     // MARK: Setup
     override func setUp() {
@@ -51,7 +51,7 @@ class MealPlanViewControllerTests: XCTestCase {
         for i in 0..<stubMeals.count {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
-            XCTAssertEqual(stubMeals[i], cell.textLabel?.text, "meal \(i + 1) should be \(stubMeals[i])")
+            XCTAssertEqual(stubMeals[i].title, cell.textLabel?.text, "meal \(i + 1) should be \(stubMeals[i])")
         }
     }
 }
