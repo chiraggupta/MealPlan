@@ -1,10 +1,6 @@
 language: objective-c
 
-xcode_project: MealPlan.xcodeproj
-xcode_scheme: MealPlan
-
 osx_image: xcode8.2
-xcode_sdk: iphonesimulator10.2
 
 script:
-- xcodebuild -project MealPlan.xcodeproj -scheme MealPlan -sdk iphonesimulator10.2 -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' clean build test
+- xcodebuild -project MealPlan.xcodeproj -scheme MealPlan -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.1' clean build test
