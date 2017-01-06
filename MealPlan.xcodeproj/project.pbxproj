@@ -21,6 +21,7 @@
 		C4E9D7261E204237008926BC /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D7251E204237008926BC /* Meal.swift */; };
 		C4E9D72A1E204B4A008926BC /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D7291E204B4A008926BC /* DayOfWeek.swift */; };
 		C4E9D72E1E204D72008926BC /* WeeklyMealPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */; };
+		C4E9D7301E204F1F008926BC /* WeeklyMealPlanModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C4E9D7251E204237008926BC /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		C4E9D7291E204B4A008926BC /* DayOfWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanModel.swift; sourceTree = "<group>"; };
+		C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				C4E1BD241E1C5A9200811965 /* Model */,
-				C4D418EF1E1EF11B002B0D66 /* Presenters */,
 				C41845341E1AF3E90042E44C /* Views */,
+				C4D418EF1E1EF11B002B0D66 /* Presenters */,
 				C41845351E1AF46D0042E44C /* Supporting */,
 			);
 			path = MealPlan;
@@ -132,8 +134,8 @@
 		C4CB92321E1A2CBA004F0E27 /* MealPlanTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4E1BD271E1C5D0E00811965 /* Model */,
+				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4D418F01E1EF16A002B0D66 /* Presenters */,
 				C4D418F81E1EFD03002B0D66 /* Utils */,
 				C4CB92351E1A2CBA004F0E27 /* Info.plist */,
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				C4E1BD221E1C594B00811965 /* MealsModelTests.swift */,
+				C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */,
 				C4D418F61E1EFC24002B0D66 /* MealPlanViewControllerTests.swift in Sources */,
 				C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */,
+				C4E9D7301E204F1F008926BC /* WeeklyMealPlanModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
