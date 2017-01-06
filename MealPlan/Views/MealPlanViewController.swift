@@ -30,7 +30,9 @@ extension TableViewImplementation: UITableViewDataSource {
         return meals.count
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "MealPlanCell")
+        cell.textLabel?.text = meals[indexPath.row]
+        return cell
     }
 }
