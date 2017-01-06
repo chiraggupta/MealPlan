@@ -1,6 +1,10 @@
 // MealPlan by Chirag Gupta
 
-struct MealsModel {
+protocol MealsProvider {
+    func getMeals() -> [Meal]
+}
+
+struct MealsModel: MealsProvider {
     func getMeals() -> [Meal] {
         return [
             Meal(title: "Butter chicken and rice"),

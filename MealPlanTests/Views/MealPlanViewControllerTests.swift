@@ -4,13 +4,11 @@ import XCTest
 
 @testable import MealPlan
 
-
-
 class MockMealPlanViewPresenter: MealPlanViewPresenter {
     let view: MealPlanView
     var stubMeals = [Meal]()
 
-    required init(view: MealPlanView, model: MealsModel = MealsModel()) {
+    required init(view: MealPlanView, model: MealsProvider = MealsModel()) {
         self.view = view
     }
 

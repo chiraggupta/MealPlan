@@ -4,6 +4,18 @@ import XCTest
 
 @testable import MealPlan
 
+struct MealsProviderStub: MealsProvider {
+    let stubMeals: [Meal]
+
+    init() {
+        stubMeals = [Meal(title: "foo"), Meal(title: "bar")]
+    }
+
+    func getMeals() -> [Meal] {
+        return stubMeals
+    }
+}
+
 class MockMealPlanView: MealPlanView {
     private(set) fileprivate var setCalled = false
     private(set) fileprivate var setArguments = [Meal]()
@@ -17,9 +29,11 @@ class MockMealPlanView: MealPlanView {
 class MealPlanPresenterTests: XCTestCase {
     private var presenter: MealPlanPresenter!
     private let mealPlanView = MockMealPlanView()
-    private let model = MealsModel()
+    private let model = MealsProviderStub()
 
     override func setUp() {
+        super.setUp()
+
         presenter = MealPlanPresenter(view: mealPlanView, model: model)
     }
 

@@ -3,15 +3,15 @@
 import Foundation
 
 protocol MealPlanViewPresenter {
-    init(view: MealPlanView, model: MealsModel)
+    init(view: MealPlanView, model: MealsProvider)
     func showMeals()
 }
 
 class MealPlanPresenter: MealPlanViewPresenter {
-    fileprivate let model: MealsModel
+    fileprivate let model: MealsProvider
     let view: MealPlanView
 
-    required init(view: MealPlanView, model: MealsModel = MealsModel()) {
+    required init(view: MealPlanView, model: MealsProvider = MealsModel()) {
         self.view = view
         self.model = model
     }
