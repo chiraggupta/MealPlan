@@ -4,20 +4,10 @@ import XCTest
 
 @testable import MealPlan
 
-struct MealsProviderWithTwoFakeMeals: MealsProvider {
-    func getMeals() -> [Meal] {
-        return [Meal(title: "foo"), Meal(title: "bar")]
-    }
-}
-
 struct MealPlanProviderWithTwoFakeMeals: WeeklyMealPlanProvider {
-    init() {
+    init() {}
 
-    }
-
-    init(mealsModel: MealsProvider) {
-
-    }
+    init(mealsModel: MealsProvider) {}
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {
         return [

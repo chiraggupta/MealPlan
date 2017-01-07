@@ -4,6 +4,12 @@ import XCTest
 
 @testable import MealPlan
 
+struct MealsProviderWithTwoFakeMeals: MealsProvider {
+    func getMeals() -> [Meal] {
+        return [Meal(title: "foo"), Meal(title: "bar")]
+    }
+}
+
 class WeeklyMealPlanModelTests: XCTestCase {
 
     private var model: WeeklyMealPlanProvider!
