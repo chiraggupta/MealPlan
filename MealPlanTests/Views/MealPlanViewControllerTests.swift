@@ -5,51 +5,52 @@ import XCTest
 @testable import MealPlan
 
 class MockMealPlanViewPresenter: MealPlanViewPresenter {
-    let view: MealPlanView
-    var mealPlan: WeeklyMealPlan
+    fileprivate var view: MealPlanView
+    fileprivate var model: WeeklyMealPlanProvider
 
-    required init(view: MealPlanView, model: WeeklyMealPlanProvider = MealPlanProviderWithTwoFakeMeals()) {
+    init(view: MealPlanView, model: WeeklyMealPlanProvider) {
         self.view = view
-        self.mealPlan = model.getWeeklyMealPlan()
+        self.model = model
     }
 
     func showMeals() {
-        view.set(mealPlan: mealPlan)
+        view.set(mealPlan: model.getWeeklyMealPlan())
     }
 }
 
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
     var presenter: MockMealPlanViewPresenter!
+    var expectedMealPlan: WeeklyMealPlan!
 
-    // MARK: Setup
     override func setUp() {
         super.setUp()
 
-        viewController = createVC(identifier: "MealPlanViewController", storyboard: "Main") as! MealPlanViewController
-        presenter = MockMealPlanViewPresenter(view: viewController)
-        viewController.presenter = presenter
+        let model = MealPlanProviderWithTwoFakeMeals()
+        expectedMealPlan = model.getWeeklyMealPlan()
 
+        viewController = createVC(identifier: "MealPlanViewController", storyboard: "Main") as! MealPlanViewController
+        presenter = MockMealPlanViewPresenter(view: viewController, model: model)
+        viewController.presenter = presenter
         viewController.assertView()
     }
 
-    // MARK: Tests
     func testCountOfMealsInList() {
-        let expectedCount = presenter.mealPlan.count
+        let expectedCount = expectedMealPlan.count
         let actualCount = viewController.tableView(viewController.tableView, numberOfRowsInSection: 0)
 
         XCTAssertEqual(expectedCount, actualCount, "meal list count is incorrect")
     }
 
     func testMealsDisplayedInList() {
-        for i in 0..<presenter.mealPlan.count {
+        for i in 0..<expectedMealPlan.count {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
 
             let day = DayOfWeek.byIndex(indexPath.row)
             XCTAssertEqual(day.rawValue, cell.textLabel?.text, "day \(i) is incorrect")
 
-            let meal = presenter.mealPlan[day]
+            let meal = expectedMealPlan[day]
             XCTAssertEqual(meal?.title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
         }
     }

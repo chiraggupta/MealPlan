@@ -5,7 +5,6 @@ import Foundation
 typealias WeeklyMealPlan = [DayOfWeek: Meal]
 
 protocol WeeklyMealPlanProvider {
-    init(mealsModel: MealsProvider)
     func getWeeklyMealPlan() -> WeeklyMealPlan
 }
 

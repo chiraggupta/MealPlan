@@ -5,10 +5,6 @@ import XCTest
 @testable import MealPlan
 
 struct MealPlanProviderWithTwoFakeMeals: WeeklyMealPlanProvider {
-    init() {}
-
-    init(mealsModel: MealsProvider) {}
-
     func getWeeklyMealPlan() -> WeeklyMealPlan {
         return [
             DayOfWeek.monday: Meal(title: "foo"),
