@@ -46,6 +46,42 @@
             </objects>
             <point key="canvasLocation" x="-247" y="-67"/>
         </scene>
+        <!--Meals-->
+        <scene sceneID="xFu-9G-n0o">
+            <objects>
+                <viewController storyboardIdentifier="MealsViewController" title="Meals" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pFF-8q-WMv" customClass="MealsViewController" customModule="MealPlan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CTM-TJ-YQN"/>
+                        <viewControllerLayoutGuide type="bottom" id="XHr-M6-E5t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XZX-dG-0aE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qxQ-vF-wwe">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pFF-8q-WMv" id="Fq6-St-uPt"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qxQ-vF-wwe" secondAttribute="trailing" id="8YV-jp-0qj"/>
+                            <constraint firstItem="qxQ-vF-wwe" firstAttribute="top" secondItem="CTM-TJ-YQN" secondAttribute="bottom" id="azo-iD-YQ1"/>
+                            <constraint firstItem="XHr-M6-E5t" firstAttribute="top" secondItem="qxQ-vF-wwe" secondAttribute="bottom" id="mZF-tc-dlI"/>
+                            <constraint firstItem="qxQ-vF-wwe" firstAttribute="leading" secondItem="XZX-dG-0aE" secondAttribute="leading" id="vTA-cv-Fmf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="qxQ-vF-wwe" id="Etu-YW-0NM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sBN-6c-nB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="766" y="-67"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="X1j-do-mGj">
             <objects>

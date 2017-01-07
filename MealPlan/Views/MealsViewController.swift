@@ -7,6 +7,8 @@ protocol MealsViewType: class {
 }
 
 class MealsViewController: UIViewController, MealsViewType {
+    @IBOutlet weak var tableView: UITableView!
+    
     var presenter: MealsPresenterType!
     fileprivate var meals = [Meal]()
 
