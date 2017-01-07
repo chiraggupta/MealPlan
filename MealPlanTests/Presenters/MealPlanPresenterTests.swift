@@ -13,7 +13,7 @@ struct MealPlanProviderWithTwoFakeMeals: WeeklyMealPlanProvider {
     }
 }
 
-class MockMealPlanView: MealPlanView {
+class MockMealPlanView: MealPlanViewType {
     private(set) fileprivate var setCalled = false
     private(set) fileprivate var setArguments = WeeklyMealPlan()
 
@@ -25,18 +25,18 @@ class MockMealPlanView: MealPlanView {
 
 class MealPlanPresenterTests: XCTestCase {
     private var presenter: MealPlanPresenter!
-    private let mealPlanView = MockMealPlanView()
+    private let view = MockMealPlanView()
     private let model = MealPlanProviderWithTwoFakeMeals()
 
     override func setUp() {
         super.setUp()
 
-        presenter = MealPlanPresenter(view: mealPlanView, model: model)
+        presenter = MealPlanPresenter(view: view, model: model)
     }
 
     func testShowMealsCallsViewSetWithCorrectArguments() {
         presenter.showMeals()
-        XCTAssertTrue(mealPlanView.setCalled, "set was not called")
-        XCTAssertEqual(model.getWeeklyMealPlan(), mealPlanView.setArguments, "set was called with incorrect mealPlan")
+        XCTAssertTrue(view.setCalled, "set was not called")
+        XCTAssertEqual(model.getWeeklyMealPlan(), view.setArguments, "set was called with incorrect mealPlan")
     }
 }

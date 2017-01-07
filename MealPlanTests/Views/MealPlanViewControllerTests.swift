@@ -5,10 +5,10 @@ import XCTest
 @testable import MealPlan
 
 class MockMealPlanPresenter: MealPlanPresenterType {
-    fileprivate var view: MealPlanView
+    fileprivate var view: MealPlanViewType
     fileprivate var model: WeeklyMealPlanProvider
 
-    init(view: MealPlanView, model: WeeklyMealPlanProvider) {
+    init(view: MealPlanViewType, model: WeeklyMealPlanProvider) {
         self.view = view
         self.model = model
     }

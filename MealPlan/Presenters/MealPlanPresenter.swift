@@ -7,10 +7,10 @@ protocol MealPlanPresenterType {
 }
 
 class MealPlanPresenter: MealPlanPresenterType {
-    unowned let view: MealPlanView
+    unowned let view: MealPlanViewType
     fileprivate let model: WeeklyMealPlanProvider
 
-    init(view: MealPlanView, model: WeeklyMealPlanProvider = WeeklyMealPlanModel()) {
+    init(view: MealPlanViewType, model: WeeklyMealPlanProvider = WeeklyMealPlanModel()) {
         self.view = view
         self.model = model
     }

@@ -2,11 +2,11 @@
 
 import UIKit
 
-protocol MealPlanView: class {
+protocol MealPlanViewType: class {
     func set(mealPlan: WeeklyMealPlan)
 }
 
-class MealPlanViewController: UIViewController, MealPlanView {
+class MealPlanViewController: UIViewController, MealPlanViewType {
     @IBOutlet weak var tableView: UITableView!
 
     var presenter: MealPlanPresenterType!
