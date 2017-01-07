@@ -12,7 +12,7 @@ class MockMealPlanPresenter: MealPlanPresenterType {
         self.view = view
     }
 
-    func showMeals() {
+    func updateMealPlan() {
         view.set(meals: stubMealViewData)
     }
 }

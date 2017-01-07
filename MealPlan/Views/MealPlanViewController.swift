@@ -16,7 +16,7 @@ class MealPlanViewController: UIViewController, MealPlanViewType {
         super.viewDidLoad()
 
         presenter = presenter ?? MealPlanPresenter(view: self)
-        presenter.showMeals()
+        presenter.updateMealPlan()
     }
 
     func set(meals: [MealViewData]) {

@@ -47,8 +47,8 @@ class MealPlanPresenterTests: XCTestCase {
         presenter = MealPlanPresenter(view: view, model: modelStub)
     }
 
-    func testShowMealsSetsMealViewData() {
-        presenter.showMeals()
+    func testUpdateMealPlanSetsMealViewData() {
+        presenter.updateMealPlan()
         XCTAssertTrue(view.setCalled, "set not called")
         XCTAssertEqual(modelStub.getExpectedMealViewData(), view.setArguments, "incorrect arguments")
     }

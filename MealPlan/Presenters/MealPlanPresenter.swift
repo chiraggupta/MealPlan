@@ -3,7 +3,7 @@
 import Foundation
 
 protocol MealPlanPresenterType {
-    func showMeals()
+    func updateMealPlan()
 }
 
 class MealPlanPresenter: MealPlanPresenterType {
@@ -15,7 +15,7 @@ class MealPlanPresenter: MealPlanPresenterType {
         self.model = model
     }
 
-    func showMeals() {
+    func updateMealPlan() {
         let mealPlan = model.getWeeklyMealPlan()
         let weeklyMealData = createMealViewData(from: mealPlan)
         view.set(meals: weeklyMealData)
