@@ -22,6 +22,10 @@ class MealsViewController: UIViewController, MealsViewType {
     func set(meals: [Meal]) {
         self.meals = meals
     }
+    
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 private typealias TableViewDataSource = MealsViewController
