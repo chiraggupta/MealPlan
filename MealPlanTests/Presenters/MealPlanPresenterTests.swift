@@ -30,9 +30,9 @@ class MockMealPlanView: MealPlanViewType {
     private(set) fileprivate var setCalled = false
     private(set) fileprivate var setArguments = [MealPlanViewData]()
 
-    func set(mealsViewData: [MealPlanViewData]) {
+    func set(mealPlanViewData: [MealPlanViewData]) {
         setCalled = true
-        setArguments = mealsViewData
+        setArguments = mealPlanViewData
     }
 }
 

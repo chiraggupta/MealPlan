@@ -3,14 +3,14 @@
 import UIKit
 
 protocol MealPlanViewType: class {
-    func set(mealsViewData: [MealPlanViewData])
+    func set(mealPlanViewData: [MealPlanViewData])
 }
 
 class MealPlanViewController: UIViewController, MealPlanViewType {
     @IBOutlet weak var tableView: UITableView!
 
     var presenter: MealPlanPresenterType!
-    fileprivate var mealsViewData = [MealPlanViewData]()
+    fileprivate var mealPlanViewData = [MealPlanViewData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,23 +19,23 @@ class MealPlanViewController: UIViewController, MealPlanViewType {
         presenter.updateMealPlan()
     }
 
-    func set(mealsViewData: [MealPlanViewData]) {
-        self.mealsViewData = mealsViewData
+    func set(mealPlanViewData: [MealPlanViewData]) {
+        self.mealPlanViewData = mealPlanViewData
     }
 }
 
 typealias TableViewImplementation = MealPlanViewController
 extension TableViewImplementation: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mealsViewData.count
+        return mealPlanViewData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "MealPlanCell")
 
-        let mealViewData = mealsViewData[indexPath.row]
-        cell.textLabel?.text = mealViewData.day
-        cell.detailTextLabel?.text = mealViewData.title
+        let viewDataForDay = mealPlanViewData[indexPath.row]
+        cell.textLabel?.text = viewDataForDay.day
+        cell.detailTextLabel?.text = viewDataForDay.title
 
         return cell
     }

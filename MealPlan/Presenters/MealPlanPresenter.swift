@@ -18,7 +18,7 @@ class MealPlanPresenter: MealPlanPresenterType {
     func updateMealPlan() {
         let mealPlan = model.getWeeklyMealPlan()
         let weeklyMealData = createMealPlanViewData(from: mealPlan)
-        view.set(mealsViewData: weeklyMealData)
+        view.set(mealPlanViewData: weeklyMealData)
     }
 
     func createMealPlanViewData(from mealPlan: WeeklyMealPlan) -> [MealPlanViewData] {
