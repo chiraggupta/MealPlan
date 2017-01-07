@@ -24,8 +24,8 @@ class MealPlanViewController: UIViewController, MealPlanViewType {
     }
 }
 
-typealias TableViewImplementation = MealPlanViewController
-extension TableViewImplementation: UITableViewDataSource {
+private typealias TableViewDataSource = MealPlanViewController
+extension TableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mealPlanViewData.count
     }

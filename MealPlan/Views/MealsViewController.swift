@@ -23,3 +23,17 @@ class MealsViewController: UIViewController, MealsViewType {
         self.meals = meals
     }
 }
+
+private typealias TableViewDataSource = MealsViewController
+extension TableViewDataSource: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return meals.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "MealsCell")
+        cell.textLabel?.text = meals[indexPath.row].title
+        
+        return cell
+    }
+}
