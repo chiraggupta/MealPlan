@@ -11,7 +11,7 @@ protocol WeeklyMealPlanProvider {
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
     private let mealsModel: MealsProvider
 
-    init(mealsModel: MealsProvider) {
+    init(mealsModel: MealsProvider = MealsModel()) {
         self.mealsModel = mealsModel
     }
 

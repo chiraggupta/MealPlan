@@ -10,7 +10,7 @@ class MealPlanPresenter: MealPlanViewPresenter {
     fileprivate let model: WeeklyMealPlanProvider
     let view: MealPlanView
 
-    init(view: MealPlanView, model: WeeklyMealPlanProvider = WeeklyMealPlanModel(mealsModel: MealsModel())) {
+    init(view: MealPlanView, model: WeeklyMealPlanProvider = WeeklyMealPlanModel()) {
         self.view = view
         self.model = model
     }
