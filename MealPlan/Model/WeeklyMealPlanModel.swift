@@ -16,7 +16,7 @@ struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
     }
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {
-        var meals = mealsModel.getMeals()
+        var meals = mealsModel.getMeals().removingDuplicates()
         var mealPlan = WeeklyMealPlan()
 
         for day in DayOfWeek.all {
