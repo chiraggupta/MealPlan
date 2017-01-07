@@ -4,7 +4,7 @@ import XCTest
 
 @testable import MealPlan
 
-class MockMealPlanViewPresenter: MealPlanViewPresenter {
+class MockMealPlanPresenter: MealPlanPresenterType {
     fileprivate var view: MealPlanView
     fileprivate var model: WeeklyMealPlanProvider
 
@@ -20,7 +20,7 @@ class MockMealPlanViewPresenter: MealPlanViewPresenter {
 
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
-    var presenter: MockMealPlanViewPresenter!
+    var presenter: MockMealPlanPresenter!
     var expectedMealPlan: WeeklyMealPlan!
 
     override func setUp() {
@@ -30,7 +30,7 @@ class MealPlanViewControllerTests: XCTestCase {
         expectedMealPlan = model.getWeeklyMealPlan()
 
         viewController = createVC(identifier: "MealPlanViewController", storyboard: "Main") as! MealPlanViewController
-        presenter = MockMealPlanViewPresenter(view: viewController, model: model)
+        presenter = MockMealPlanPresenter(view: viewController, model: model)
         viewController.presenter = presenter
         viewController.assertView()
     }
