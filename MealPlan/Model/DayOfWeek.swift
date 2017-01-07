@@ -11,5 +11,5 @@ enum DayOfWeek: String {
     case saturday = "Saturday"
     case sunday = "Sunday"
 
-    static let all = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]    
+    static let all = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
 }

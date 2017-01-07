@@ -23,5 +23,5 @@ class MealsModelTests : XCTestCase {
             ],
             mealsModel.getMeals(), "incorrect meals")
     }
-
+    
 }

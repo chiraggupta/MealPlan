@@ -54,5 +54,5 @@ class WeeklyMealPlanModelTests: XCTestCase {
 
         XCTAssertEqual(7, uniqueMeals.count, "only \(uniqueMeals.count) unique")
     }
-
+    
 }
