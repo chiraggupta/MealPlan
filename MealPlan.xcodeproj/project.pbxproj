@@ -180,8 +180,8 @@
 			children = (
 				C4E9D7291E204B4A008926BC /* DayOfWeek.swift */,
 				C4E9D7251E204237008926BC /* Meal.swift */,
-				C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */,
 				C4E1BD251E1C5AB800811965 /* MealsModel.swift */,
+				C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

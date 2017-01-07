@@ -11,9 +11,5 @@ enum DayOfWeek: String {
     case saturday = "Saturday"
     case sunday = "Sunday"
 
-    static let all = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
-    
-    static func byIndex(_ index: Int) -> DayOfWeek {
-        return all[index % all.count]
-    }
+    static let all = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]    
 }
