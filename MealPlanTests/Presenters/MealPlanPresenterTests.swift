@@ -39,17 +39,17 @@ class MockMealPlanView: MealPlanViewType {
 class MealPlanPresenterTests: XCTestCase {
     private var presenter: MealPlanPresenter!
     private let view = MockMealPlanView()
-    private let modelStub = MealPlanProviderStub()
+    private let model = MealPlanProviderStub()
 
     override func setUp() {
         super.setUp()
 
-        presenter = MealPlanPresenter(view: view, model: modelStub)
+        presenter = MealPlanPresenter(view: view, model: model)
     }
 
     func testUpdateMealPlanSetsMealPlanViewData() {
         presenter.updateMealPlan()
         XCTAssertTrue(view.setCalled, "set not called")
-        XCTAssertEqual(modelStub.getExpectedMealPlanViewData(), view.setArguments, "incorrect arguments")
+        XCTAssertEqual(model.getExpectedMealPlanViewData(), view.setArguments, "incorrect arguments")
     }
 }
