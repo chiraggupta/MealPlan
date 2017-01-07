@@ -7,5 +7,15 @@ protocol MealsPresenterType {
 }
 
 class MealsPresenter: MealsPresenterType {
-    func updateMeals() {}
+    unowned let view: MealsViewType
+    fileprivate let model: MealsProvider
+
+    init(view: MealsViewType, model: MealsProvider = MealsModel()) {
+        self.view = view
+        self.model = model
+    }
+
+    func updateMeals() {
+        view.set(meals: model.getMeals())
+    }
 }
