@@ -22,13 +22,6 @@ class MealPlanPresenter: MealPlanPresenterType {
     }
 
     func createMealViewData(from mealPlan: WeeklyMealPlan) -> [MealViewData] {
-        var weeklyMealData = [MealViewData]()
-
-        for day in DayOfWeek.all {
-            let title = mealPlan[day]?.title ?? ""
-            weeklyMealData.append(MealViewData(day: day.rawValue, title: title))
-        }
-
-        return weeklyMealData
+        return DayOfWeek.all.map { MealViewData(day: $0.rawValue, title:mealPlan[$0]?.title) }
     }
 }
