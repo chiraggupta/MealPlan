@@ -4,27 +4,40 @@ import XCTest
 
 @testable import MealPlan
 
-struct MealsProviderWithTwoFakeMeals: MealsProvider {
+struct MealsProviderStub: MealsProvider {
+    let count: UInt
+
     func getMeals() -> [Meal] {
-        return [Meal(title: "foo"), Meal(title: "bar")]
+        var meals = [Meal]()
+        for i in 1...count {
+            meals.append(Meal(title: "Meal \(i)"))
+        }
+        return meals
     }
 }
 
 class WeeklyMealPlanModelTests: XCTestCase {
-
     private var model: WeeklyMealPlanProvider!
 
-    func testWeeklyMealPlanShouldHaveSevenUniqueMeals() {
-        model = WeeklyMealPlanModel(mealsModel: MealsModel())
-
-        let uniqueMeals = Set(model.getWeeklyMealPlan().values)
-        XCTAssertEqual(7, uniqueMeals.count, "meal plan doesn't have 7 unique meals")
+    func getMealCount(from mealPlanProvider: WeeklyMealPlanProvider) -> Int {
+        return mealPlanProvider.getWeeklyMealPlan().count
     }
 
-    func testWeeklyMealPlanWhenThereAreOnlyTwoMeals() {
-        model = WeeklyMealPlanModel(mealsModel: MealsProviderWithTwoFakeMeals())
+    func testWeeklyMealPlanWithMoreThanSevenMeals() {
+        let expectedCount = 7
 
-        let mealPlan = model.getWeeklyMealPlan()
-        XCTAssertEqual(2, mealPlan.values.count, "meal plan doesn't have 2 meals")
+        model = WeeklyMealPlanModel(mealsModel: MealsProviderStub(count: 10))
+        let count = getMealCount(from: model)
+
+        XCTAssertEqual(expectedCount, count)
+    }
+
+    func testWeeklyMealPlanWithLessThanSevenMeals() {
+        let expectedCount = 2
+
+        model = WeeklyMealPlanModel(mealsModel: MealsProviderStub(count: 2))
+        let count = getMealCount(from: model)
+
+        XCTAssertEqual(expectedCount, count)
     }
 }
