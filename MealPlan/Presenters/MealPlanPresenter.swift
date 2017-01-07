@@ -17,11 +17,11 @@ class MealPlanPresenter: MealPlanPresenterType {
 
     func updateMealPlan() {
         let mealPlan = model.getWeeklyMealPlan()
-        let weeklyMealData = createMealViewData(from: mealPlan)
-        view.set(meals: weeklyMealData)
+        let weeklyMealData = createMealPlanViewData(from: mealPlan)
+        view.set(mealsViewData: weeklyMealData)
     }
 
-    func createMealViewData(from mealPlan: WeeklyMealPlan) -> [MealViewData] {
-        return DayOfWeek.all.map { MealViewData(day: $0.rawValue, title:mealPlan[$0]?.title) }
+    func createMealPlanViewData(from mealPlan: WeeklyMealPlan) -> [MealPlanViewData] {
+        return DayOfWeek.all.map { MealPlanViewData(day: $0.rawValue, title:mealPlan[$0]?.title) }
     }
 }

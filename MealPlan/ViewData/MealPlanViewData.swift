@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct MealViewData: Equatable {
+struct MealPlanViewData: Equatable {
     var day: String
     var title: String
 
@@ -12,6 +12,6 @@ struct MealViewData: Equatable {
     }
 }
 
-func ==(lhs: MealViewData, rhs: MealViewData) -> Bool {
+func ==(lhs: MealPlanViewData, rhs: MealPlanViewData) -> Bool {
     return lhs.title == rhs.title && lhs.day == rhs.day
 }

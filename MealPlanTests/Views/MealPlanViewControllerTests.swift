@@ -6,20 +6,20 @@ import XCTest
 
 class MockMealPlanPresenter: MealPlanPresenterType {
     fileprivate var view: MealPlanViewType
-    fileprivate let stubMealViewData = MealPlanProviderStub().getExpectedMealViewData()
+    fileprivate let stubMealsViewData = MealPlanProviderStub().getExpectedMealPlanViewData()
 
     init(view: MealPlanViewType) {
         self.view = view
     }
 
     func updateMealPlan() {
-        view.set(meals: stubMealViewData)
+        view.set(mealsViewData: stubMealsViewData)
     }
 }
 
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
-    var stubMealViewData = [MealViewData]()
+    var stubMealsViewData = [MealPlanViewData]()
 
     override func setUp() {
         super.setUp()
@@ -30,24 +30,24 @@ class MealPlanViewControllerTests: XCTestCase {
 
         viewController.assertView()
 
-        stubMealViewData = mockPresenter.stubMealViewData
+        stubMealsViewData = mockPresenter.stubMealsViewData
     }
 
     func testCountOfMealsInList() {
         let count = viewController.tableView(viewController.tableView, numberOfRowsInSection: 0)
 
-        XCTAssertEqual(stubMealViewData.count, count, "meal list count is incorrect")
+        XCTAssertEqual(stubMealsViewData.count, count, "meal list count is incorrect")
     }
 
     func testMealsDisplayedInList() {
-        for i in 0..<stubMealViewData.count {
-            let expectedMealViewData = stubMealViewData[i]
+        for i in 0..<stubMealsViewData.count {
+            let expectedMealsViewData = stubMealsViewData[i]
 
             let indexPath = IndexPath(row: i, section: 0)
             let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
 
-            XCTAssertEqual(expectedMealViewData.day, cell.textLabel?.text, "day \(i) is incorrect")
-            XCTAssertEqual(expectedMealViewData.title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
+            XCTAssertEqual(expectedMealsViewData.day, cell.textLabel?.text, "day \(i) is incorrect")
+            XCTAssertEqual(expectedMealsViewData.title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
         }
     }
 }

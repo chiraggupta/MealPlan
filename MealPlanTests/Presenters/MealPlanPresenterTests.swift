@@ -13,26 +13,26 @@ struct MealPlanProviderStub: WeeklyMealPlanProvider {
         ]
     }
 
-    func getExpectedMealViewData() -> [MealViewData] {
+    func getExpectedMealPlanViewData() -> [MealPlanViewData] {
         return [
-            MealViewData(day: "Monday", title: "meal 1"),
-            MealViewData(day: "Tuesday", title: ""),
-            MealViewData(day: "Wednesday", title: "meal 2"),
-            MealViewData(day: "Thursday", title: ""),
-            MealViewData(day: "Friday", title: ""),
-            MealViewData(day: "Saturday", title: "meal 3"),
-            MealViewData(day: "Sunday", title: "")
+            MealPlanViewData(day: "Monday", title: "meal 1"),
+            MealPlanViewData(day: "Tuesday", title: ""),
+            MealPlanViewData(day: "Wednesday", title: "meal 2"),
+            MealPlanViewData(day: "Thursday", title: ""),
+            MealPlanViewData(day: "Friday", title: ""),
+            MealPlanViewData(day: "Saturday", title: "meal 3"),
+            MealPlanViewData(day: "Sunday", title: "")
         ]
     }
 }
 
 class MockMealPlanView: MealPlanViewType {
     private(set) fileprivate var setCalled = false
-    private(set) fileprivate var setArguments = [MealViewData]()
+    private(set) fileprivate var setArguments = [MealPlanViewData]()
 
-    func set(meals: [MealViewData]) {
+    func set(mealsViewData: [MealPlanViewData]) {
         setCalled = true
-        setArguments = meals
+        setArguments = mealsViewData
     }
 }
 
@@ -47,9 +47,9 @@ class MealPlanPresenterTests: XCTestCase {
         presenter = MealPlanPresenter(view: view, model: modelStub)
     }
 
-    func testUpdateMealPlanSetsMealViewData() {
+    func testUpdateMealPlanSetsMealPlanViewData() {
         presenter.updateMealPlan()
         XCTAssertTrue(view.setCalled, "set not called")
-        XCTAssertEqual(modelStub.getExpectedMealViewData(), view.setArguments, "incorrect arguments")
+        XCTAssertEqual(modelStub.getExpectedMealPlanViewData(), view.setArguments, "incorrect arguments")
     }
 }
