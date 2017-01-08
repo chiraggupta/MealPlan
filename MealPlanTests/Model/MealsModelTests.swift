@@ -5,23 +5,30 @@ import XCTest
 @testable import MealPlan
 
 class MealsModelTests : XCTestCase {
+    var mealsModel: MealsModel!
+    let testDefaults = UserDefaultsMock()
 
-    func testGetAllMeals() {
-        let mealsModel = MealsModel()
-        XCTAssertEqual(
-            [
-                Meal(title: "Butter chicken and rice"),
-                Meal(title: "Quesadillas"),
-                Meal(title: "Burritos"),
-                Meal(title: "Pizza"),
-                Meal(title: "Rajma and rice"),
-                Meal(title: "Momos"),
-                Meal(title: "Broccoli pasta"),
-                Meal(title: "Aloo paratha"),
-                Meal(title: "Small potatoes with sausages"),
-                Meal(title: "Biryani")
-            ],
-            mealsModel.getMeals(), "incorrect meals")
+    override func setUp() {
+        super.setUp()
+
+        mealsModel = MealsModel(userDefaults: testDefaults)
     }
-    
+
+    func testGetMealsWhenDefaultsAreNotSet() {
+        XCTAssertEqual([], mealsModel.getMeals(), "meals should be empty")
+    }
+
+    func testGetMealsWhenDefaultsAreSet() {
+        testDefaults.set(["foo", "bar"], forKey: "Meals")
+        let expectedMeals = [Meal(title: "foo"), Meal(title: "bar")]
+
+        XCTAssertEqual(expectedMeals, mealsModel.getMeals(), "meals should be foo and bar")
+    }
+
+    func testGetMealsWhenDefaultsAreSetToInvalidType() {
+        testDefaults.set(["foo": "bar"], forKey: "Meals")
+
+        XCTAssertEqual([], mealsModel.getMeals(), "meals should be empty")
+    }
+
 }

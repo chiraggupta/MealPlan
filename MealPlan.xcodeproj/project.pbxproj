@@ -29,6 +29,7 @@
 		C4E9D72A1E204B4A008926BC /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D7291E204B4A008926BC /* DayOfWeek.swift */; };
 		C4E9D72E1E204D72008926BC /* WeeklyMealPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */; };
 		C4E9D7301E204F1F008926BC /* WeeklyMealPlanModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */; };
+		C4EBC4B31E22AD5900C69CF7 /* UserDefaultsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBC4B21E22AD5900C69CF7 /* UserDefaultsType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		C4E9D7291E204B4A008926BC /* DayOfWeek.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanModel.swift; sourceTree = "<group>"; };
 		C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyMealPlanModelTests.swift; sourceTree = "<group>"; };
+		C4EBC4B21E22AD5900C69CF7 /* UserDefaultsType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 		C4E1BD241E1C5A9200811965 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4EBC4B21E22AD5900C69CF7 /* UserDefaultsType.swift */,
 				C4E9D7291E204B4A008926BC /* DayOfWeek.swift */,
 				C4E9D7251E204237008926BC /* Meal.swift */,
 				C4E1BD251E1C5AB800811965 /* MealsModel.swift */,
@@ -347,6 +350,7 @@
 			files = (
 				C47D86921E2181AD008FC4A3 /* MealsViewController.swift in Sources */,
 				C4E9D72E1E204D72008926BC /* WeeklyMealPlanModel.swift in Sources */,
+				C4EBC4B31E22AD5900C69CF7 /* UserDefaultsType.swift in Sources */,
 				C47D86841E215B5A008FC4A3 /* CollectionUtils.swift in Sources */,
 				C47D86811E212AE2008FC4A3 /* MealPlanViewData.swift in Sources */,
 				C4E9D7261E204237008926BC /* Meal.swift in Sources */,
