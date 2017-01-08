@@ -31,4 +31,28 @@ class MealsModelTests : XCTestCase {
         XCTAssertEqual([], mealsModel.getMeals(), "meals should be empty")
     }
 
+    func testAddFirstMeal() {
+        let meal = Meal(title: "foo")
+        mealsModel.add(meal: meal)
+
+        let updatedMeals = mealsModel.getMeals()
+
+        XCTAssertEqual(1, updatedMeals.count)
+        XCTAssertTrue(updatedMeals.contains(meal), "foo was not added")
+    }
+
+    func testAddSecondMeal() {
+        let meal1 = Meal(title: "foo")
+        let meal2 = Meal(title: "bar")
+
+        mealsModel.add(meal: meal1)
+        mealsModel.add(meal: meal2)
+
+        let updatedMeals = mealsModel.getMeals()
+
+        XCTAssertEqual(2, updatedMeals.count)
+        XCTAssertTrue(updatedMeals.contains(meal1), "foo was not added")
+        XCTAssertTrue(updatedMeals.contains(meal2), "bar was not added")
+
+    }
 }

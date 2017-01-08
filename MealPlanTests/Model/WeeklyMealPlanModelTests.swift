@@ -25,6 +25,8 @@ struct MealsProviderStub: MealsProvider {
         }
         return meals
     }
+
+    func add(meal: Meal) {}
 }
 
 class WeeklyMealPlanModelTests: XCTestCase {
