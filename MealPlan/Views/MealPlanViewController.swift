@@ -6,7 +6,7 @@ protocol MealPlanViewType: class {
     func set(mealPlanViewData: [MealPlanViewData])
 }
 
-class MealPlanViewController: UIViewController, MealPlanViewType {
+class MealPlanViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var presenter: MealPlanPresenterType!
@@ -18,7 +18,10 @@ class MealPlanViewController: UIViewController, MealPlanViewType {
         presenter = presenter ?? MealPlanPresenter(view: self)
         presenter.updateMealPlan()
     }
+}
 
+private typealias ViewTypeImplementation = MealPlanViewController
+extension ViewTypeImplementation: MealPlanViewType {
     func set(mealPlanViewData: [MealPlanViewData]) {
         self.mealPlanViewData = mealPlanViewData
     }

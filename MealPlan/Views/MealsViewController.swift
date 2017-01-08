@@ -6,7 +6,7 @@ protocol MealsViewType: class {
     func set(meals: [Meal])
 }
 
-class MealsViewController: UIViewController, MealsViewType {
+class MealsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: MealsPresenterType!
@@ -19,12 +19,15 @@ class MealsViewController: UIViewController, MealsViewType {
         presenter.updateMeals()
     }
 
-    func set(meals: [Meal]) {
-        self.meals = meals
-    }
-    
     @IBAction func done(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+private typealias ViewTypeImplementation = MealsViewController
+extension ViewTypeImplementation: MealsViewType {
+    func set(meals: [Meal]) {
+        self.meals = meals
     }
 }
 
