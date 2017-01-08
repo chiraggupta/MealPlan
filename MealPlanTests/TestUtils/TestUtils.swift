@@ -15,7 +15,7 @@ extension UIViewController {
     }
 }
 
-class UserDefaultsMock: UserDefaultsType {
+class MockUserDefaults: UserDefaultsType {
     var storage = [String: Any]()
 
     func set(_ value: Any?, forKey defaultName: String) {

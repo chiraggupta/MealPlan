@@ -6,7 +6,7 @@ import XCTest
 
 class MealsModelTests : XCTestCase {
     var mealsModel: MealsModel!
-    let testDefaults = UserDefaultsMock()
+    let testDefaults = MockUserDefaults()
 
     override func setUp() {
         super.setUp()
