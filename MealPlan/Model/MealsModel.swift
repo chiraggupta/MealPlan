@@ -16,13 +16,9 @@ struct MealsModel: MealsProvider {
     }
 
     func getMeals() -> [Meal] {
-        let storedMeals = getMealsFromStorage()
+        let meals = getMealsFromStorage()
 
-        var meals = [Meal]()
-        for storedMeal in storedMeals {
-            meals.append(Meal(title: storedMeal))
-        }
-        return meals
+        return meals.map { Meal(title: $0) }
     }
 
     private func getMealsFromStorage() -> [String] {
