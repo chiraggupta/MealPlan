@@ -4,6 +4,7 @@ import Foundation
 
 protocol MealsPresenterType {
     func updateMeals()
+    func add(meal: Meal)
 }
 
 class MealsPresenter: MealsPresenterType {
@@ -17,5 +18,9 @@ class MealsPresenter: MealsPresenterType {
 
     func updateMeals() {
         view.set(meals: model.getMeals())
+    }
+
+    func add(meal: Meal) {
+        model.add(meal: meal)
     }
 }

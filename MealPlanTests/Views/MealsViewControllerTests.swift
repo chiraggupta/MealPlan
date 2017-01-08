@@ -14,6 +14,8 @@ class MockMealsPresenter: MealsPresenterType {
     func updateMeals() {
         view.set(meals: stubMeals)
     }
+
+    func add(meal: Meal) {}
 }
 
 class MealsViewControllerTests: XCTestCase {
