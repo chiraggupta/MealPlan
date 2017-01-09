@@ -5,49 +5,53 @@ import XCTest
 @testable import MealPlan
 
 class MockMealPlanPresenter: MealPlanPresenterType {
-    fileprivate var view: MealPlanViewType
-    fileprivate let stubMealPlanViewData = MealPlanProviderStub().getExpectedMealPlanViewData()
-
-    init(view: MealPlanViewType) {
-        self.view = view
-    }
-
+    fileprivate var updateMealPlanCalled = false
     func updateMealPlan() {
-        view.set(mealPlanViewData: stubMealPlanViewData)
+        updateMealPlanCalled = true
     }
 }
 
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
-    var stubMealPlanViewData = [MealPlanViewData]()
+    let mockPresenter = MockMealPlanPresenter()
+
+    let defaultData = [
+        MealPlanViewData(day: "Monday", title: "meal 1"),
+        MealPlanViewData(day: "Tuesday", title: ""),
+        MealPlanViewData(day: "Wednesday", title: "meal 2"),
+        MealPlanViewData(day: "Thursday", title: ""),
+        MealPlanViewData(day: "Friday", title: ""),
+        MealPlanViewData(day: "Saturday", title: "meal 3"),
+        MealPlanViewData(day: "Sunday", title: "")
+    ]
 
     override func setUp() {
         super.setUp()
 
         viewController = createVC(identifier: "MealPlanViewController", storyboard: "Main") as! MealPlanViewController
-        let mockPresenter = MockMealPlanPresenter(view: viewController)
         viewController.presenter = mockPresenter
 
+        viewController.set(mealPlanViewData: defaultData)
         viewController.assertView()
+    }
 
-        stubMealPlanViewData = mockPresenter.stubMealPlanViewData
+    func testViewDidLoadCallsPresenterUpdateMealPlan() {
+        XCTAssertTrue(mockPresenter.updateMealPlanCalled)
     }
 
     func testCountOfMealsInList() {
         let count = viewController.tableView(viewController.tableView, numberOfRowsInSection: 0)
 
-        XCTAssertEqual(stubMealPlanViewData.count, count, "meal list count is incorrect")
+        XCTAssertEqual(defaultData.count, count, "meal list count is incorrect")
     }
 
     func testMealsDisplayedInList() {
-        for i in 0..<stubMealPlanViewData.count {
-            let expectedMealPlanViewData = stubMealPlanViewData[i]
-
+        for i in 0..<defaultData.count {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
 
-            XCTAssertEqual(expectedMealPlanViewData.day, cell.textLabel?.text, "day \(i) is incorrect")
-            XCTAssertEqual(expectedMealPlanViewData.title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
+            XCTAssertEqual(defaultData[i].day, cell.textLabel?.text, "day \(i) is incorrect")
+            XCTAssertEqual(defaultData[i].title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
         }
     }
 }
