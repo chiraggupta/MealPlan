@@ -86,6 +86,11 @@
                                 <action selector="done:" destination="pFF-8q-WMv" id="aRK-Ns-tnm"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2pQ-ab-Hag">
+                            <connections>
+                                <action selector="add:" destination="pFF-8q-WMv" id="oUj-5r-URs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="qxQ-vF-wwe" id="Etu-YW-0NM"/>

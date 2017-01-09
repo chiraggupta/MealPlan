@@ -32,7 +32,7 @@ class MealPlanViewControllerTests: XCTestCase {
         viewController.presenter = mockPresenter
 
         viewController.set(mealPlanViewData: defaultData)
-        viewController.assertView()
+        viewController.display()
     }
 
     func testViewDidLoadCallsPresenterUpdateMealPlan() {

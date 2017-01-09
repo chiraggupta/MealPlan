@@ -10,8 +10,8 @@ func createVC(identifier: String, storyboard: String) -> UIViewController {
 }
 
 extension UIViewController {
-    func assertView() {
-        XCTAssertNotNil(self.view, "\(self) failed to load")
+    func display() {
+        UIApplication.shared.keyWindow?.rootViewController = self
     }
 }
 

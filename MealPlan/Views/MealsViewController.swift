@@ -7,16 +7,35 @@ protocol MealsViewType: class {
 }
 
 class MealsViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    
     var presenter: MealsPresenterType!
     fileprivate var meals = [Meal]()
+    var alertActionCreator = AlertActionCreator()
+
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         presenter = presenter ?? MealsPresenter(view: self)
         presenter.updateMeals()
+    }
+
+    @IBAction func add(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Add Meal", message: "Something that you cook regularly", preferredStyle: .alert)
+
+        let saveAction = alertActionCreator.create(title: "Add", style: .default) { _ in
+            if let meal = alertController.textFields?.first?.text {
+                self.presenter.add(meal: Meal(title: meal))
+                self.presenter.updateMeals()
+            }
+        }
+        let cancelAction = alertActionCreator.create(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addTextField(configurationHandler: nil)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
@@ -28,6 +47,7 @@ private typealias ViewTypeImplementation = MealsViewController
 extension ViewTypeImplementation: MealsViewType {
     func set(meals: [Meal]) {
         self.meals = meals
+        tableView.reloadData()
     }
 }
 
