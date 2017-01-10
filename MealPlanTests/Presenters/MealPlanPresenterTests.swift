@@ -51,7 +51,7 @@ class MealPlanPresenterTests: XCTestCase {
         ]
 
         presenter.updateMealPlan()
-        
+
         XCTAssertTrue(view.setCalled, "set not called")
         XCTAssertEqual(expectedViewData, view.setArguments, "incorrect arguments")
     }

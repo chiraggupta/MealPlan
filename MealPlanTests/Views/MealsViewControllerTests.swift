@@ -103,5 +103,4 @@ class MealsViewControllerTests: XCTestCase {
         XCTAssertTrue(mockPresenter.updateMealsCalled)
     }
 
-    
 }

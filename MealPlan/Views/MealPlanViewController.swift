@@ -39,7 +39,7 @@ extension TableViewDataSource: UITableViewDataSource {
         let viewDataForDay = mealPlanViewData[indexPath.row]
         cell.textLabel?.text = viewDataForDay.day
         cell.detailTextLabel?.text = viewDataForDay.title
-        
+
         return cell
     }
 }

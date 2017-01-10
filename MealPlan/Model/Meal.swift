@@ -10,6 +10,6 @@ struct Meal: Equatable, Hashable {
     }
 }
 
-func ==(lhs: Meal, rhs: Meal) -> Bool {
+func == (lhs: Meal, rhs: Meal) -> Bool {
     return lhs.title == rhs.title
 }

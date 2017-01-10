@@ -4,7 +4,7 @@ import XCTest
 
 @testable import MealPlan
 
-class MealsModelTests : XCTestCase {
+class MealsModelTests: XCTestCase {
     var mealsModel: MealsModel!
     let testDefaults = MockUserDefaults()
 

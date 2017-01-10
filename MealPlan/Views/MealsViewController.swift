@@ -21,9 +21,11 @@ class MealsViewController: UIViewController {
     }
 
     @IBAction func add(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add Meal", message: "Something that you cook regularly", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Add Meal",
+                                                message: "Something that you cook regularly",
+                                                preferredStyle: .alert)
 
-        let saveAction = alertActionCreator.create(title: "Add", style: .default) { _ in
+        let addAction = alertActionCreator.create(title: "Add", style: .default) { _ in
             if let meal = alertController.textFields?.first?.text {
                 self.presenter.add(meal: Meal(title: meal))
                 self.presenter.updateMeals()
@@ -32,7 +34,7 @@ class MealsViewController: UIViewController {
         let cancelAction = alertActionCreator.create(title: "Cancel", style: .cancel, handler: nil)
 
         alertController.addTextField(configurationHandler: nil)
-        alertController.addAction(saveAction)
+        alertController.addAction(addAction)
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true, completion: nil)
@@ -60,7 +62,7 @@ extension TableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "MealsCell")
         cell.textLabel?.text = meals[indexPath.row].title
-        
+
         return cell
     }
 }

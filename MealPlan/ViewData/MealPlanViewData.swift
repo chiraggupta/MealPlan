@@ -12,6 +12,6 @@ struct MealPlanViewData: Equatable {
     }
 }
 
-func ==(lhs: MealPlanViewData, rhs: MealPlanViewData) -> Bool {
+func == (lhs: MealPlanViewData, rhs: MealPlanViewData) -> Bool {
     return lhs.title == rhs.title && lhs.day == rhs.day
 }

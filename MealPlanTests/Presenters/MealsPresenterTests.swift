@@ -54,5 +54,5 @@ class MealsPresenterTests: XCTestCase {
         XCTAssertTrue(model.addCalled, "add not called")
         XCTAssertEqual(meal, model.addArgument, "add called with incorrect meal")
     }
-    
+
 }
