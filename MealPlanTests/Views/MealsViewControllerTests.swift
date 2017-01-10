@@ -72,9 +72,10 @@ class MealsViewControllerTests: XCTestCase {
     func testAddMealControllerShowsUpCorrectly() {
         viewController.add(UIBarButtonItem())
 
-        XCTAssertTrue(viewController.presentedViewController is UIAlertController, "alert not presented")
-
-        let alert = viewController.presentedViewController as! UIAlertController
+        guard let alert = viewController.presentedViewController as? UIAlertController else {
+            XCTFail("alert not presented")
+            return
+        }
 
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
         XCTAssertEqual("Something that you cook regularly", alert.message, "alert message is incorrect")
@@ -91,7 +92,11 @@ class MealsViewControllerTests: XCTestCase {
         viewController.alertActionCreator = mockAlertActionCreator
         viewController.add(UIBarButtonItem())
 
-        let alert = viewController.presentedViewController as! UIAlertController
+        guard let alert = viewController.presentedViewController as? UIAlertController else {
+            XCTFail("alert not presented")
+            return
+        }
+
         alert.textFields?.first?.text = "foo"
 
         let addAction = alert.actions.first!
@@ -102,5 +107,4 @@ class MealsViewControllerTests: XCTestCase {
         XCTAssertEqual(Meal(title: "foo"), mockPresenter.addMealArgument)
         XCTAssertTrue(mockPresenter.updateMealsCalled)
     }
-
 }
