@@ -28,7 +28,7 @@ class MealPlanViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        viewController = createVC(identifier: "MealPlanViewController", storyboard: "Main") as! MealPlanViewController
+        viewController = makeViewController(storyboard: "Main")
         viewController.presenter = mockPresenter
 
         viewController.set(mealPlanViewData: defaultData)

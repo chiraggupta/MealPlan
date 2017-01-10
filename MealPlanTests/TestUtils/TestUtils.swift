@@ -4,9 +4,19 @@ import UIKit
 import XCTest
 @testable import MealPlan
 
-func createVC(identifier: String, storyboard: String) -> UIViewController {
+func makeViewController <T: UIViewController> (storyboard: String) -> T? {
+    guard let identifier = NSStringFromClass(T.self).components(separatedBy: ".").last else {
+        assertionFailure("Expected <module.classname>, got \(NSStringFromClass(T.self))")
+        return nil
+    }
+
     let storyboard = UIStoryboard(name: storyboard, bundle: nil)
-    return storyboard.instantiateViewController(withIdentifier: identifier)
+    guard let viewController = storyboard.instantiateViewController(withIdentifier: identifier) as? T else {
+        assertionFailure("Couldn't find \(identifier) in \(storyboard).storyboard")
+        return nil
+    }
+
+    return viewController
 }
 
 extension UIViewController {
