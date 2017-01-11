@@ -108,8 +108,8 @@
 		C41845341E1AF3E90042E44C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4ECAE801E26A64D003649D4 /* Common */,
 				C41845331E1AF3CF0042E44C /* Storyboards */,
-				C4E693561E24564F00EDFE97 /* AlertActionCreator.swift */,
 				C43822881E25FADF00179062 /* AddMealAlertCreator.swift */,
 				C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */,
 				C47D86911E2181AD008FC4A3 /* MealsViewController.swift */,
@@ -250,6 +250,14 @@
 				C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C4ECAE801E26A64D003649D4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C4E693561E24564F00EDFE97 /* AlertActionCreator.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

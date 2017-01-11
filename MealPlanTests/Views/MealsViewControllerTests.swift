@@ -21,7 +21,6 @@ class MockMealsPresenter: MealsPresenterType {
 class MealsViewControllerTests: XCTestCase {
     var viewController: MealsViewController!
     let mockPresenter = MockMealsPresenter()
-    let mockAlertActionCreator = MockAlertActionCreator()
 
     var defaultData = [
         Meal(title: "meal 1"),
