@@ -12,12 +12,19 @@ class MockMealsView: MealsViewType {
         setCalled = true
         setArguments = meals
     }
+
+    func resetState() {
+        setCalled = false
+        setArguments = []
+    }
 }
 
 class MockMealsModel: MealsProvider {
     private(set) fileprivate var getMealsCalled: Bool = false
     private(set) fileprivate var addCalled: Bool = false
     private(set) fileprivate var addArgument: Meal?
+    private(set) fileprivate var removeCalled: Bool = false
+    private(set) fileprivate var removeArgument: Meal?
 
     func getMeals() -> [Meal] {
         getMealsCalled = true
@@ -35,7 +42,10 @@ class MockMealsModel: MealsProvider {
         addArgument = meal
     }
 
-    func remove(meal: Meal) {}
+    func remove(meal: Meal) {
+        removeCalled = true
+        removeArgument = meal
+    }
 }
 
 class MealsPresenterTests: XCTestCase {
@@ -65,12 +75,32 @@ class MealsPresenterTests: XCTestCase {
         XCTAssertEqual(meal, model.addArgument, "add called with incorrect meal")
     }
 
-    func testAddMealsSetsUpdatedMealsToView() {
+    func testAddMealSetsUpdatedMealsToView() {
         let meal = Meal(title: "bar_Meal")
         presenter.add(meal: meal)
 
-        XCTAssertTrue(view.setCalled, "view set not called")
         XCTAssertTrue(model.getMealsCalled, "model getMeals not called")
-        XCTAssertEqual(model.getMeals(), view.setArguments, "set called with incorrect arguments")
+        XCTAssertTrue(view.setCalled, "view set not called")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "view set called with incorrect arguments")
+    }
+
+    func testRemoveMealRemovesMealFromModel() {
+        let meal = Meal(title: "foo_meal")
+        presenter.remove(meal: meal)
+
+        XCTAssertTrue(model.removeCalled, "remove not called")
+        XCTAssertEqual(meal, model.removeArgument, "remove called with incorrect meal")
+    }
+
+    func testRemoveMealSetsUpdatedMealsToView() {
+        let meal = Meal(title: "foo_Meal")
+        presenter.add(meal: meal)
+        view.resetState()
+
+        presenter.remove(meal: meal)
+
+        XCTAssertTrue(model.removeCalled, "model getMeals not called")
+        XCTAssertTrue(view.setCalled, "view set not called")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "view set called with incorrect arguments")
     }
 }

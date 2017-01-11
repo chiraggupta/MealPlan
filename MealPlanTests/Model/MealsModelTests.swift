@@ -71,7 +71,7 @@ class MealsModelTests: XCTestCase {
         mealsModel.remove(meal: meal)
         let updatedMeals = mealsModel.getMeals()
 
-        XCTAssertEqual(0, updatedMeals.count, "meal was not deleted")
+        XCTAssertEqual(0, updatedMeals.count, "meal was not removed")
     }
 
     func testRemoveNonExistingMeal() {
@@ -81,6 +81,6 @@ class MealsModelTests: XCTestCase {
         mealsModel.remove(meal: Meal(title: "bar_meal"))
         let updatedMeals = mealsModel.getMeals()
 
-        XCTAssertEqual(1, updatedMeals.count, "meal shouldn't have been deleted")
+        XCTAssertEqual(1, updatedMeals.count, "meal shouldn't have been removed")
     }
 }

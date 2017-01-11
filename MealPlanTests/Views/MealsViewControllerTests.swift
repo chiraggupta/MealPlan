@@ -16,6 +16,8 @@ class MockMealsPresenter: MealsPresenterType {
         addMealCalled = true
         addMealArgument = meal
     }
+
+    func remove(meal: Meal) {}
 }
 
 struct MockAddMealAlertCreator: AlertCreator {

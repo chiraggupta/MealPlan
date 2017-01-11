@@ -5,6 +5,7 @@ import Foundation
 protocol MealsPresenterType {
     func updateMeals()
     func add(meal: Meal)
+    func remove(meal: Meal)
 }
 
 class MealsPresenter: MealsPresenterType {
@@ -22,6 +23,11 @@ class MealsPresenter: MealsPresenterType {
 
     func add(meal: Meal) {
         model.add(meal: meal)
+        updateMeals()
+    }
+
+    func remove(meal: Meal) {
+        model.remove(meal: meal)
         updateMeals()
     }
 }
