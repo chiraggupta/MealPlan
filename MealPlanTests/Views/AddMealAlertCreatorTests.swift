@@ -49,8 +49,8 @@ class AddMealAlertTests: XCTestCase {
         mealTitleTextField?.text = "foo"
 
         let addAction = alert.actions.first!
-        let addButtonHandler = mockActionCreator.handlerStorage["Add"]!
-        addButtonHandler(addAction)
+        let successHandler = mockActionCreator.handlerStorage["Add"]!
+        successHandler(addAction)
 
         waitForExpectations(timeout: 1) { error in
             if let error = error {
