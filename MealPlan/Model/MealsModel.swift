@@ -30,8 +30,11 @@ struct MealsModel: MealsProvider {
 
     func add(meal: Meal) {
         let existingMeals = getMealsFromStorage()
+        if existingMeals.contains(meal.title) {
+            return
+        }
+
         let updatedMeals = existingMeals + [meal.title]
         userDefaults.set(updatedMeals, forKey: key)
     }
-
 }
