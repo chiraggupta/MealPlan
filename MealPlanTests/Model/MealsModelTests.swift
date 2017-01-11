@@ -6,12 +6,12 @@ import XCTest
 
 class MealsModelTests: XCTestCase {
     var mealsModel: MealsModel!
-    let testDefaults = MockUserDefaults()
+    let defaults = MockUserDefaults()
 
     override func setUp() {
         super.setUp()
 
-        mealsModel = MealsModel(userDefaults: testDefaults)
+        mealsModel = MealsModel(userDefaults: defaults)
     }
 
     func testGetMealsWhenDefaultsAreNotSet() {
@@ -19,14 +19,14 @@ class MealsModelTests: XCTestCase {
     }
 
     func testGetMealsWhenDefaultsAreSet() {
-        testDefaults.set(["foo", "bar"], forKey: "Meals")
+        defaults.set(["foo", "bar"], forKey: "Meals")
         let expectedMeals = [Meal(title: "foo"), Meal(title: "bar")]
 
         XCTAssertEqual(expectedMeals, mealsModel.getMeals(), "meals should be foo and bar")
     }
 
     func testGetMealsWhenDefaultsAreSetToInvalidType() {
-        testDefaults.set(["foo": "bar"], forKey: "Meals")
+        defaults.set(["foo": "bar"], forKey: "Meals")
 
         XCTAssertEqual([], mealsModel.getMeals(), "meals should be empty")
     }

@@ -3,7 +3,7 @@
 import XCTest
 @testable import MealPlan
 
-class MockAlertActionCreator: AlertActionCreator {
+class PartialMockAlertActionCreator: AlertActionCreator {
     var handlerStorage = [String: AlertActionHandler]()
 
     override func create(title: String, style: UIAlertActionStyle, handler: AlertActionHandler?) -> UIAlertAction {
@@ -14,12 +14,12 @@ class MockAlertActionCreator: AlertActionCreator {
 
 class AddMealAlertTests: XCTestCase {
     var alertCreator: AddMealAlertCreator!
-    let mockActionCreator = MockAlertActionCreator()
+    let actionCreator = PartialMockAlertActionCreator()
 
     override func setUp() {
         super.setUp()
 
-        alertCreator = AddMealAlertCreator(actionCreator: mockActionCreator)
+        alertCreator = AddMealAlertCreator(actionCreator: actionCreator)
     }
 
     func testAlertCreatedWithCorrectConfiguration() {
@@ -49,7 +49,7 @@ class AddMealAlertTests: XCTestCase {
         mealTitleTextField?.text = "foo"
 
         let addAction = alert.actions.first!
-        let successHandler = mockActionCreator.handlerStorage["Add"]!
+        let successHandler = actionCreator.handlerStorage["Add"]!
         successHandler(addAction)
 
         waitForExpectations(timeout: 1) { error in

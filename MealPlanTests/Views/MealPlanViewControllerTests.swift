@@ -13,7 +13,7 @@ class MockMealPlanPresenter: MealPlanPresenterType {
 
 class MealPlanViewControllerTests: XCTestCase {
     var viewController: MealPlanViewController!
-    let mockPresenter = MockMealPlanPresenter()
+    let presenter = MockMealPlanPresenter()
 
     let defaultData = [
         MealPlanViewData(day: "Monday", title: "meal 1"),
@@ -29,14 +29,14 @@ class MealPlanViewControllerTests: XCTestCase {
         super.setUp()
 
         viewController = makeViewController(storyboard: "Main")
-        viewController.presenter = mockPresenter
+        viewController.presenter = presenter
 
         viewController.set(mealPlanViewData: defaultData)
         viewController.display()
     }
 
     func testViewDidLoadCallsPresenterUpdateMealPlan() {
-        XCTAssertTrue(mockPresenter.updateMealPlanCalled)
+        XCTAssertTrue(presenter.updateMealPlanCalled)
     }
 
     func testCountOfMealsInList() {

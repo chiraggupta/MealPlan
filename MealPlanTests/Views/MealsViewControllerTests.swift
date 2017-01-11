@@ -20,7 +20,7 @@ class MockMealsPresenter: MealsPresenterType {
 
 class MealsViewControllerTests: XCTestCase {
     var viewController: MealsViewController!
-    let mockPresenter = MockMealsPresenter()
+    let presenter = MockMealsPresenter()
 
     var defaultData = [
         Meal(title: "meal 1"),
@@ -32,13 +32,13 @@ class MealsViewControllerTests: XCTestCase {
         super.setUp()
 
         viewController = makeViewController(storyboard: "Main")
-        viewController.presenter = mockPresenter
+        viewController.presenter = presenter
 
         viewController.display()
     }
 
     func testViewDidLoadCallsPresenterUpdateMeals() {
-        XCTAssertTrue(mockPresenter.updateMealsCalled)
+        XCTAssertTrue(presenter.updateMealsCalled)
     }
 
     func testCountOfMealsInList() {
