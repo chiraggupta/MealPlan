@@ -18,15 +18,6 @@ class MockMealsPresenter: MealsPresenterType {
     }
 }
 
-class MockAlertActionCreator: AlertActionCreator {
-    var handlerStorage = [String: AlertActionHandler]()
-
-    override func create(title: String, style: UIAlertActionStyle, handler: AlertActionHandler?) -> UIAlertAction {
-        handlerStorage[title] = handler
-        return UIAlertAction(title: title, style: style, handler: handler)
-    }
-}
-
 class MealsViewControllerTests: XCTestCase {
     var viewController: MealsViewController!
     let mockPresenter = MockMealsPresenter()
@@ -69,7 +60,7 @@ class MealsViewControllerTests: XCTestCase {
         }
     }
 
-    func testAddMealControllerShowsUpCorrectly() {
+    func testTappingAddShowsAddMealAlert() {
         viewController.add(UIBarButtonItem())
 
         guard let alert = viewController.presentedViewController as? UIAlertController else {
@@ -78,33 +69,5 @@ class MealsViewControllerTests: XCTestCase {
         }
 
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
-        XCTAssertEqual("Something that you cook regularly", alert.message, "alert message is incorrect")
-        XCTAssertNotNil(alert.textFields?.first, "alert should have a text field")
-
-        XCTAssertEqual(2, alert.actions.count, "alert should have 2 actions")
-        XCTAssertEqual("Add", alert.actions.first?.title, "first action should be Add")
-        XCTAssertEqual("Cancel", alert.actions.last?.title, "second action should be Cancel")
-        XCTAssertEqual(UIAlertActionStyle.default, alert.actions.first?.style, "first action should have default style")
-        XCTAssertEqual(UIAlertActionStyle.cancel, alert.actions.last?.style, "second action should have cancel style")
-    }
-
-    func testAlertActionAdd() {
-        viewController.alertActionCreator = mockAlertActionCreator
-        viewController.add(UIBarButtonItem())
-
-        guard let alert = viewController.presentedViewController as? UIAlertController else {
-            XCTFail("alert not presented")
-            return
-        }
-
-        alert.textFields?.first?.text = "foo"
-
-        let addAction = alert.actions.first!
-        let addHandler = mockAlertActionCreator.handlerStorage["Add"]!
-        addHandler(addAction)
-
-        XCTAssertTrue(mockPresenter.addMealCalled)
-        XCTAssertEqual(Meal(title: "foo"), mockPresenter.addMealArgument)
-        XCTAssertTrue(mockPresenter.updateMealsCalled)
     }
 }

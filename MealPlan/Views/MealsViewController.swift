@@ -8,10 +8,11 @@ protocol MealsViewType: class {
 
 class MealsViewController: UIViewController {
     var presenter: MealsPresenterType!
-    fileprivate var meals = [Meal]()
-    var alertActionCreator = AlertActionCreator()
+    var addMealAlertCreator: AddMealAlertCreator!
 
     @IBOutlet weak var tableView: UITableView!
+
+    fileprivate var meals = [Meal]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +22,12 @@ class MealsViewController: UIViewController {
     }
 
     @IBAction func add(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Add Meal",
-                                                message: "Something that you cook regularly",
-                                                preferredStyle: .alert)
+        let alertCreator = addMealAlertCreator ?? AddMealAlertCreator()
 
-        let addAction = alertActionCreator.create(title: "Add", style: .default) { _ in
-            if let meal = alertController.textFields?.first?.text {
-                self.presenter.add(meal: Meal(title: meal))
-                self.presenter.updateMeals()
-            }
+        let alertController = alertCreator.create { mealTitle in
+            self.presenter.add(meal: Meal(title: mealTitle))
+            self.presenter.updateMeals()
         }
-        let cancelAction = alertActionCreator.create(title: "Cancel", style: .cancel, handler: nil)
-
-        alertController.addTextField(configurationHandler: nil)
-        alertController.addAction(addAction)
-        alertController.addAction(cancelAction)
 
         present(alertController, animated: true, completion: nil)
     }
