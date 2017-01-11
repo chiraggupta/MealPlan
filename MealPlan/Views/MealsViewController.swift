@@ -26,7 +26,6 @@ class MealsViewController: UIViewController {
 
         let alertController = alertCreator.create { mealTitle in
             self.presenter.add(meal: Meal(title: mealTitle))
-            self.presenter.updateMeals()
         }
 
         present(alertController, animated: true, completion: nil)

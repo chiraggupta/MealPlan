@@ -22,5 +22,6 @@ class MealsPresenter: MealsPresenterType {
 
     func add(meal: Meal) {
         model.add(meal: meal)
+        updateMeals()
     }
 }

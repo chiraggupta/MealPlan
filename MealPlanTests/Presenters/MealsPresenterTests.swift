@@ -21,7 +21,13 @@ class MockMealsModel: MealsProvider {
 
     func getMeals() -> [Meal] {
         getMealsCalled = true
-        return [Meal(title: "")]
+
+        var meals = [Meal(title: "foo_Meal")]
+        if let addedMeal = addArgument {
+            meals.append(addedMeal)
+        }
+
+        return meals
     }
     func add(meal: Meal) {
         addCalled = true
@@ -43,16 +49,25 @@ class MealsPresenterTests: XCTestCase {
     func testUpdateMealsSetsMealsToView() {
         presenter.updateMeals()
 
-        XCTAssertTrue(view.setCalled, "set not called")
+        XCTAssertTrue(view.setCalled, "view set not called")
+        XCTAssertTrue(model.getMealsCalled, "model getMeals not called")
         XCTAssertEqual(model.getMeals(), view.setArguments, "set called with incorrect arguments")
     }
 
-    func testAddMeals() {
-        let meal = Meal(title: "bar")
+    func testAddMealAddsMealToModel() {
+        let meal = Meal(title: "bar_Meal")
         presenter.add(meal: meal)
 
         XCTAssertTrue(model.addCalled, "add not called")
         XCTAssertEqual(meal, model.addArgument, "add called with incorrect meal")
     }
 
+    func testAddMealsSetsUpdatedMealsToView() {
+        let meal = Meal(title: "bar_Meal")
+        presenter.add(meal: meal)
+
+        XCTAssertTrue(view.setCalled, "view set not called")
+        XCTAssertTrue(model.getMealsCalled, "model getMeals not called")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "set called with incorrect arguments")
+    }
 }
