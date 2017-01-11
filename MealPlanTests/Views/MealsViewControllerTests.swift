@@ -18,9 +18,11 @@ class MockMealsPresenter: MealsPresenterType {
     }
 }
 
-class MockAddMealAlertCreator: AlertCreator {
+struct MockAddMealAlertCreator: AlertCreator {
+    let resultMealTitle: String
+
     func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
-        successHandler("foo_mealTitle")
+        successHandler(resultMealTitle)
         return UIAlertController()
     }
 }
@@ -77,11 +79,25 @@ class MealsViewControllerTests: XCTestCase {
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
     }
 
-    func testAddPressedSuccessHandler() {
-        viewController.addMealAlertCreator = MockAddMealAlertCreator()
+    func testAddSuccessHandlerSendsAddMealToPresenter() {
+        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "foo_mealTitle")
         viewController.add(UIBarButtonItem())
 
         XCTAssertTrue(presenter.addMealCalled)
         XCTAssertEqual(Meal(title: "foo_mealTitle"), presenter.addMealArgument)
+    }
+
+    func testAddSuccessHandlerTrimsMealText() {
+        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "  foo_mealTitle  \t")
+        viewController.add(UIBarButtonItem())
+
+        XCTAssertEqual(Meal(title: "foo_mealTitle"), presenter.addMealArgument)
+    }
+
+    func testAddSuccessHandlerDoesNotAddMealsWithEmptyTitle() {
+        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "")
+        viewController.add(UIBarButtonItem())
+
+        XCTAssertFalse(presenter.addMealCalled)
     }
 }

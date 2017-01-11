@@ -23,12 +23,18 @@ class MealsViewController: UIViewController {
 
     @IBAction func add(_ sender: UIBarButtonItem) {
         let alertCreator = addMealAlertCreator ?? AddMealAlertCreator()
-
         let alertController = alertCreator.create { mealTitle in
-            self.presenter.add(meal: Meal(title: mealTitle))
+        self.addMealIfValid(title: mealTitle)
         }
 
         present(alertController, animated: true, completion: nil)
+    }
+
+    func addMealIfValid(title: String) {
+        let trimmedMealTitle = title.trimmingCharacters(in: .whitespaces)
+        if !trimmedMealTitle.isEmpty {
+            presenter.add(meal: Meal(title: trimmedMealTitle))
+        }
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
