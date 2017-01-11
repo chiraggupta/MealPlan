@@ -29,10 +29,13 @@ class MockMealsModel: MealsProvider {
 
         return meals
     }
+
     func add(meal: Meal) {
         addCalled = true
         addArgument = meal
     }
+
+    func remove(meal: Meal) {}
 }
 
 class MealsPresenterTests: XCTestCase {

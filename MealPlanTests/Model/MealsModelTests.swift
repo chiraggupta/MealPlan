@@ -34,7 +34,7 @@ class MealsModelTests: XCTestCase {
     func testAddFirstMeal() {
         let meal = Meal(title: "foo")
         mealsModel.add(meal: meal)
-        
+
         let updatedMeals = mealsModel.getMeals()
 
         XCTAssertEqual(1, updatedMeals.count)
@@ -62,5 +62,25 @@ class MealsModelTests: XCTestCase {
         let updatedMeals = mealsModel.getMeals()
 
         XCTAssertEqual(1, updatedMeals.count, "duplicate shouldn't be added")
+    }
+
+    func testRemoveMeal() {
+        let meal = Meal(title: "foo_meal")
+        mealsModel.add(meal: meal)
+
+        mealsModel.remove(meal: meal)
+        let updatedMeals = mealsModel.getMeals()
+
+        XCTAssertEqual(0, updatedMeals.count, "meal was not deleted")
+    }
+
+    func testRemoveNonExistingMeal() {
+        let meal = Meal(title: "foo_meal")
+        mealsModel.add(meal: meal)
+
+        mealsModel.remove(meal: Meal(title: "bar_meal"))
+        let updatedMeals = mealsModel.getMeals()
+
+        XCTAssertEqual(1, updatedMeals.count, "meal shouldn't have been deleted")
     }
 }

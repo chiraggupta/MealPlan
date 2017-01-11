@@ -5,6 +5,7 @@ import Foundation
 protocol MealsProvider {
     func getMeals() -> [Meal]
     func add(meal: Meal)
+    func remove(meal: Meal)
 }
 
 struct MealsModel: MealsProvider {
@@ -36,5 +37,15 @@ struct MealsModel: MealsProvider {
 
         let updatedMeals = existingMeals + [meal.title]
         userDefaults.set(updatedMeals, forKey: key)
+    }
+
+    func remove(meal: Meal) {
+        var meals = getMealsFromStorage()
+        guard let position = meals.index(of: meal.title) else {
+            return
+        }
+
+        meals.remove(at: position)
+        userDefaults.set(meals, forKey: key)
     }
 }

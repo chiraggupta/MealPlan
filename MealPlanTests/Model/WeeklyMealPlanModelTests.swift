@@ -27,6 +27,7 @@ struct MealsProviderStub: MealsProvider {
     }
 
     func add(meal: Meal) {}
+    func remove(meal: Meal) {}
 }
 
 class WeeklyMealPlanModelTests: XCTestCase {
