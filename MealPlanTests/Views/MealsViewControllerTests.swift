@@ -18,6 +18,13 @@ class MockMealsPresenter: MealsPresenterType {
     }
 }
 
+class MockAddMealAlertCreator: AlertCreator {
+    func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
+        successHandler("foo_mealTitle")
+        return UIAlertController()
+    }
+}
+
 class MealsViewControllerTests: XCTestCase {
     var viewController: MealsViewController!
     let presenter = MockMealsPresenter()
@@ -68,5 +75,13 @@ class MealsViewControllerTests: XCTestCase {
         }
 
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
+    }
+
+    func testAddPressedSuccessHandler() {
+        viewController.addMealAlertCreator = MockAddMealAlertCreator()
+        viewController.add(UIBarButtonItem())
+
+        XCTAssertTrue(presenter.addMealCalled)
+        XCTAssertEqual(Meal(title: "foo_mealTitle"), presenter.addMealArgument)
     }
 }

@@ -8,7 +8,7 @@ protocol MealsViewType: class {
 
 class MealsViewController: UIViewController {
     var presenter: MealsPresenterType!
-    var addMealAlertCreator: AddMealAlertCreator!
+    var addMealAlertCreator: AlertCreator!
 
     @IBOutlet weak var tableView: UITableView!
 
