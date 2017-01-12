@@ -7,51 +7,18 @@ import XCTest
 class MockMealsView: MealsViewType {
     private(set) fileprivate var setCalled: Bool = false
     private(set) fileprivate var setArguments = [Meal]()
+    private(set) fileprivate var reloadCalled: Bool = false
 
     func set(meals: [Meal]) {
         setCalled = true
         setArguments = meals
     }
-
-    func resetState() {
-        setCalled = false
-        setArguments = []
-    }
-}
-
-class MockMealsModel: MealsProvider {
-    private(set) fileprivate var getMealsCalled: Bool = false
-    private(set) fileprivate var addCalled: Bool = false
-    private(set) fileprivate var addArgument: Meal?
-    private(set) fileprivate var removeCalled: Bool = false
-    private(set) fileprivate var removeArgument: Meal?
-
-    func getMeals() -> [Meal] {
-        getMealsCalled = true
-
-        var meals = [Meal(title: "foo_Meal")]
-        if let addedMeal = addArgument {
-            meals.append(addedMeal)
-        }
-
-        return meals
-    }
-
-    func add(meal: Meal) {
-        addCalled = true
-        addArgument = meal
-    }
-
-    func remove(meal: Meal) {
-        removeCalled = true
-        removeArgument = meal
-    }
 }
 
 class MealsPresenterTests: XCTestCase {
-    private var presenter: MealsPresenter!
-    private let view = MockMealsView()
-    private let model = MockMealsModel()
+    var presenter: MealsPresenter!
+    let view = MockMealsView()
+    let model = MealsModel(userDefaults: MockUserDefaults())
 
     override func setUp() {
         super.setUp()
@@ -59,48 +26,49 @@ class MealsPresenterTests: XCTestCase {
         presenter = MealsPresenter(view: view, model: model)
     }
 
-    func testUpdateMealsSetsMealsToView() {
+    func testUpdateMealsForView() {
+        model.add(meal: Meal(title: "foo_meal"))
+        model.add(meal: Meal(title: "bar_meal"))
+
         presenter.updateMeals()
 
-        XCTAssertTrue(view.setCalled, "view set not called")
-        XCTAssertTrue(model.getMealsCalled, "model getMeals not called")
-        XCTAssertEqual(model.getMeals(), view.setArguments, "set called with incorrect arguments")
+        XCTAssertTrue(view.setCalled, "meals were not set")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
     }
 
-    func testAddMealAddsMealToModel() {
-        let meal = Meal(title: "bar_Meal")
-        presenter.add(meal: meal)
+    func testAddMealForModel() {
+        let fooMeal = Meal(title: "foo_meal")
+        model.add(meal: fooMeal)
 
-        XCTAssertTrue(model.addCalled, "add not called")
-        XCTAssertEqual(meal, model.addArgument, "add called with incorrect meal")
+        XCTAssertEqual([fooMeal], model.getMeals(), "meal not added to model")
     }
 
-    func testAddMealSetsUpdatedMealsToView() {
-        let meal = Meal(title: "bar_Meal")
-        presenter.add(meal: meal)
+    func testAddMealForView() {
+        model.add(meal: Meal(title: "foo_meal"))
 
-        XCTAssertTrue(model.getMealsCalled, "model getMeals not called")
-        XCTAssertTrue(view.setCalled, "view set not called")
-        XCTAssertEqual(model.getMeals(), view.setArguments, "view set called with incorrect arguments")
+        let barMeal = Meal(title: "bar_meal")
+        presenter.add(meal: barMeal)
+
+        XCTAssertTrue(view.setCalled, "view meals were not set")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
     }
 
-    func testRemoveMealRemovesMealFromModel() {
-        let meal = Meal(title: "foo_meal")
-        presenter.remove(meal: meal)
+    func testRemoveMealForModel() {
+        let fooMeal = Meal(title: "foo_meal")
+        model.add(meal: fooMeal)
 
-        XCTAssertTrue(model.removeCalled, "remove not called")
-        XCTAssertEqual(meal, model.removeArgument, "remove called with incorrect meal")
+        presenter.remove(meal: fooMeal)
+
+        XCTAssertEqual([], model.getMeals(), "meal not removed from model")
     }
 
-    func testRemoveMealSetsUpdatedMealsToView() {
-        let meal = Meal(title: "foo_Meal")
-        presenter.add(meal: meal)
-        view.resetState()
+    func testRemoveMealForView() {
+        model.add(meal: Meal(title: "foo_meal"))
 
-        presenter.remove(meal: meal)
+        let barMeal = Meal(title: "bar_meal")
+        presenter.remove(meal: barMeal)
 
-        XCTAssertTrue(model.removeCalled, "model getMeals not called")
-        XCTAssertTrue(view.setCalled, "view set not called")
-        XCTAssertEqual(model.getMeals(), view.setArguments, "view set called with incorrect arguments")
+        XCTAssertTrue(view.setCalled, "view meals were not set")
+        XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
     }
 }

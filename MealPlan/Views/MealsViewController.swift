@@ -24,7 +24,7 @@ class MealsViewController: UIViewController {
     @IBAction func add(_ sender: UIBarButtonItem) {
         let alertCreator = addMealAlertCreator ?? AddMealAlertCreator()
         let alertController = alertCreator.create { mealTitle in
-        self.addMealIfValid(title: mealTitle)
+            self.addMealIfValid(title: mealTitle)
         }
 
         present(alertController, animated: true, completion: nil)
@@ -59,7 +59,7 @@ extension TableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "MealsCell")
         cell.textLabel?.text = meals[indexPath.row].title
-
+        
         return cell
     }
 }
