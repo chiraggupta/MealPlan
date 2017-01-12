@@ -2,12 +2,8 @@
 
 import Foundation
 
-struct Meal: Equatable, Hashable {
+struct Meal: Equatable {
     var title: String
-
-    var hashValue: Int {
-        return title.hashValue
-    }
 }
 
 func == (lhs: Meal, rhs: Meal) -> Bool {

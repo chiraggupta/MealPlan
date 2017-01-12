@@ -10,13 +10,37 @@ protocol WeeklyMealPlanProvider {
 }
 
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
-    private let meals: WeeklyMealPlan = [:]
+    private let userDefaults: UserDefaultsType!
+    let key = "WeeklyMealPlan"
+
+    init(userDefaults: UserDefaultsType = UserDefaults.standard) {
+        self.userDefaults = userDefaults
+    }
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {
-        return meals
+        let rawMealPlan = getMealPlanFromStorage()
+        var mealPlan = WeeklyMealPlan()
+
+        for day in DayOfWeek.all {
+            if let mealTitle = rawMealPlan[day.rawValue] {
+                mealPlan[day] = Meal(title: mealTitle)
+            }
+        }
+
+        return mealPlan
+    }
+
+    private func getMealPlanFromStorage() -> [String: String] {
+        if let storedMealPlan = userDefaults.object(forKey: key) as? [String: String] {
+            return storedMealPlan
+        }
+        return [:]
     }
 
     func select(meal: Meal, day: DayOfWeek) {
-        print("Selected \(meal.title) for \(day.rawValue)")
+        var mealPlan = getMealPlanFromStorage()
+        mealPlan[day.rawValue] = meal.title
+
+        userDefaults.set(mealPlan, forKey: key)
     }
 }
