@@ -6,6 +6,7 @@ typealias WeeklyMealPlan = [DayOfWeek: Meal]
 
 protocol WeeklyMealPlanProvider {
     func getWeeklyMealPlan() -> WeeklyMealPlan
+    func select(meal: Meal, day: DayOfWeek)
 }
 
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
@@ -28,5 +29,9 @@ struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
         }
 
         return mealPlan
+    }
+
+    func select(meal: Meal, day: DayOfWeek) {
+        print("Selected \(meal.title) for \(day.rawValue)")
     }
 }

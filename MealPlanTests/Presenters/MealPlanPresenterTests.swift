@@ -9,6 +9,7 @@ struct MealPlanProviderStub: WeeklyMealPlanProvider {
     func getWeeklyMealPlan() -> WeeklyMealPlan {
         return mealPlan
     }
+    func select(meal: Meal, day: DayOfWeek) {}
 }
 
 class MockMealPlanView: MealPlanViewType {
