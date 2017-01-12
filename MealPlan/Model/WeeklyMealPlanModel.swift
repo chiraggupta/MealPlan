@@ -10,25 +10,10 @@ protocol WeeklyMealPlanProvider {
 }
 
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
-    private let mealsModel: MealsProvider
-
-    init(mealsModel: MealsProvider = MealsModel()) {
-        self.mealsModel = mealsModel
-    }
+    private let meals: WeeklyMealPlan = [:]
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {
-        var meals = mealsModel.getMeals().removingDuplicates()
-        var mealPlan = WeeklyMealPlan()
-
-        for day in DayOfWeek.all {
-            guard let meal = meals.first else {
-                break
-            }
-            mealPlan[day] = meal
-            meals.removeFirst()
-        }
-
-        return mealPlan
+        return meals
     }
 
     func select(meal: Meal, day: DayOfWeek) {
