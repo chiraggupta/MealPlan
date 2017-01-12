@@ -69,6 +69,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pFF-8q-WMv" id="Fq6-St-uPt"/>
+                                    <outlet property="delegate" destination="pFF-8q-WMv" id="zDD-lS-jqn"/>
                                 </connections>
                             </tableView>
                         </subviews>

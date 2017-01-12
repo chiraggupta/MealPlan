@@ -67,3 +67,19 @@ extension TableViewDataSource: UITableViewDataSource {
         return cell
     }
 }
+
+private typealias TableViewDelegate = MealsViewController
+extension TableViewDelegate: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+
+            presenter.remove(meal: meals[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            tableView.endUpdates()
+        }
+    }
+}
