@@ -4,6 +4,7 @@ import UIKit
 
 protocol MealsViewType: class {
     func set(meals: [Meal])
+    func reload()
 }
 
 class MealsViewController: UIViewController {
@@ -46,6 +47,9 @@ private typealias ViewTypeImplementation = MealsViewController
 extension ViewTypeImplementation: MealsViewType {
     func set(meals: [Meal]) {
         self.meals = meals
+    }
+
+    func reload() {
         tableView.reloadData()
     }
 }
@@ -59,7 +63,7 @@ extension TableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "MealsCell")
         cell.textLabel?.text = meals[indexPath.row].title
-        
+
         return cell
     }
 }

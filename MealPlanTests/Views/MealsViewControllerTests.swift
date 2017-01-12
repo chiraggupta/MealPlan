@@ -54,6 +54,7 @@ class MealsViewControllerTests: XCTestCase {
 
     func testCountOfMealsInList() {
         viewController.set(meals: defaultData)
+        viewController.reload()
 
         let count = viewController.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(defaultData.count, count, "meals count is incorrect")

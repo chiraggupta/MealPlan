@@ -13,6 +13,10 @@ class MockMealsView: MealsViewType {
         setCalled = true
         setArguments = meals
     }
+
+    func reload() {
+        reloadCalled = true
+    }
 }
 
 class MealsPresenterTests: XCTestCase {
@@ -34,6 +38,7 @@ class MealsPresenterTests: XCTestCase {
 
         XCTAssertTrue(view.setCalled, "meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
+        XCTAssertTrue(view.reloadCalled, "view was not reloaded")
     }
 
     func testAddMealForModel() {
@@ -51,6 +56,7 @@ class MealsPresenterTests: XCTestCase {
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
+        XCTAssertTrue(view.reloadCalled, "view was not reloaded")
     }
 
     func testRemoveMealForModel() {

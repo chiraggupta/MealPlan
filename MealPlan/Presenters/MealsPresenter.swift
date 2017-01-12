@@ -19,6 +19,7 @@ class MealsPresenter: MealsPresenterType {
 
     func updateMeals() {
         view.set(meals: model.getMeals())
+        view.reload()
     }
 
     func add(meal: Meal) {
@@ -28,6 +29,6 @@ class MealsPresenter: MealsPresenterType {
 
     func remove(meal: Meal) {
         model.remove(meal: meal)
-        updateMeals()
+        view.set(meals: model.getMeals())
     }
 }
