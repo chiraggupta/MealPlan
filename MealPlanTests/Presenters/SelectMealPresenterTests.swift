@@ -42,8 +42,8 @@ class SelectMealPresenterTests: XCTestCase {
         }
     }
 
-    func testShowTitle() {
-        presenter.showTitle()
+    func testLoadTitle() {
+        presenter.loadTitle()
 
         XCTAssert(view.setTitleCalled, "view title not set")
         XCTAssertEqual("Select meal for Monday", view.setTitleArgument, "view title not set to Monday")
