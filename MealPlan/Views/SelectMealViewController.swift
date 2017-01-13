@@ -6,3 +6,7 @@ protocol SelectMealViewType: class {
     func set(title: String)
     func set(meals: [String])
 }
+
+class SelectMealViewController: UITableViewController {
+    
+}
