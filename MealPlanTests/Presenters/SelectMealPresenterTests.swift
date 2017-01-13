@@ -39,12 +39,6 @@ class SelectMealPresenterTests: XCTestCase {
         }
     }
 
-    func givenMealPlan(_ mealPlan: [DayOfWeek: String]) {
-        for (day, meal) in mealPlan {
-            mealPlanModel.select(meal: Meal(title: meal), day: day)
-        }
-    }
-
     func testShowMeals() {
         givenMeals(["foo_meal", "bar_meal"])
 
@@ -57,7 +51,6 @@ class SelectMealPresenterTests: XCTestCase {
 
     func testSelectMeals() {
         givenMeals(["foo_meal", "bar_meal"])
-        givenMealPlan([:])
 
         presenter.select(mealTitle: "foo_meal", day: "Monday")
 
@@ -66,7 +59,6 @@ class SelectMealPresenterTests: XCTestCase {
 
     func testSelectInvalidDate() {
         givenMeals(["foo_meal"])
-        givenMealPlan([:])
 
         presenter.select(mealTitle: "foo_meal", day: "Amazingday")
 
@@ -75,7 +67,6 @@ class SelectMealPresenterTests: XCTestCase {
 
     func testSelectInvalidMeal() {
         givenMeals(["foo_meal"])
-        givenMealPlan([:])
 
         presenter.select(mealTitle: "bar_meal", day: "Tuesday")
 
