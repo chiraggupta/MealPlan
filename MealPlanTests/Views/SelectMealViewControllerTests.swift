@@ -56,4 +56,11 @@ class SelectMealViewControllerTests: XCTestCase {
         }
     }
 
+    func testSelection() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        viewController.tableView(viewController.tableView, didSelectRowAt: indexPath)
+
+        XCTAssertTrue(presenter.selectCalled)
+        XCTAssertEqual("foo_meal", presenter.selectedMeal)
+    }
 }

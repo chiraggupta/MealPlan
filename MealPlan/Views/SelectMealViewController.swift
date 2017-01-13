@@ -43,4 +43,8 @@ extension TableViewDataSource {
 
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.select(mealTitle: meals[indexPath.row])
+    }
 }
