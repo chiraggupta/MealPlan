@@ -3,7 +3,7 @@
 import Foundation
 
 protocol SelectMealPresenterType {
-    func showMeals()
+    func loadMeals()
     func select(mealTitle: String)
 }
 
@@ -27,10 +27,9 @@ class SelectMealPresenter: SelectMealPresenterType {
         view.set(title: "Select meal for \(day.rawValue)")
     }
 
-    func showMeals() {
+    func loadMeals() {
         let meals = mealsProvider.getMeals().map {$0.title}
         view.set(meals: meals)
-        view.reload()
     }
 
     func select(mealTitle: String) {
