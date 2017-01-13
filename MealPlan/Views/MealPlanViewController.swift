@@ -34,7 +34,7 @@ extension TableViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "MealPlanCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MealPlanCell", for: indexPath)
 
         let viewDataForDay = mealPlanViewData[indexPath.row]
         cell.textLabel?.text = viewDataForDay.day

@@ -61,7 +61,7 @@ extension TableViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "MealsCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MealsCell", for: indexPath)
         cell.textLabel?.text = meals[indexPath.row].title
 
         return cell
