@@ -18,6 +18,17 @@ class MealPlanViewController: UIViewController {
         presenter = presenter ?? MealPlanPresenter(view: self)
         presenter.updateMealPlan()
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SelectMealSegue" {
+            guard let day = (sender as? UITableViewCell)?.textLabel?.text else {
+                NSLog("ERROR: SelectMealSegue received an invalid sender cell")
+                return
+            }
+
+            presenter.configureSelectMealView(view: segue.destination, day: day)
+        }
+    }
 }
 
 private typealias ViewTypeImplementation = MealPlanViewController

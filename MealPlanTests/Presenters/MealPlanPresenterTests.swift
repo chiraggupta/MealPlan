@@ -14,6 +14,10 @@ class MockMealPlanView: MealPlanViewType {
     }
 }
 
+class FakeViewWithPresenter {
+    var presenter: MealPlanPresenter!
+}
+
 class MealPlanPresenterTests: XCTestCase {
     private var presenter: MealPlanPresenter!
     private let view = MockMealPlanView()
@@ -45,5 +49,34 @@ class MealPlanPresenterTests: XCTestCase {
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(expectedViewData, view.setArguments, "incorrect meals were set")
+    }
+
+    func testConfigureSelectMeal() {
+        let view = MockSelectMealView()
+        presenter.configureSelectMealView(view: view, day: "Monday")
+
+        XCTAssertNotNil(view.presenter, "select meal presenter was not set")
+
+        guard let selectMealPresenter = view.presenter as? SelectMealPresenter else {
+            XCTFail("select meal presenter should be an instance of SelectMealPresenter")
+            return
+        }
+        XCTAssertEqual(.monday, selectMealPresenter.day, "select meal presenter had wrong day set")
+        XCTAssertTrue((selectMealPresenter.view as? MockSelectMealView) != nil,
+                       "select meal presenter had a wrong view set")
+    }
+
+    func testConfigureSelectMealWithIncorrectDay() {
+        let view = MockSelectMealView()
+        presenter.configureSelectMealView(view: view, day: "Amazingday")
+
+        XCTAssertNil(view.presenter, "presenter should not be set")
+    }
+
+    func testConfigureSelectMealWithIncorrectViewType() {
+        let view = FakeViewWithPresenter()
+        presenter.configureSelectMealView(view: view, day: "Monday")
+
+        XCTAssertNil(view.presenter, "presenter should not be set")
     }
 }

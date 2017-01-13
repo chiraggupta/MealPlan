@@ -5,6 +5,7 @@ import UIKit
 protocol SelectMealViewType: class {
     func set(title: String)
     func set(meals: [String])
+    var presenter: SelectMealPresenterType! {get set}
 }
 
 class SelectMealViewController: UITableViewController {
@@ -13,7 +14,6 @@ class SelectMealViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = presenter ?? SelectMealPresenter(day: .monday, view: self)
         presenter.loadTitle()
         presenter.loadMeals()
     }

@@ -4,6 +4,8 @@ import XCTest
 @testable import MealPlan
 
 class MockSelectMealView: SelectMealViewType {
+    var presenter: SelectMealPresenterType!
+
     private(set) fileprivate var setTitleCalled: Bool = false
     private(set) fileprivate var setTitleArgument = ""
     private(set) fileprivate var setCalled: Bool = false
