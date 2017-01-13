@@ -4,19 +4,27 @@ import Foundation
 
 protocol SelectMealPresenterType {
     func showMeals()
-    func select(mealTitle: String, day: String)
+    func select(mealTitle: String)
 }
 
 class SelectMealPresenter: SelectMealPresenterType {
     let view: SelectMealViewType!
-    let mealPlanProvider: WeeklyMealPlanProvider!
     let mealsProvider: MealsProvider!
+    let mealPlanProvider: WeeklyMealPlanProvider!
+    let day: DayOfWeek
 
-    init(view: SelectMealViewType, mealPlanProvider: WeeklyMealPlanProvider = WeeklyMealPlanModel(),
+    init(day: DayOfWeek,
+         view: SelectMealViewType,
+         mealPlanProvider: WeeklyMealPlanProvider = WeeklyMealPlanModel(),
          mealsProvider: MealsProvider = MealsModel()) {
+        self.day = day
         self.view = view
-        self.mealPlanProvider = mealPlanProvider
         self.mealsProvider = mealsProvider
+        self.mealPlanProvider = mealPlanProvider
+    }
+
+    func showTitle() {
+        view.set(title: "Select meal for \(day.rawValue)")
     }
 
     func showMeals() {
@@ -25,18 +33,13 @@ class SelectMealPresenter: SelectMealPresenterType {
         view.reload()
     }
 
-    func select(mealTitle: String, day: String) {
-        guard let dayOfWeek = DayOfWeek(rawValue: day) else {
-            NSLog("ERROR: Invalid day selected: \(day)")
-            return
-        }
-
+    func select(mealTitle: String) {
         let meal = Meal(title: mealTitle)
         if !mealsProvider.getMeals().contains(meal) {
             NSLog("ERROR: Invalid meal selected: \(mealTitle)")
             return
         }
 
-        mealPlanProvider.select(meal: meal, day: dayOfWeek)
+        mealPlanProvider.select(meal: meal, day: day)
     }
 }
