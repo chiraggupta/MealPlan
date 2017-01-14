@@ -58,12 +58,9 @@ class MealPlanViewControllerTests: XCTestCase {
     }
 
     func testSelectMealSegue() {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "foo_day"
+        let segue = makeSegue(identifier: "SelectMealSegue")
 
-        let segue = stubSelectMealSegue()
-
-        viewController.prepare(for: segue, sender: cell)
+        viewController.prepare(for: segue, sender: makeCell(title: "foo_day"))
 
         XCTAssertTrue(presenter.configureCalled, "configure cell was not called")
         XCTAssertEqual("foo_day", presenter.configuredDay, "configure cell day was incorrect")
@@ -77,13 +74,18 @@ class MealPlanViewControllerTests: XCTestCase {
     }
 
     func testSelectMealSegueWithEmptyCell() {
-        viewController.prepare(for: stubSelectMealSegue(), sender: UITableViewCell())
+        viewController.prepare(for: makeSegue(identifier: "SelectMealSegue"), sender: UITableViewCell())
+        XCTAssertFalse(presenter.configureCalled, "configure cell should not be called")
+    }
+
+    func testIncorrectSegue() {
+        viewController.prepare(for: makeSegue(identifier: "foo_segue"), sender: UITableViewCell())
         XCTAssertFalse(presenter.configureCalled, "configure cell should not be called")
     }
 }
 
-private typealias Stubs = MealPlanViewControllerTests
-extension Stubs {
+private typealias TestData = MealPlanViewControllerTests
+extension TestData {
     func stubMealPlanViewData() -> [MealPlanViewData] {
         return [
             MealPlanViewData(day: "Monday", title: "meal 1"),
@@ -96,9 +98,15 @@ extension Stubs {
         ]
     }
 
-    func stubSelectMealSegue() -> UIStoryboardSegue {
+    func makeSegue(identifier: String) -> UIStoryboardSegue {
         let destination = UIViewController()
-        destination.title = "foo_title"
-        return UIStoryboardSegue(identifier: "SelectMealSegue", source: viewController, destination: destination)
+        destination.restorationIdentifier = "unique_foo"
+        return UIStoryboardSegue(identifier: identifier, source: viewController, destination: destination)
+    }
+
+    func makeCell(title: String) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "foo_day"
+        return cell
     }
 }
