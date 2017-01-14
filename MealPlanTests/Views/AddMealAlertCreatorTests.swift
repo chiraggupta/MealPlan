@@ -27,7 +27,6 @@ class AddMealAlertTests: XCTestCase {
         XCTAssertNotNil(alert.view, "alert was not created")
 
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
-        XCTAssertEqual("Something that you cook regularly", alert.message, "alert message is incorrect")
         XCTAssertNotNil(alert.textFields?.first, "alert should have a text field")
 
         XCTAssertEqual(2, alert.actions.count, "alert should have 2 actions")

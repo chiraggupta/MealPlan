@@ -67,7 +67,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meal Plan" id="cFd-dr-B2R">
-                        <barButtonItem key="rightBarButtonItem" title="All Meals" id="aIl-zI-qg3">
+                        <barButtonItem key="leftBarButtonItem" title="My Meals" id="aIl-zI-qg3">
                             <connections>
                                 <segue destination="8bG-l5-RgG" kind="presentation" id="Y4f-Pg-kAy"/>
                             </connections>
@@ -157,7 +157,7 @@
                             <constraint firstItem="qxQ-vF-wwe" firstAttribute="leading" secondItem="XZX-dG-0aE" secondAttribute="leading" id="vTA-cv-Fmf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Meals" id="cRm-d9-xca">
+                    <navigationItem key="navigationItem" title="My Meals" id="cRm-d9-xca">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="lDD-54-thM">
                             <connections>
                                 <action selector="done:" destination="pFF-8q-WMv" id="aRK-Ns-tnm"/>

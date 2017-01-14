@@ -15,7 +15,7 @@ struct AddMealAlertCreator: AlertCreator {
 
     func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: "Add Meal",
-                                                message: "Something that you cook regularly",
+                                                message: nil,
                                                 preferredStyle: .alert)
 
         let addAction = actionCreator.create(title: "Add", style: .default) { _ in
