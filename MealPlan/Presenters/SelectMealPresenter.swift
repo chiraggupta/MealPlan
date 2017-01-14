@@ -6,6 +6,7 @@ protocol SelectMealPresenterType {
     func loadTitle()
     func loadMeals()
     func select(mealTitle: String)
+    func getSelectedMeal() -> String?
 }
 
 class SelectMealPresenter: SelectMealPresenterType {
@@ -41,5 +42,9 @@ class SelectMealPresenter: SelectMealPresenterType {
         }
 
         mealPlanProvider.select(meal: meal, day: day)
+    }
+
+    func getSelectedMeal() -> String? {
+        return mealPlanProvider.getWeeklyMealPlan()[day]?.title
     }
 }

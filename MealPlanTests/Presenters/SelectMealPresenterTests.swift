@@ -75,4 +75,13 @@ class SelectMealPresenterTests: XCTestCase {
 
         XCTAssertEqual([:], mealPlanModel.getWeeklyMealPlan(), "meal should not be selected")
     }
+
+    func testGetSelectedMeal() {
+        mealPlanModel.select(meal: Meal(title: "foo_meal"), day: .monday)
+        XCTAssertEqual("foo_meal", presenter.getSelectedMeal(), "foo_meal should be selected")
+    }
+
+    func testGetSelectedMealWithEmptyMealPlan() {
+        XCTAssertNil(presenter.getSelectedMeal(), "no meal should be selected")
+    }
 }

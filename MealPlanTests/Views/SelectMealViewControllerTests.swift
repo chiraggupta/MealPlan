@@ -6,7 +6,7 @@ import XCTest
 class MockSelectMealPresenter: SelectMealPresenterType {
     private (set) fileprivate var loadMealsCalled = false
     private (set) fileprivate var selectCalled = false
-    private (set) fileprivate var selectedMeal = ""
+    private (set) fileprivate var selectedMeal: String?
 
     func loadTitle() {}
 
@@ -17,6 +17,10 @@ class MockSelectMealPresenter: SelectMealPresenterType {
     func select(mealTitle: String) {
         selectCalled = true
         selectedMeal = mealTitle
+    }
+
+    func getSelectedMeal() -> String? {
+        return selectedMeal
     }
 }
 
