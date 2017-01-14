@@ -26,7 +26,7 @@ class SelectMealPresenter: SelectMealPresenterType {
     }
 
     func loadTitle() {
-        view.set(title: "Select meal for \(day.rawValue)")
+        view.set(title: "\(day.rawValue)")
     }
 
     func loadMeals() {
