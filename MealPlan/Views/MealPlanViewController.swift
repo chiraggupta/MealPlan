@@ -19,6 +19,13 @@ class MealPlanViewController: UIViewController {
         presenter.updateMealPlan()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+//        presenter.updateMealPlan()
+//        tableView.reloadData()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectMealSegue" {
             guard let day = (sender as? UITableViewCell)?.textLabel?.text else {
