@@ -35,14 +35,8 @@ class MealPlanViewControllerTests: XCTestCase {
         viewController.display()
     }
 
-    func testViewDidLoadCallsPresenterUpdateMealPlan() {
-        XCTAssertTrue(presenter.updateMealPlanCalled)
-    }
-
     func testViewWillAppearCallsPresenterUpdateMealPlan() {
-        let newPresenter = MockMealPlanPresenter()
-        viewController.presenter = newPresenter
-
+        viewController.viewWillAppear(false)
         XCTAssertTrue(presenter.updateMealPlanCalled)
     }
 

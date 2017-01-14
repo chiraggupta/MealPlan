@@ -16,14 +16,13 @@ class MealPlanViewController: UIViewController {
         super.viewDidLoad()
 
         presenter = presenter ?? MealPlanPresenter(view: self)
-        presenter.updateMealPlan()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-//        presenter.updateMealPlan()
-//        tableView.reloadData()
+        presenter.updateMealPlan()
+        tableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
