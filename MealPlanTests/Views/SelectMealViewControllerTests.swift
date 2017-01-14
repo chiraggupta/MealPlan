@@ -24,6 +24,13 @@ class MockSelectMealPresenter: SelectMealPresenterType {
     }
 }
 
+class PartialMockTableView: UITableView {
+    var reloadedIndexPaths = [IndexPath]()
+    override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        reloadedIndexPaths = indexPaths
+    }
+}
+
 class SelectMealViewControllerTests: XCTestCase {
     var viewController: SelectMealViewController!
     var presenter = MockSelectMealPresenter()
@@ -57,14 +64,39 @@ class SelectMealViewControllerTests: XCTestCase {
             let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
 
             XCTAssertEqual(meals[i], cell.textLabel?.text, "meal \(i + 1) is incorrect")
+            XCTAssertEqual(cell.accessoryType, .none, "cell shouldn't have a checkmark")
         }
     }
 
-    func testSelection() {
+    func testSelectedMealsShowCheckmarks() {
+        presenter.select(mealTitle: "foo_meal")
+        let first = viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        let second = viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(.checkmark, first.accessoryType, "first should be selected")
+        XCTAssertEqual(.none, second.accessoryType, "second should not be selected")
+    }
+
+    func testSelectionUpdatesPresenter() {
         let indexPath = IndexPath(row: 0, section: 0)
         viewController.tableView(viewController.tableView, didSelectRowAt: indexPath)
 
         XCTAssertTrue(presenter.selectCalled)
         XCTAssertEqual("foo_meal", presenter.selectedMeal)
+    }
+
+    func testSelectionUpdatesSelectedIndex() {
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(1, viewController.selectedIndex)
+    }
+
+    func testSelectionReloadsIndexPaths() {
+        viewController.selectedIndex = 0
+        let mockTableView = PartialMockTableView()
+        viewController.tableView = mockTableView
+
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+
+        let indexPathsToReload = [IndexPath(row: 1, section: 0), IndexPath(row: 0, section: 0)]
+        XCTAssertEqual(indexPathsToReload, mockTableView.reloadedIndexPaths, "incorrect indexPaths were reloaded")
     }
 }

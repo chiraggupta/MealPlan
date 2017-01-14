@@ -11,6 +11,7 @@ protocol SelectMealViewType: class {
 class SelectMealViewController: UITableViewController {
     var presenter: SelectMealPresenterType!
     fileprivate var meals = [String]()
+    var selectedIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +40,27 @@ extension TableViewDataSource {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SelectMealCell", for: indexPath)
-        cell.textLabel?.text = meals[indexPath.row]
+        let meal = meals[indexPath.row]
+        cell.textLabel?.text = meal
+
+        if meal == presenter.getSelectedMeal() {
+            selectedIndex = indexPath.row
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.select(mealTitle: meals[indexPath.row])
+
+        var indexPathsToReload = [indexPath]
+        if let oldIndex = selectedIndex {
+            indexPathsToReload.append(IndexPath(row: oldIndex, section: 0))
+        }
+
+        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
     }
 }
