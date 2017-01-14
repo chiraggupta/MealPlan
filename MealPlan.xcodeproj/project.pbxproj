@@ -323,7 +323,6 @@
 				TargetAttributes = {
 					C4CB921A1E1A2CBA004F0E27 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 724U38TJZ2;
 						ProvisioningStyle = Automatic;
 					};
 					C4CB922E1E1A2CBA004F0E27 = {
@@ -556,10 +555,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 724U38TJZ2;
+				DEVELOPMENT_TEAM = F65M5SXZZ9;
 				INFOPLIST_FILE = "$(SRCROOT)/MealPlan/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cg.MealPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -569,10 +568,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 724U38TJZ2;
+				DEVELOPMENT_TEAM = F65M5SXZZ9;
 				INFOPLIST_FILE = "$(SRCROOT)/MealPlan/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cg.MealPlan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
