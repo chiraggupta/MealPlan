@@ -13,17 +13,17 @@ class PartialMockAlertActionCreator: AlertActionCreator {
 }
 
 class AddMealAlertTests: XCTestCase {
-    var alertCreator: AddMealAlertCreator!
+    var subject: AddMealAlertCreator!
     let actionCreator = PartialMockAlertActionCreator()
 
     override func setUp() {
         super.setUp()
 
-        alertCreator = AddMealAlertCreator(actionCreator: actionCreator)
+        subject = AddMealAlertCreator(actionCreator: actionCreator)
     }
 
     func testAlertCreatedWithCorrectConfiguration() {
-        let alert = alertCreator.create { _ in }
+        let alert = subject.create { _ in }
         XCTAssertNotNil(alert.view, "alert was not created")
 
         XCTAssertEqual("Add Meal", alert.title, "alert title is incorrect")
@@ -39,7 +39,7 @@ class AddMealAlertTests: XCTestCase {
     func testAlertActionAddShouldInvokeCallback() {
         let callbackInvoked = expectation(description: "alert called callback with ")
 
-        let alert = alertCreator.create { mealTitle in
+        let alert = subject.create { mealTitle in
             XCTAssertEqual("foo", mealTitle, "meal title should be foo")
             callbackInvoked.fulfill()
         }

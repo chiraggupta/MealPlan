@@ -1,7 +1,6 @@
 // MealPlan by Chirag Gupta
 
 import XCTest
-
 @testable import MealPlan
 
 class MockMealPlanView: MealPlanViewType {
@@ -19,7 +18,7 @@ class FakeViewWithPresenter {
 }
 
 class MealPlanPresenterTests: XCTestCase {
-    private var presenter: MealPlanPresenter!
+    private var subject: MealPlanPresenter!
     private let view = MockMealPlanView()
     private var model: WeeklyMealPlanProvider!
 
@@ -31,7 +30,7 @@ class MealPlanPresenterTests: XCTestCase {
         model.select(meal: Meal(title: "bar_meal"), day: .wednesday)
         model.select(meal: Meal(title: "baz_meal"), day: .saturday)
 
-        presenter = MealPlanPresenter(view: view, model: model)
+        subject = MealPlanPresenter(view: view, model: model)
     }
 
     func testUpdateMealPlanSetsMealPlanViewData() {
@@ -45,7 +44,7 @@ class MealPlanPresenterTests: XCTestCase {
             MealPlanViewData(day: "Sunday", title: "")
         ]
 
-        presenter.updateMealPlan()
+        subject.updateMealPlan()
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(expectedViewData, view.setArguments, "incorrect meals were set")
@@ -53,7 +52,7 @@ class MealPlanPresenterTests: XCTestCase {
 
     func testConfigureSelectMeal() {
         let view = MockSelectMealView()
-        presenter.configureSelectMealView(view: view, day: "Monday")
+        subject.configureSelectMealView(view: view, day: "Monday")
 
         XCTAssertNotNil(view.presenter, "select meal presenter was not set")
 
@@ -63,19 +62,19 @@ class MealPlanPresenterTests: XCTestCase {
         }
         XCTAssertEqual(.monday, selectMealPresenter.day, "select meal presenter had wrong day set")
         XCTAssertTrue((selectMealPresenter.view as? MockSelectMealView) != nil,
-                       "select meal presenter had a wrong view set")
+                      "select meal presenter had a wrong view set")
     }
 
     func testConfigureSelectMealWithIncorrectDay() {
         let view = MockSelectMealView()
-        presenter.configureSelectMealView(view: view, day: "Amazingday")
+        subject.configureSelectMealView(view: view, day: "Amazingday")
 
         XCTAssertNil(view.presenter, "presenter should not be set")
     }
 
     func testConfigureSelectMealWithIncorrectViewType() {
         let view = FakeViewWithPresenter()
-        presenter.configureSelectMealView(view: view, day: "Monday")
+        subject.configureSelectMealView(view: view, day: "Monday")
 
         XCTAssertNil(view.presenter, "presenter should not be set")
     }

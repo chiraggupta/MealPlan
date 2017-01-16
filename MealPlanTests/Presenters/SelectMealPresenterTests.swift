@@ -23,7 +23,7 @@ class MockSelectMealView: SelectMealViewType {
 }
 
 class SelectMealPresenterTests: XCTestCase {
-    var presenter: SelectMealPresenter!
+    var subject: SelectMealPresenter!
     let view = MockSelectMealView()
     var mealsModel: MealsProvider!
     var mealPlanModel: WeeklyMealPlanProvider!
@@ -34,7 +34,7 @@ class SelectMealPresenterTests: XCTestCase {
         let defaults = MockUserDefaults()
         mealsModel = MealsModel(userDefaults: defaults)
         mealPlanModel = WeeklyMealPlanModel(userDefaults: defaults)
-        presenter = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
+        subject = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
                                         mealsProvider: mealsModel)
     }
 
@@ -45,7 +45,7 @@ class SelectMealPresenterTests: XCTestCase {
     }
 
     func testLoadTitle() {
-        presenter.loadTitle()
+        subject.loadTitle()
 
         XCTAssert(view.setTitleCalled, "view title not set")
         XCTAssertEqual("Monday", view.setTitleArgument, "view title not set to Monday")
@@ -54,7 +54,7 @@ class SelectMealPresenterTests: XCTestCase {
     func testShowMeals() {
         givenMeals(["foo_meal", "bar_meal"])
 
-        presenter.loadMeals()
+        subject.loadMeals()
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(["foo_meal", "bar_meal"], view.setArguments, "incorrect meals were set")
@@ -63,7 +63,7 @@ class SelectMealPresenterTests: XCTestCase {
     func testSelectMeals() {
         givenMeals(["foo_meal", "bar_meal"])
 
-        presenter.select(mealTitle: "foo_meal")
+        subject.select(mealTitle: "foo_meal")
 
         XCTAssertEqual([.monday: Meal(title: "foo_meal")], mealPlanModel.getWeeklyMealPlan(), "meal not selected")
     }
@@ -71,17 +71,17 @@ class SelectMealPresenterTests: XCTestCase {
     func testSelectInvalidMeal() {
         givenMeals(["foo_meal"])
 
-        presenter.select(mealTitle: "bar_meal")
+        subject.select(mealTitle: "bar_meal")
 
         XCTAssertEqual([:], mealPlanModel.getWeeklyMealPlan(), "meal should not be selected")
     }
 
     func testGetSelectedMeal() {
         mealPlanModel.select(meal: Meal(title: "foo_meal"), day: .monday)
-        XCTAssertEqual("foo_meal", presenter.getSelectedMeal(), "foo_meal should be selected")
+        XCTAssertEqual("foo_meal", subject.getSelectedMeal(), "foo_meal should be selected")
     }
 
     func testGetSelectedMealWithEmptyMealPlan() {
-        XCTAssertNil(presenter.getSelectedMeal(), "no meal should be selected")
+        XCTAssertNil(subject.getSelectedMeal(), "no meal should be selected")
     }
 }

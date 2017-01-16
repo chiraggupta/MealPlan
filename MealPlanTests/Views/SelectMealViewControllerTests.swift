@@ -32,16 +32,16 @@ class PartialMockTableView: UITableView {
 }
 
 class SelectMealViewControllerTests: XCTestCase {
-    var viewController: SelectMealViewController!
+    var subject: SelectMealViewController!
     var presenter = MockSelectMealPresenter()
     let meals = ["foo_meal", "bar_meal"]
 
     override func setUp() {
-        viewController = makeViewController(storyboard: "Main")
-        viewController.presenter = presenter
+        subject = makeViewController(storyboard: "Main")
+        subject.presenter = presenter
 
-        viewController.set(meals: meals)
-        viewController.display()
+        subject.set(meals: meals)
+        subject.display()
     }
 
     func testViewDidLoadLoadsMeals() {
@@ -49,19 +49,19 @@ class SelectMealViewControllerTests: XCTestCase {
     }
 
     func testSetTitle() {
-        viewController.set(title: "foobarbazqux")
-        XCTAssertEqual("foobarbazqux", viewController.title, "view title not set correctly")
+        subject.set(title: "foobarbazqux")
+        XCTAssertEqual("foobarbazqux", subject.title, "view title not set correctly")
     }
 
     func testCountOfMealsInList() {
-        let count = viewController.tableView.numberOfRows(inSection: 0)
+        let count = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(meals.count, count, "meals count is incorrect")
     }
 
     func testMealsDisplayedInList() {
         for i in 0..<meals.count {
             let indexPath = IndexPath(row: i, section: 0)
-            let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
+            let cell = subject.tableView(subject.tableView, cellForRowAt: indexPath)
 
             XCTAssertEqual(meals[i], cell.textLabel?.text, "meal \(i + 1) is incorrect")
             XCTAssertEqual(cell.accessoryType, .none, "cell shouldn't have a checkmark")
@@ -70,31 +70,31 @@ class SelectMealViewControllerTests: XCTestCase {
 
     func testSelectedMealsShowCheckmarks() {
         presenter.select(mealTitle: "foo_meal")
-        let first = viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        let second = viewController.tableView(viewController.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+        let first = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        let second = subject.tableView(subject.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
         XCTAssertEqual(.checkmark, first.accessoryType, "first should be selected")
         XCTAssertEqual(.none, second.accessoryType, "second should not be selected")
     }
 
     func testSelectionUpdatesPresenter() {
         let indexPath = IndexPath(row: 0, section: 0)
-        viewController.tableView(viewController.tableView, didSelectRowAt: indexPath)
+        subject.tableView(subject.tableView, didSelectRowAt: indexPath)
 
         XCTAssertTrue(presenter.selectCalled)
         XCTAssertEqual("foo_meal", presenter.selectedMeal)
     }
 
     func testSelectionUpdatesSelectedIndex() {
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
-        XCTAssertEqual(1, viewController.selectedIndex)
+        subject.tableView(subject.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(1, subject.selectedIndex)
     }
 
     func testSelectionReloadsIndexPaths() {
-        viewController.selectedIndex = 0
+        subject.selectedIndex = 0
         let mockTableView = PartialMockTableView()
-        viewController.tableView = mockTableView
+        subject.tableView = mockTableView
 
-        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        subject.tableView(subject.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
 
         let indexPathsToReload = [IndexPath(row: 1, section: 0), IndexPath(row: 0, section: 0)]
         XCTAssertEqual(indexPathsToReload, mockTableView.reloadedIndexPaths, "incorrect indexPaths were reloaded")

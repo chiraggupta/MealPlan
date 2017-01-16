@@ -49,18 +49,18 @@ struct MockAddMealAlertCreator: AlertCreator {
 }
 
 class MealsViewControllerTests: XCTestCase {
-    var viewController: MealsViewController!
+    var subject: MealsViewController!
     var presenter: MockMealsPresenter!
     let initialMeals = [Meal(title: "foo_meal")]
 
     override func setUp() {
         super.setUp()
 
-        viewController = makeViewController(storyboard: "Main")
-        presenter = MockMealsPresenter(view: viewController, initialMeals: initialMeals)
-        viewController.presenter = presenter
+        subject = makeViewController(storyboard: "Main")
+        presenter = MockMealsPresenter(view: subject, initialMeals: initialMeals)
+        subject.presenter = presenter
 
-        viewController.display()
+        subject.display()
     }
 
     func testViewDidLoadCallsPresenterUpdateMeals() {
@@ -68,23 +68,23 @@ class MealsViewControllerTests: XCTestCase {
     }
 
     func testCountOfMealsInList() {
-        let count = viewController.tableView.numberOfRows(inSection: 0)
+        let count = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count, count, "meals count is incorrect")
     }
 
     func testMealsDisplayedInList() {
         for i in 0..<initialMeals.count {
             let indexPath = IndexPath(row: i, section: 0)
-            let cell = viewController.tableView(viewController.tableView, cellForRowAt: indexPath)
+            let cell = subject.tableView(subject.tableView, cellForRowAt: indexPath)
 
             XCTAssertEqual(initialMeals[i].title, cell.textLabel?.text, "meal \(i + 1) is incorrect")
         }
     }
 
     func testTappingAddShowsAddMealAlert() {
-        viewController.add(UIBarButtonItem())
+        subject.add(UIBarButtonItem())
 
-        guard let alert = viewController.presentedViewController as? UIAlertController else {
+        guard let alert = subject.presentedViewController as? UIAlertController else {
             XCTFail("alert not presented")
             return
         }
@@ -93,41 +93,41 @@ class MealsViewControllerTests: XCTestCase {
     }
 
     func testSuccessfulAdd() {
-        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "bar_meal")
-        viewController.add(UIBarButtonItem())
+        subject.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "bar_meal")
+        subject.add(UIBarButtonItem())
 
         XCTAssertTrue(presenter.addMealCalled)
         XCTAssertEqual(Meal(title: "bar_meal"), presenter.addMealArgument)
 
-        let newCount = viewController.tableView.numberOfRows(inSection: 0)
+        let newCount = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count + 1, newCount, "count should be one lesser")
 
         let secondRow = IndexPath(row: 1, section: 0)
-        let newCell = viewController.tableView(viewController.tableView, cellForRowAt: secondRow)
+        let newCell = subject.tableView(subject.tableView, cellForRowAt: secondRow)
         XCTAssertEqual("bar_meal", newCell.textLabel?.text, "should have the new meal")
     }
 
     func testAddSuccessHandlerTrimsMealText() {
-        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "  bar_meal  \t")
-        viewController.add(UIBarButtonItem())
+        subject.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "  bar_meal  \t")
+        subject.add(UIBarButtonItem())
 
         XCTAssertEqual(Meal(title: "bar_meal"), presenter.addMealArgument)
     }
 
     func testAddSuccessHandlerDoesNotAddMealsWithEmptyTitle() {
-        viewController.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "")
-        viewController.add(UIBarButtonItem())
+        subject.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "")
+        subject.add(UIBarButtonItem())
 
         XCTAssertFalse(presenter.addMealCalled)
     }
 
     func testRemoveMeal() {
         let firstRow = IndexPath(row: 0, section: 0)
-        viewController.tableView(viewController.tableView, commit: .delete, forRowAt: firstRow)
+        subject.tableView(subject.tableView, commit: .delete, forRowAt: firstRow)
 
         XCTAssertTrue(presenter.removeMealCalled)
 
-        let newCount = viewController.tableView.numberOfRows(inSection: 0)
+        let newCount = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count - 1, newCount, "count should be one lesser")
     }
 }

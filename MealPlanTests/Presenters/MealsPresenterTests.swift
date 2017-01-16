@@ -20,21 +20,21 @@ class MockMealsView: MealsViewType {
 }
 
 class MealsPresenterTests: XCTestCase {
-    var presenter: MealsPresenter!
+    var subject: MealsPresenter!
     let view = MockMealsView()
     let model = MealsModel(userDefaults: MockUserDefaults())
 
     override func setUp() {
         super.setUp()
 
-        presenter = MealsPresenter(view: view, model: model)
+        subject = MealsPresenter(view: view, model: model)
     }
 
     func testUpdateMealsForView() {
         model.add(meal: Meal(title: "foo_meal"))
         model.add(meal: Meal(title: "bar_meal"))
 
-        presenter.updateMeals()
+        subject.updateMeals()
 
         XCTAssertTrue(view.setCalled, "meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
@@ -52,7 +52,7 @@ class MealsPresenterTests: XCTestCase {
         model.add(meal: Meal(title: "foo_meal"))
 
         let barMeal = Meal(title: "bar_meal")
-        presenter.add(meal: barMeal)
+        subject.add(meal: barMeal)
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
@@ -63,7 +63,7 @@ class MealsPresenterTests: XCTestCase {
         let fooMeal = Meal(title: "foo_meal")
         model.add(meal: fooMeal)
 
-        presenter.remove(meal: fooMeal)
+        subject.remove(meal: fooMeal)
 
         XCTAssertEqual([], model.getMeals(), "meal not removed from model")
     }
@@ -72,7 +72,7 @@ class MealsPresenterTests: XCTestCase {
         model.add(meal: Meal(title: "foo_meal"))
 
         let barMeal = Meal(title: "bar_meal")
-        presenter.remove(meal: barMeal)
+        subject.remove(meal: barMeal)
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
