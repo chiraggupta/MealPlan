@@ -3,20 +3,6 @@
 import XCTest
 @testable import MealPlan
 
-class MockMealPlanView: MealPlanViewType {
-    private(set) fileprivate var setCalled = false
-    private(set) fileprivate var setArguments = [MealPlanViewData]()
-
-    func set(mealPlanViewData: [MealPlanViewData]) {
-        setCalled = true
-        setArguments = mealPlanViewData
-    }
-}
-
-class FakeViewWithPresenter {
-    var presenter: MealPlanPresenter!
-}
-
 class MealPlanPresenterTests: XCTestCase {
     private var subject: MealPlanPresenter!
     private let view = MockMealPlanView()
@@ -77,5 +63,22 @@ class MealPlanPresenterTests: XCTestCase {
         subject.configureSelectMealView(view: view, day: "Monday")
 
         XCTAssertNil(view.presenter, "presenter should not be set")
+    }
+}
+
+// MARK: Test doubles
+extension MealPlanPresenterTests {
+    class MockMealPlanView: MealPlanViewType {
+        private(set) fileprivate var setCalled = false
+        private(set) fileprivate var setArguments = [MealPlanViewData]()
+
+        func set(mealPlanViewData: [MealPlanViewData]) {
+            setCalled = true
+            setArguments = mealPlanViewData
+        }
+    }
+
+    class FakeViewWithPresenter {
+        var presenter: MealPlanPresenter!
     }
 }

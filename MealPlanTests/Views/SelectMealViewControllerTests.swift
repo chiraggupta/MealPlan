@@ -3,34 +3,6 @@
 import XCTest
 @testable import MealPlan
 
-class MockSelectMealPresenter: SelectMealPresenterType {
-    private (set) fileprivate var loadMealsCalled = false
-    private (set) fileprivate var selectCalled = false
-    private (set) fileprivate var selectedMeal: String?
-
-    func loadTitle() {}
-
-    func loadMeals() {
-        loadMealsCalled = true
-    }
-
-    func select(mealTitle: String) {
-        selectCalled = true
-        selectedMeal = mealTitle
-    }
-
-    func getSelectedMeal() -> String? {
-        return selectedMeal
-    }
-}
-
-class PartialMockTableView: UITableView {
-    var reloadedIndexPaths = [IndexPath]()
-    override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
-        reloadedIndexPaths = indexPaths
-    }
-}
-
 class SelectMealViewControllerTests: XCTestCase {
     var subject: SelectMealViewController!
     var presenter = MockSelectMealPresenter()
@@ -98,5 +70,36 @@ class SelectMealViewControllerTests: XCTestCase {
 
         let indexPathsToReload = [IndexPath(row: 1, section: 0), IndexPath(row: 0, section: 0)]
         XCTAssertEqual(indexPathsToReload, mockTableView.reloadedIndexPaths, "incorrect indexPaths were reloaded")
+    }
+}
+
+// MARK: Test doubles
+extension SelectMealViewControllerTests {
+    class MockSelectMealPresenter: SelectMealPresenterType {
+        private (set) fileprivate var loadMealsCalled = false
+        private (set) fileprivate var selectCalled = false
+        private (set) fileprivate var selectedMeal: String?
+
+        func loadTitle() {}
+
+        func loadMeals() {
+            loadMealsCalled = true
+        }
+
+        func select(mealTitle: String) {
+            selectCalled = true
+            selectedMeal = mealTitle
+        }
+
+        func getSelectedMeal() -> String? {
+            return selectedMeal
+        }
+    }
+
+    class PartialMockTableView: UITableView {
+        var reloadedIndexPaths = [IndexPath]()
+        override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+            reloadedIndexPaths = indexPaths
+        }
     }
 }

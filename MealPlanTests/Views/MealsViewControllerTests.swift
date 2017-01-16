@@ -3,51 +3,6 @@
 import XCTest
 @testable import MealPlan
 
-class MockMealsPresenter: MealsPresenterType {
-    fileprivate var updateMealsCalled = false
-    fileprivate var addMealCalled = false
-    fileprivate var addMealArgument: Meal?
-    fileprivate var removeMealCalled = false
-
-    let view: MealsViewType!
-    var meals: [Meal]!
-
-    init(view: MealsViewType, initialMeals: [Meal]) {
-        self.view = view
-        meals = initialMeals
-    }
-
-    func updateMeals() {
-        updateMealsCalled = true
-        view.set(meals: meals)
-        view.reload()
-    }
-
-    func add(meal: Meal) {
-        addMealCalled = true
-        addMealArgument = meal
-        meals.append(meal)
-        updateMeals()
-    }
-
-    func remove(meal: Meal) {
-        removeMealCalled = true
-        if let mealToRemove = meals.index(of: meal) {
-            meals.remove(at: mealToRemove)
-        }
-        view.set(meals: meals)
-    }
-}
-
-struct MockAddMealAlertCreator: AlertCreator {
-    let resultMealTitle: String
-
-    func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
-        successHandler(resultMealTitle)
-        return UIAlertController()
-    }
-}
-
 class MealsViewControllerTests: XCTestCase {
     var subject: MealsViewController!
     var presenter: MockMealsPresenter!
@@ -129,5 +84,51 @@ class MealsViewControllerTests: XCTestCase {
 
         let newCount = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count - 1, newCount, "count should be one lesser")
+    }
+}
+
+// MARK: Test doubles
+class MockMealsPresenter: MealsPresenterType {
+    fileprivate var updateMealsCalled = false
+    fileprivate var addMealCalled = false
+    fileprivate var addMealArgument: Meal?
+    fileprivate var removeMealCalled = false
+
+    let view: MealsViewType!
+    var meals: [Meal]!
+
+    init(view: MealsViewType, initialMeals: [Meal]) {
+        self.view = view
+        meals = initialMeals
+    }
+
+    func updateMeals() {
+        updateMealsCalled = true
+        view.set(meals: meals)
+        view.reload()
+    }
+
+    func add(meal: Meal) {
+        addMealCalled = true
+        addMealArgument = meal
+        meals.append(meal)
+        updateMeals()
+    }
+
+    func remove(meal: Meal) {
+        removeMealCalled = true
+        if let mealToRemove = meals.index(of: meal) {
+            meals.remove(at: mealToRemove)
+        }
+        view.set(meals: meals)
+    }
+}
+
+struct MockAddMealAlertCreator: AlertCreator {
+    let resultMealTitle: String
+
+    func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
+        successHandler(resultMealTitle)
+        return UIAlertController()
     }
 }

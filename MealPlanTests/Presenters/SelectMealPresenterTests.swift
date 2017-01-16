@@ -3,25 +3,6 @@
 import XCTest
 @testable import MealPlan
 
-class MockSelectMealView: SelectMealViewType {
-    var presenter: SelectMealPresenterType!
-
-    private(set) fileprivate var setTitleCalled: Bool = false
-    private(set) fileprivate var setTitleArgument = ""
-    private(set) fileprivate var setCalled: Bool = false
-    private(set) fileprivate var setArguments = [String]()
-
-    func set(title: String) {
-        setTitleCalled = true
-        setTitleArgument = title
-    }
-
-    func set(meals: [String]) {
-        setCalled = true
-        setArguments = meals
-    }
-}
-
 class SelectMealPresenterTests: XCTestCase {
     var subject: SelectMealPresenter!
     let view = MockSelectMealView()
@@ -35,7 +16,7 @@ class SelectMealPresenterTests: XCTestCase {
         mealsModel = MealsModel(userDefaults: defaults)
         mealPlanModel = WeeklyMealPlanModel(userDefaults: defaults)
         subject = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
-                                        mealsProvider: mealsModel)
+                                      mealsProvider: mealsModel)
     }
 
     func givenMeals(_ meals: [String]) {
@@ -83,5 +64,25 @@ class SelectMealPresenterTests: XCTestCase {
 
     func testGetSelectedMealWithEmptyMealPlan() {
         XCTAssertNil(subject.getSelectedMeal(), "no meal should be selected")
+    }
+}
+
+// MARK: Test doubles
+class MockSelectMealView: SelectMealViewType {
+    var presenter: SelectMealPresenterType!
+
+    private(set) fileprivate var setTitleCalled: Bool = false
+    private(set) fileprivate var setTitleArgument = ""
+    private(set) fileprivate var setCalled: Bool = false
+    private(set) fileprivate var setArguments = [String]()
+
+    func set(title: String) {
+        setTitleCalled = true
+        setTitleArgument = title
+    }
+
+    func set(meals: [String]) {
+        setCalled = true
+        setArguments = meals
     }
 }

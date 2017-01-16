@@ -1,23 +1,7 @@
 // MealPlan by Chirag Gupta
 
 import XCTest
-
 @testable import MealPlan
-
-class MockMealsView: MealsViewType {
-    private(set) fileprivate var setCalled: Bool = false
-    private(set) fileprivate var setArguments = [Meal]()
-    private(set) fileprivate var reloadCalled: Bool = false
-
-    func set(meals: [Meal]) {
-        setCalled = true
-        setArguments = meals
-    }
-
-    func reload() {
-        reloadCalled = true
-    }
-}
 
 class MealsPresenterTests: XCTestCase {
     var subject: MealsPresenter!
@@ -76,5 +60,21 @@ class MealsPresenterTests: XCTestCase {
 
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
+    }
+}
+
+// MARK: Test doubles
+class MockMealsView: MealsViewType {
+    private(set) fileprivate var setCalled: Bool = false
+    private(set) fileprivate var setArguments = [Meal]()
+    private(set) fileprivate var reloadCalled: Bool = false
+
+    func set(meals: [Meal]) {
+        setCalled = true
+        setArguments = meals
+    }
+
+    func reload() {
+        reloadCalled = true
     }
 }

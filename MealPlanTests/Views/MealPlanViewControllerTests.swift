@@ -3,23 +3,6 @@
 import XCTest
 @testable import MealPlan
 
-class MockMealPlanPresenter: MealPlanPresenterType {
-    fileprivate var updateMealPlanCalled = false
-    fileprivate var configureCalled = false
-    fileprivate var configuredView: Any?
-    fileprivate var configuredDay = ""
-
-    func updateMealPlan() {
-        updateMealPlanCalled = true
-    }
-
-    func configureSelectMealView(view: Any, day: String) {
-        configureCalled = true
-        configuredView = view
-        configuredDay = day
-    }
-}
-
 class MealPlanViewControllerTests: XCTestCase {
     var subject: MealPlanViewController!
     let presenter = MockMealPlanPresenter()
@@ -83,8 +66,26 @@ class MealPlanViewControllerTests: XCTestCase {
     }
 }
 
-private typealias TestData = MealPlanViewControllerTests
-extension TestData {
+// MARK: Test doubles
+extension MealPlanViewControllerTests {
+    class MockMealPlanPresenter: MealPlanPresenterType {
+        fileprivate var updateMealPlanCalled = false
+        fileprivate var configureCalled = false
+        fileprivate var configuredView: Any?
+        fileprivate var configuredDay = ""
+
+        func updateMealPlan() {
+            updateMealPlanCalled = true
+        }
+
+        func configureSelectMealView(view: Any, day: String) {
+            configureCalled = true
+            configuredView = view
+            configuredDay = day
+        }
+    }
+
+    // Test data
     func stubMealPlanViewData() -> [MealPlanViewData] {
         return [
             MealPlanViewData(day: "Monday", title: "meal 1"),
