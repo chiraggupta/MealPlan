@@ -88,7 +88,7 @@ class MealsViewControllerTests: XCTestCase {
 }
 
 // MARK: Test doubles
-class MockMealsPresenter: MealsPresenterType {
+class MockMealsPresenter: MealsPresenting {
     fileprivate var updateMealsCalled = false
     fileprivate var addMealCalled = false
     fileprivate var addMealArgument: Meal?

@@ -5,11 +5,11 @@ import UIKit
 protocol SelectMealViewType: class {
     func set(title: String)
     func set(meals: [String])
-    var presenter: SelectMealPresenterType! {get set}
+    var presenter: SelectMealPresenting! {get set}
 }
 
 class SelectMealViewController: UITableViewController {
-    var presenter: SelectMealPresenterType!
+    var presenter: SelectMealPresenting!
     fileprivate var meals = [String]()
     var selectedIndex: Int?
 

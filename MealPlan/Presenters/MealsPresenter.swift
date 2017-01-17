@@ -2,13 +2,13 @@
 
 import Foundation
 
-protocol MealsPresenterType {
+protocol MealsPresenting {
     func updateMeals()
     func add(meal: Meal)
     func remove(meal: Meal)
 }
 
-class MealsPresenter: MealsPresenterType {
+class MealsPresenter: MealsPresenting {
     unowned let view: MealsViewType
     fileprivate let model: MealsProvider
 

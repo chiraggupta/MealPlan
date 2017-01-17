@@ -2,14 +2,14 @@
 
 import Foundation
 
-protocol SelectMealPresenterType {
+protocol SelectMealPresenting {
     func loadTitle()
     func loadMeals()
     func select(mealTitle: String)
     func getSelectedMeal() -> String?
 }
 
-class SelectMealPresenter: SelectMealPresenterType {
+class SelectMealPresenter: SelectMealPresenting {
     let view: SelectMealViewType!
     let mealsProvider: MealsProvider!
     let mealPlanProvider: WeeklyMealPlanProvider!

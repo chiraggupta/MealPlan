@@ -69,7 +69,7 @@ class SelectMealPresenterTests: XCTestCase {
 
 // MARK: Test doubles
 class MockSelectMealView: SelectMealViewType {
-    var presenter: SelectMealPresenterType!
+    var presenter: SelectMealPresenting!
 
     private(set) fileprivate var setTitleCalled: Bool = false
     private(set) fileprivate var setTitleArgument = ""

@@ -9,7 +9,7 @@ protocol MealPlanViewType: class {
 class MealPlanViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    var presenter: MealPlanPresenterType!
+    var presenter: MealPlanPresenting!
     fileprivate var mealPlanViewData = [MealPlanViewData]()
 
     override func viewDidLoad() {

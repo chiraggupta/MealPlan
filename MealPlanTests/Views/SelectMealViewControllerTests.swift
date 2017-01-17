@@ -75,7 +75,7 @@ class SelectMealViewControllerTests: XCTestCase {
 
 // MARK: Test doubles
 extension SelectMealViewControllerTests {
-    class MockSelectMealPresenter: SelectMealPresenterType {
+    class MockSelectMealPresenter: SelectMealPresenting {
         private (set) fileprivate var loadMealsCalled = false
         private (set) fileprivate var selectCalled = false
         private (set) fileprivate var selectedMeal: String?

@@ -68,7 +68,7 @@ class MealPlanViewControllerTests: XCTestCase {
 
 // MARK: Test doubles
 extension MealPlanViewControllerTests {
-    class MockMealPlanPresenter: MealPlanPresenterType {
+    class MockMealPlanPresenter: MealPlanPresenting {
         fileprivate var updateMealPlanCalled = false
         fileprivate var configureCalled = false
         fileprivate var configuredView: Any?

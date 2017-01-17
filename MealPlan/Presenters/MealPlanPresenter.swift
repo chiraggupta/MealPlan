@@ -2,12 +2,12 @@
 
 import Foundation
 
-protocol MealPlanPresenterType {
+protocol MealPlanPresenting {
     func updateMealPlan()
     func configureSelectMealView(view: Any, day: String)
 }
 
-class MealPlanPresenter: MealPlanPresenterType {
+class MealPlanPresenter: MealPlanPresenting {
     unowned let view: MealPlanViewType
     fileprivate let model: WeeklyMealPlanProvider
 
