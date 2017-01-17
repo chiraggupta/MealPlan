@@ -43,8 +43,8 @@ class MealsViewController: UIViewController {
     }
 }
 
-private typealias ViewTypeImplementation = MealsViewController
-extension ViewTypeImplementation: MealsViewType {
+// MARK: MealsViewType conformance
+extension MealsViewController: MealsViewType {
     func set(meals: [Meal]) {
         self.meals = meals
     }
@@ -54,8 +54,8 @@ extension ViewTypeImplementation: MealsViewType {
     }
 }
 
-private typealias TableViewDataSource = MealsViewController
-extension TableViewDataSource: UITableViewDataSource {
+// MARK: TableView datasource
+extension MealsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
@@ -68,8 +68,8 @@ extension TableViewDataSource: UITableViewDataSource {
     }
 }
 
-private typealias TableViewDelegate = MealsViewController
-extension TableViewDelegate: UITableViewDelegate {
+// MARK: TableView delegate
+extension MealsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
 

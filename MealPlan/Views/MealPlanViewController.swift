@@ -37,15 +37,15 @@ class MealPlanViewController: UIViewController {
     }
 }
 
-private typealias ViewTypeImplementation = MealPlanViewController
-extension ViewTypeImplementation: MealPlanViewType {
+// MARK: MealPlanViewType conformance
+extension MealPlanViewController: MealPlanViewType {
     func set(mealPlanViewData: [MealPlanViewData]) {
         self.mealPlanViewData = mealPlanViewData
     }
 }
 
-private typealias TableViewDataSource = MealPlanViewController
-extension TableViewDataSource: UITableViewDataSource {
+// MARK: TableView datasource
+extension MealPlanViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mealPlanViewData.count
     }

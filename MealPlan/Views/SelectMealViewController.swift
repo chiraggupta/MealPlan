@@ -20,8 +20,8 @@ class SelectMealViewController: UITableViewController {
     }
 }
 
-typealias SelectMealViewTypeImplementation = SelectMealViewController
-extension SelectMealViewTypeImplementation: SelectMealViewType {
+// MARK: SelectMealViewType conformance
+extension SelectMealViewController: SelectMealViewType {
     func set(title screenTitle: String) {
         title = screenTitle
         navigationController?.title = screenTitle
@@ -32,8 +32,8 @@ extension SelectMealViewTypeImplementation: SelectMealViewType {
     }
 }
 
-private typealias TableViewDataSource = SelectMealViewController
-extension TableViewDataSource {
+// MARK: TableView datasource
+extension SelectMealViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
@@ -52,7 +52,10 @@ extension TableViewDataSource {
 
         return cell
     }
+}
 
+// MARK: TableView delegate
+extension SelectMealViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.select(mealTitle: meals[indexPath.row])
 
