@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41845371E1AF4880042E44C /* AppDelegate.swift */; };
 		C418453B1E1AF51C0042E44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92271E1A2CBA004F0E27 /* LaunchScreen.storyboard */; };
+		C41F2C331E2FF9B800028E60 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C311E2FF9B800028E60 /* Quick.framework */; };
+		C41F2C341E2FF9B800028E60 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C321E2FF9B800028E60 /* Nimble.framework */; };
+		C41F2C361E2FFB2100028E60 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C311E2FF9B800028E60 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C41F2C371E2FFB2100028E60 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C321E2FF9B800028E60 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43822881E25FADF00179062 /* AddMealAlertCreator.swift */; };
 		C438228B1E25FD6100179062 /* AddMealAlertCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */; };
 		C46BFF651E291EBA001D4C15 /* SelectMealViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */; };
@@ -49,9 +53,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C41F2C351E2FFB1100028E60 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C41F2C361E2FFB2100028E60 /* Quick.framework in Copy Frameworks */,
+				C41F2C371E2FFB2100028E60 /* Nimble.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C41845361E1AF4880042E44C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C41845371E1AF4880042E44C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C41F2C311E2FF9B800028E60 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		C41F2C321E2FF9B800028E60 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		C43822881E25FADF00179062 /* AddMealAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreator.swift; sourceTree = "<group>"; };
 		C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreatorTests.swift; sourceTree = "<group>"; };
 		C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewControllerTests.swift; sourceTree = "<group>"; };
@@ -98,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C41F2C331E2FF9B800028E60 /* Quick.framework in Frameworks */,
+				C41F2C341E2FF9B800028E60 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +159,15 @@
 			path = Supporting;
 			sourceTree = "<group>";
 		};
+		C41F2C301E2FF9B800028E60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C41F2C311E2FF9B800028E60 /* Quick.framework */,
+				C41F2C321E2FF9B800028E60 /* Nimble.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C47D867F1E212AB9008FC4A3 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +198,7 @@
 				C4CB921D1E1A2CBA004F0E27 /* MealPlan */,
 				C4CB92321E1A2CBA004F0E27 /* MealPlanTests */,
 				C4CB921C1E1A2CBA004F0E27 /* Products */,
+				C41F2C301E2FF9B800028E60 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -300,6 +333,7 @@
 				C4CB922B1E1A2CBA004F0E27 /* Sources */,
 				C4CB922C1E1A2CBA004F0E27 /* Frameworks */,
 				C4CB922D1E1A2CBA004F0E27 /* Resources */,
+				C41F2C351E2FFB1100028E60 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -583,6 +617,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 724U38TJZ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MealPlanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlanTests;
@@ -598,6 +636,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 724U38TJZ2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MealPlanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlanTests;
