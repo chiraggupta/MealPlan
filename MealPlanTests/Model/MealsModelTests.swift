@@ -1,85 +1,101 @@
 // MealPlan by Chirag Gupta
 
-import XCTest
+import Quick
+import Nimble
 @testable import MealPlan
 
-class MealsModelTests: XCTestCase {
-    var subject: MealsModel!
-    let defaults = MockUserDefaults()
+class MealsModelSpec: QuickSpec {
+    override func spec() {
+        var subject: MealsModel!
+        var defaults: MockUserDefaults!
+        beforeEach {
+            defaults = MockUserDefaults()
+            subject = MealsModel(userDefaults: defaults)
+        }
 
-    override func setUp() {
-        super.setUp()
+        describe("getting meals") {
+            context("when there are no meals") {
+                it("is empty") {
+                    expect(subject.getMeals()).to(beEmpty())
+                }
+            }
+            context("when meals are stored in a wrong way") {
+                beforeEach {
+                    defaults.set(["foo_meal": "bar_meal"], forKey: "Meals")
+                }
+                it("is empty") {
+                    expect(subject.getMeals()).to(beEmpty())
+                }
+            }
+            context("when there are meals") {
+                beforeEach {
+                    defaults.set(["foo_meal", "bar_meal"], forKey: "Meals")
+                }
+                it("gets all the meals") {
+                    expect(subject.getMeals()).to(equal([Meal(title: "foo_meal"), Meal(title: "bar_meal")]))
+                }
+            }
+        }
 
-        subject = MealsModel(userDefaults: defaults)
-    }
+        describe("adding meals") {
+            describe("first meal") {
+                let firstMeal = Meal(title: "foo_meal")
+                beforeEach {
+                    subject.add(meal: firstMeal)
+                }
+                it("has one meal") {
+                    expect(subject.getMeals().count).to(equal(1))
+                }
+                it("contains the first meal") {
+                    expect(subject.getMeals()).to(contain(firstMeal))
+                }
+                describe("second meal") {
+                    context("when it is a duplicate") {
+                        beforeEach {
+                            subject.add(meal: firstMeal)
+                        }
+                        it("has only one meal") {
+                            expect(subject.getMeals().count).to(equal(1))
+                        }
+                    }
+                    context("when it is not a duplicate") {
+                        let secondMeal = Meal(title: "bar_meal")
+                        beforeEach {
+                            subject.add(meal: secondMeal)
+                        }
+                        it("has two meals") {
+                            expect(subject.getMeals().count).to(equal(2))
+                        }
+                        it("contains the second meal") {
+                            expect(subject.getMeals()).to(contain(secondMeal))
+                        }
+                    }
+                }
+            }
+        }
 
-    func testGetMealsWhenDefaultsAreNotSet() {
-        XCTAssertEqual([], subject.getMeals(), "meals should be empty")
-    }
-
-    func testGetMealsWhenDefaultsAreSet() {
-        defaults.set(["foo", "bar"], forKey: "Meals")
-        let expectedMeals = [Meal(title: "foo"), Meal(title: "bar")]
-
-        XCTAssertEqual(expectedMeals, subject.getMeals(), "meals should be foo and bar")
-    }
-
-    func testGetMealsWhenDefaultsAreSetToInvalidType() {
-        defaults.set(["foo": "bar"], forKey: "Meals")
-
-        XCTAssertEqual([], subject.getMeals(), "meals should be empty")
-    }
-
-    func testAddFirstMeal() {
-        let meal = Meal(title: "foo")
-        subject.add(meal: meal)
-
-        let updatedMeals = subject.getMeals()
-
-        XCTAssertEqual(1, updatedMeals.count)
-        XCTAssertTrue(updatedMeals.contains(meal), "foo was not added")
-    }
-
-    func testAddSecondMeal() {
-        let meal1 = Meal(title: "foo")
-        let meal2 = Meal(title: "bar")
-        subject.add(meal: meal1)
-        subject.add(meal: meal2)
-
-        let updatedMeals = subject.getMeals()
-
-        XCTAssertEqual(2, updatedMeals.count)
-        XCTAssertTrue(updatedMeals.contains(meal1), "foo was not added")
-        XCTAssertTrue(updatedMeals.contains(meal2), "bar was not added")
-    }
-
-    func testAddDuplicateMeal() {
-        let meal = Meal(title: "foo_meal")
-        subject.add(meal: meal)
-        subject.add(meal: meal)
-
-        let updatedMeals = subject.getMeals()
-
-        XCTAssertEqual(1, updatedMeals.count, "duplicate shouldn't be added")
-    }
-
-    func testRemoveMeal() {
-        let meal = Meal(title: "foo_meal")
-        subject.add(meal: meal)
-
-        subject.remove(meal: meal)
-        let updatedMeals = subject.getMeals()
-
-        XCTAssertEqual(0, updatedMeals.count, "meal was not removed")
-    }
-
-    func testRemoveNonExistingMeal() {
-        let meal = Meal(title: "foo_meal")
-        subject.add(meal: meal)
-
-        subject.remove(meal: Meal(title: "bar_meal"))
-        let updatedMeals = subject.getMeals()
-
-        XCTAssertEqual(1, updatedMeals.count, "meal shouldn't have been removed")
+        describe("removing meals") {
+            let fooMeal = Meal(title: "foo_meal")
+            let barMeal = Meal(title: "bar_meal")
+            beforeEach {
+                defaults.set(["foo_meal"], forKey: "Meals")
+            }
+            context("when the meal does not exist") {
+                beforeEach {
+                    subject.remove(meal: barMeal)
+                }
+                it("does nothing") {
+                    expect(subject.getMeals()).to(equal([Meal(title: "foo_meal")]))
+                }
+            }
+            context("when the meal exists") {
+                beforeEach {
+                    subject.remove(meal: fooMeal)
+                }
+                it("removes the meal") {
+                    expect(subject.getMeals()).toNot(contain(fooMeal))
+                }
+            }
+        }
     }
 }
