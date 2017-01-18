@@ -1,37 +1,59 @@
 // MealPlan by Chirag Gupta
 
-import XCTest
+import Quick
+import Nimble
 @testable import MealPlan
 
-class WeeklyMealPlanModelTests: XCTestCase {
-    private var subject: WeeklyMealPlanProvider!
-    let defaults = MockUserDefaults()
+class WeeklyMealPlanModelSpec: QuickSpec {
+    override func spec() {
+        var subject: WeeklyMealPlanProvider!
+        var defaults: MockUserDefaults!
 
-    override func setUp() {
-        super.setUp()
+        beforeEach {
+            defaults = MockUserDefaults()
+            subject = WeeklyMealPlanModel(userDefaults: defaults)
+        }
 
-        subject = WeeklyMealPlanModel(userDefaults: defaults)
+        describe("getting meal plan") {
+            context("when there is no plan") {
+                it("is empty") {
+                    expect(subject.getWeeklyMealPlan()).to(equal([:]))
+                }
+            }
+            context("when there is a meal plan") {
+                beforeEach {
+                    defaults.set(["Wednesday": "foo_meal",
+                                  "Saturday": "bar_meal",
+                                  "Sunday": "baz_meal"
+                        ], forKey: "WeeklyMealPlan")
+                }
+                it("gets the meal plan") {
+                    let expectedPlan = [DayOfWeek.wednesday: Meal(title: "foo_meal"),
+                                        DayOfWeek.saturday: Meal(title: "bar_meal"),
+                                        DayOfWeek.sunday: Meal(title: "baz_meal")]
+                    expect(subject.getWeeklyMealPlan()).to(equal(expectedPlan))
+                }
+            }
+        }
+
+        describe("select a meal") {
+            let fooMeal = Meal(title: "foo_meal")
+            beforeEach {
+                subject.select(meal: fooMeal, day: .monday)
+            }
+            it("has the right meal selected") {
+                expect(subject.getWeeklyMealPlan()).to(equal([.monday: fooMeal]))
+            }
+
+            describe("select another meal for the same day") {
+                let barMeal = Meal(title: "bar_meal")
+                beforeEach {
+                    subject.select(meal: barMeal, day: .monday)
+                }
+                it("changes the selected meal") {
+                    expect(subject.getWeeklyMealPlan()).to(equal([.monday: barMeal]))
+                }
+            }
+        }
     }
-
-    func testDefaultWeeklyMealPlan() {
-        XCTAssertEqual([:], subject.getWeeklyMealPlan())
-    }
-
-    func testSelectMeal() {
-        let fooMeal = Meal(title: "foo_meal")
-        subject.select(meal: fooMeal, day: .sunday)
-        XCTAssertEqual([.sunday: fooMeal], subject.getWeeklyMealPlan())
-    }
-
-    func testSelectingSameDayShouldReplaceMeal() {
-        let fooMeal = Meal(title: "foo_meal")
-        let barMeal = Meal(title: "bar_meal")
-
-        subject.select(meal: fooMeal, day: .sunday)
-        subject.select(meal: barMeal, day: .sunday)
-
-        XCTAssertEqual(1, subject.getWeeklyMealPlan().count)
-        XCTAssertEqual([.sunday: barMeal], subject.getWeeklyMealPlan())
-    }
-
 }
