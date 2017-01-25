@@ -28,11 +28,13 @@
 		C47D86901E21801F008FC4A3 /* MealsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D868F1E21801F008FC4A3 /* MealsPresenterTests.swift */; };
 		C47D86921E2181AD008FC4A3 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D86911E2181AD008FC4A3 /* MealsViewController.swift */; };
 		C4A2FF521E219209009AC6AD /* MealsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */; };
+		C4CAB6361E2EC38A00900003 /* ViewControllerMaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */; };
 		C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */; };
 		C4CB92261E1A2CBA004F0E27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92251E1A2CBA004F0E27 /* Assets.xcassets */; };
 		C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */; };
 		C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */; };
 		C4D418F61E1EFC24002B0D66 /* MealPlanViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */; };
+		C4DE4FCA1E39470B0010CE52 /* ViewControllerMakingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */; };
 		C4E1BD231E1C594B00811965 /* MealsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD221E1C594B00811965 /* MealsModelTests.swift */; };
 		C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1BD251E1C5AB800811965 /* MealsModel.swift */; };
 		C4E693571E24564F00EDFE97 /* AlertActionCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E693561E24564F00EDFE97 /* AlertActionCreator.swift */; };
@@ -88,6 +90,7 @@
 		C47D868F1E21801F008FC4A3 /* MealsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsPresenterTests.swift; sourceTree = "<group>"; };
 		C47D86911E2181AD008FC4A3 /* MealsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
 		C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsViewControllerTests.swift; sourceTree = "<group>"; };
+		C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMaking.swift; sourceTree = "<group>"; };
 		C4CB921B1E1A2CBA004F0E27 /* MealPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPlanViewController.swift; sourceTree = "<group>"; };
 		C4CB92251E1A2CBA004F0E27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Resources/Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 		C4D418F11E1EF1A3002B0D66 /* MealPlanPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenter.swift; sourceTree = "<group>"; };
 		C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanPresenterTests.swift; sourceTree = "<group>"; };
 		C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanViewControllerTests.swift; sourceTree = "<group>"; };
+		C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMakingTests.swift; sourceTree = "<group>"; };
 		C4E1BD221E1C594B00811965 /* MealsModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModelTests.swift; sourceTree = "<group>"; };
 		C4E1BD251E1C5AB800811965 /* MealsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
 		C4E693561E24564F00EDFE97 /* AlertActionCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertActionCreator.swift; sourceTree = "<group>"; };
@@ -192,6 +196,14 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
+		C4CAB6321E2EC33E00900003 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		C4CB92121E1A2CBA004F0E27 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +226,7 @@
 		C4CB921D1E1A2CBA004F0E27 /* MealPlan */ = {
 			isa = PBXGroup;
 			children = (
+				C4CAB6321E2EC33E00900003 /* Coordinators */,
 				C4E1BD241E1C5A9200811965 /* Model */,
 				C41845341E1AF3E90042E44C /* Views */,
 				C47D867F1E212AB9008FC4A3 /* ViewData */,
@@ -227,6 +240,7 @@
 		C4CB92321E1A2CBA004F0E27 /* MealPlanTests */ = {
 			isa = PBXGroup;
 			children = (
+				C4DE4FC81E3946680010CE52 /* Coordinators */,
 				C4E1BD271E1C5D0E00811965 /* Model */,
 				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4D418F01E1EF16A002B0D66 /* Presenters */,
@@ -274,6 +288,14 @@
 				C47D86891E216B9F008FC4A3 /* CollectionUtilsTests.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C4DE4FC81E3946680010CE52 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		C4E1BD241E1C5A9200811965 /* Model */ = {
@@ -442,6 +464,7 @@
 				C4E9D72A1E204B4A008926BC /* DayOfWeek.swift in Sources */,
 				C471A8321E2824D2000A6F07 /* SelectMealPresenter.swift in Sources */,
 				C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */,
+				C4CAB6361E2EC38A00900003 /* ViewControllerMaking.swift in Sources */,
 				C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +484,7 @@
 				C471A8341E2824EB000A6F07 /* SelectMealPresenterTests.swift in Sources */,
 				C47D86901E21801F008FC4A3 /* MealsPresenterTests.swift in Sources */,
 				C47D868A1E216B9F008FC4A3 /* CollectionUtilsTests.swift in Sources */,
+				C4DE4FCA1E39470B0010CE52 /* ViewControllerMakingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
