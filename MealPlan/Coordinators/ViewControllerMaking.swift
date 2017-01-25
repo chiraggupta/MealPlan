@@ -19,8 +19,6 @@ extension ViewControllerMaking {
         return viewController
     }
 
-    func configure(viewController: ViewControllerType) {}
-
     private func instantiateViewController() -> ViewControllerType {
         let storyboard = UIStoryboard(name: storyboardID, bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: viewControllerID)
