@@ -12,12 +12,6 @@ class MealPlanViewController: UIViewController {
     var presenter: MealPlanPresenting!
     fileprivate var mealPlanViewData = [MealPlanViewData]()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        presenter = presenter ?? MealPlanPresenter(view: self)
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

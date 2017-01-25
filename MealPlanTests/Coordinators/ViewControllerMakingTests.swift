@@ -23,6 +23,10 @@ class ViewControllerMakingTests: QuickSpec {
                         expect(viewController).to(beAKindOf(MealPlanViewController.self))
                         expect(viewController.navigationController).to(beAKindOf(UINavigationController.self))
                     }
+
+                    it("configures the viewcontroller") {
+                        expect(subject.makeViewController().title).to(equal("FooTitleConfigured"))
+                    }
                 }
 
                 context("when it is not embedded in a navigation controller") {
@@ -31,8 +35,7 @@ class ViewControllerMakingTests: QuickSpec {
                     }
 
                     it("makes the right viewcontroller") {
-                        let viewController = subject.makeViewController()
-                        expect(viewController).to(beAKindOf(MealPlanViewController.self))
+                        expect(subject.makeViewController()).to(beAKindOf(MealPlanViewController.self))
                     }
                 }
 
@@ -64,5 +67,9 @@ class ViewControllerMakingTests: QuickSpec {
 
         var storyboardID = "Main"
         var viewControllerID = ""
+        
+        func configure(viewController: MealPlanViewController) {
+            viewController.title = "FooTitleConfigured"
+        }
     }
 }

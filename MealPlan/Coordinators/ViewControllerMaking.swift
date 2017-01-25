@@ -9,10 +9,19 @@ protocol ViewControllerMaking {
     var viewControllerID: String { get }
 
     func makeViewController() -> ViewControllerType
+    func configure(viewController: ViewControllerType)
 }
 
 extension ViewControllerMaking {
     func makeViewController() -> ViewControllerType {
+        let viewController = instantiateViewController()
+        configure(viewController: viewController)
+        return viewController
+    }
+
+    func configure(viewController: ViewControllerType) {}
+
+    private func instantiateViewController() -> ViewControllerType {
         let storyboard = UIStoryboard(name: storyboardID, bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(withIdentifier: viewControllerID)
 
