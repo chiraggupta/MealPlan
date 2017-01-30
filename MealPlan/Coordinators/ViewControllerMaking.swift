@@ -3,7 +3,7 @@
 import UIKit
 
 protocol ViewControllerMaking {
-    associatedtype ViewControllerType
+    associatedtype ViewControllerType: UIViewController
 
     var storyboardID: String { get }
     var viewControllerID: String { get }
@@ -11,7 +11,7 @@ protocol ViewControllerMaking {
     var viewController: ViewControllerType { get }
 }
 
-extension ViewControllerMaking where ViewControllerType: UIViewController {
+extension ViewControllerMaking {
     func instantiate() -> ViewControllerType {
         let storyboard = UIStoryboard(name: storyboardID, bundle: Bundle.main)
         var vc = storyboard.instantiateViewController(withIdentifier: viewControllerID)
