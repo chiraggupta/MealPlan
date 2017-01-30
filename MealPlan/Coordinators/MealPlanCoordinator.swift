@@ -3,12 +3,14 @@
 import Foundation
 
 class MealPlanCoordinator: ViewControllerMaking {
-    typealias ViewControllerType = MealPlanViewController
-
     var storyboardID = "Main"
     var viewControllerID = "Navigation_MealPlanViewController"
 
-    func configure(viewController: MealPlanViewController) {
-        viewController.presenter = MealPlanPresenter(view: viewController)
+    lazy var viewController: MealPlanViewController = self.makeViewController()
+
+    private func makeViewController() -> MealPlanViewController {
+        let vc: MealPlanViewController = instantiate()
+        vc.presenter = MealPlanPresenter(view: vc)
+        return vc
     }
 }

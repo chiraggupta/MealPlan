@@ -6,24 +6,18 @@ import Nimble
 
 class ViewControllerMakingTests: QuickSpec {
     override func spec() {
-        var subject: ViewControllerMakingClass!
+        var subject: ViewControllerMakingTest!
         beforeEach {
-            subject = ViewControllerMakingClass()
+            subject = ViewControllerMakingTest()
         }
         describe("making a view controller ") {
-            context("when it is embedded in a navigation controller") {
+            context("when embedded in a navigation controller") {
                 beforeEach {
                     subject.viewControllerID = "Navigation_MealPlanViewController"
                 }
 
-                it("makes the right viewcontroller") {
-                    let viewController = subject.makeViewController()
-                    expect(viewController).to(beAKindOf(MealPlanViewController.self))
-                    expect(viewController.navigationController).to(beAKindOf(UINavigationController.self))
-                }
-
-                it("configures the viewcontroller") {
-                    expect(subject.makeViewController().title).to(equal("FooTitleConfigured"))
+                it("makes it embedded in UINavigationController") {
+                    expect(subject.viewController.navigationController).to(beAKindOf(UINavigationController.self))
                 }
             }
 
@@ -32,8 +26,8 @@ class ViewControllerMakingTests: QuickSpec {
                     subject.viewControllerID = "MealPlanViewController"
                 }
 
-                it("makes the right viewcontroller") {
-                    expect(subject.makeViewController()).to(beAKindOf(MealPlanViewController.self))
+                it("has no navigation controller") {
+                    expect(subject.viewController.navigationController).to(beNil())
                 }
             }
 
@@ -43,7 +37,7 @@ class ViewControllerMakingTests: QuickSpec {
                 }
 
                 it("raises an exception") {
-                    expect(subject.makeViewController()).to(raiseException())
+                    expect(subject.viewController).to(raiseException())
                 }
             }
 
@@ -53,20 +47,18 @@ class ViewControllerMakingTests: QuickSpec {
                 }
 
                 it("throws an error") {
-                    expect { () -> Void in _ = subject.makeViewController() }.to(throwAssertion())
+                    expect { () -> Void in _ = subject.viewController }.to(throwAssertion())
                 }
             }
         }
     }
 
-    class ViewControllerMakingClass: ViewControllerMaking {
+    class ViewControllerMakingTest: ViewControllerMaking {
         typealias ViewControllerType = MealPlanViewController
 
         var storyboardID = "Main"
         var viewControllerID = ""
 
-        func configure(viewController: MealPlanViewController) {
-            viewController.title = "FooTitleConfigured"
-        }
+        lazy var  viewController: MealPlanViewController = self.instantiate()
     }
 }

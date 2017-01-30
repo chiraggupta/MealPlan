@@ -8,28 +8,22 @@ protocol ViewControllerMaking {
     var storyboardID: String { get }
     var viewControllerID: String { get }
 
-    func makeViewController() -> ViewControllerType
-    func configure(viewController: ViewControllerType)
+    var viewController: ViewControllerType { get }
 }
 
-extension ViewControllerMaking {
-    func makeViewController() -> ViewControllerType {
-        let viewController = instantiateViewController()
-        configure(viewController: viewController)
-        return viewController
-    }
-
-    private func instantiateViewController() -> ViewControllerType {
+extension ViewControllerMaking where ViewControllerType: UIViewController {
+    func instantiate() -> ViewControllerType {
         let storyboard = UIStoryboard(name: storyboardID, bundle: Bundle.main)
-        var viewController = storyboard.instantiateViewController(withIdentifier: viewControllerID)
+        var vc = storyboard.instantiateViewController(withIdentifier: viewControllerID)
 
-        if let topOfNavigation = (viewController as? UINavigationController)?.topViewController {
-            viewController = topOfNavigation
+        if let topOfNavigation = (vc as? UINavigationController)?.topViewController {
+            vc = topOfNavigation
         }
 
-        guard let viewControllerOfCorrectType = viewController as? ViewControllerType else {
+        guard let correctlyTypedVC = vc as? ViewControllerType else {
             fatalError("Expected view controller of type \(ViewControllerType.self)")
         }
-        return viewControllerOfCorrectType
+
+        return correctlyTypedVC
     }
 }
