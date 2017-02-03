@@ -133,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C417AD6B1E4520860004C6FF /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				C47D868B1E216BA4008FC4A3 /* TestUtils.swift */,
+				C4CB92351E1A2CBA004F0E27 /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		C41845331E1AF3CF0042E44C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,14 +199,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		C47D86881E216B39008FC4A3 /* TestUtils */ = {
-			isa = PBXGroup;
-			children = (
-				C47D868B1E216BA4008FC4A3 /* TestUtils.swift */,
-			);
-			path = TestUtils;
-			sourceTree = "<group>";
-		};
 		C4CAB6321E2EC33E00900003 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,8 +249,7 @@
 				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4D418F01E1EF16A002B0D66 /* Presenters */,
 				C4D418F81E1EFD03002B0D66 /* Utils */,
-				C47D86881E216B39008FC4A3 /* TestUtils */,
-				C4CB92351E1A2CBA004F0E27 /* Info.plist */,
+				C417AD6B1E4520860004C6FF /* Supporting */,
 			);
 			path = MealPlanTests;
 			sourceTree = "<group>";
@@ -649,7 +649,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = MealPlanTests/Info.plist;
+				INFOPLIST_FILE = MealPlanTests/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -668,7 +668,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = MealPlanTests/Info.plist;
+				INFOPLIST_FILE = MealPlanTests/Supporting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chiraggupta.MealPlanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
