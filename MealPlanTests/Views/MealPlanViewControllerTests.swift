@@ -34,7 +34,7 @@ class MealPlanViewControllerTests: XCTestCase {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = subject.tableView(subject.tableView, cellForRowAt: indexPath)
 
-            XCTAssertEqual(stubData[i].day, cell.textLabel?.text, "day \(i) is incorrect")
+            XCTAssertEqual(stubData[i].day.rawValue, cell.textLabel?.text, "day \(i) is incorrect")
             XCTAssertEqual(stubData[i].title, cell.detailTextLabel?.text, "meal \(i) title is incorrect")
         }
     }
@@ -50,7 +50,7 @@ class MealPlanViewControllerTests: XCTestCase {
         subject.tableView(subject.tableView, didSelectRowAt: indexPath)
 
         XCTAssertTrue(presenter.dayTappedCalled)
-        XCTAssertEqual("Monday", presenter.dayTapped)
+        XCTAssertEqual(.monday, presenter.dayTapped)
     }
 }
 
@@ -60,7 +60,7 @@ extension MealPlanViewControllerTests {
         private(set) fileprivate var updateMealPlanCalled = false
         private(set) fileprivate var myMealsTappedCalled = false
         private(set) fileprivate var dayTappedCalled = false
-        private(set) fileprivate var dayTapped: String?
+        private(set) fileprivate var dayTapped: DayOfWeek?
 
         func updateMealPlan() {
             updateMealPlanCalled = true
@@ -70,7 +70,7 @@ extension MealPlanViewControllerTests {
             myMealsTappedCalled = true
         }
 
-        func dayTapped(day: String) {
+        func dayTapped(day: DayOfWeek) {
             dayTappedCalled = true
             dayTapped = day
         }
@@ -79,13 +79,13 @@ extension MealPlanViewControllerTests {
     // Test data
     func stubMealPlanViewData() -> [MealPlanViewData] {
         return [
-            MealPlanViewData(day: "Monday", title: "meal 1"),
-            MealPlanViewData(day: "Tuesday", title: ""),
-            MealPlanViewData(day: "Wednesday", title: "meal 2"),
-            MealPlanViewData(day: "Thursday", title: ""),
-            MealPlanViewData(day: "Friday", title: ""),
-            MealPlanViewData(day: "Saturday", title: "meal 3"),
-            MealPlanViewData(day: "Sunday", title: "")
+            MealPlanViewData(day: .monday, title: "meal 1"),
+            MealPlanViewData(day: .tuesday, title: ""),
+            MealPlanViewData(day: .wednesday, title: "meal 2"),
+            MealPlanViewData(day: .thursday, title: ""),
+            MealPlanViewData(day: .friday, title: ""),
+            MealPlanViewData(day: .saturday, title: "meal 3"),
+            MealPlanViewData(day: .sunday, title: "")
         ]
     }
 }

@@ -5,7 +5,7 @@ import Foundation
 protocol MealPlanPresenting {
     func updateMealPlan()
     func myMealsTapped()
-    func dayTapped(day: String)
+    func dayTapped(day: DayOfWeek)
 }
 
 class MealPlanPresenter: MealPlanPresenting {
@@ -24,19 +24,14 @@ class MealPlanPresenter: MealPlanPresenting {
     }
 
     func createMealPlanViewData(from mealPlan: WeeklyMealPlan) -> [MealPlanViewData] {
-        return DayOfWeek.all.map { MealPlanViewData(day: $0.rawValue, title:mealPlan[$0]?.title) }
+        return DayOfWeek.all.map { MealPlanViewData(day: $0, title:mealPlan[$0]?.title) }
     }
 
     func myMealsTapped() {
         view.displayModally(MealsFactory().makeViewController())
     }
 
-    func dayTapped(day: String) {
-        guard let selectedDay = DayOfWeek(rawValue: day) else {
-            NSLog("ERROR: Invalid day tapped \(day)")
-            return
-        }
-
-        view.display(SelectMealFactory(day: selectedDay).makeViewController())
+    func dayTapped(day: DayOfWeek) {
+        view.display(SelectMealFactory(day: day).makeViewController())
     }
 }

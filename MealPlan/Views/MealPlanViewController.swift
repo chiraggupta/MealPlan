@@ -51,7 +51,7 @@ extension MealPlanViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealPlanCell", for: indexPath)
 
         let viewDataForDay = mealPlanViewData[indexPath.row]
-        cell.textLabel?.text = viewDataForDay.day
+        cell.textLabel?.text = viewDataForDay.day.rawValue
         cell.detailTextLabel?.text = viewDataForDay.title
 
         return cell

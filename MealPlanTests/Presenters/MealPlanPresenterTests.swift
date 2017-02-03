@@ -21,13 +21,13 @@ class MealPlanPresenterTests: XCTestCase {
 
     func testUpdateMealPlanSetsMealPlanViewData() {
         let expectedViewData = [
-            MealPlanViewData(day: "Monday", title: "foo_meal"),
-            MealPlanViewData(day: "Tuesday", title: ""),
-            MealPlanViewData(day: "Wednesday", title: "bar_meal"),
-            MealPlanViewData(day: "Thursday", title: ""),
-            MealPlanViewData(day: "Friday", title: ""),
-            MealPlanViewData(day: "Saturday", title: "baz_meal"),
-            MealPlanViewData(day: "Sunday", title: "")
+            MealPlanViewData(day: .monday, title: "foo_meal"),
+            MealPlanViewData(day: .tuesday, title: ""),
+            MealPlanViewData(day: .wednesday, title: "bar_meal"),
+            MealPlanViewData(day: .thursday, title: ""),
+            MealPlanViewData(day: .friday, title: ""),
+            MealPlanViewData(day: .saturday, title: "baz_meal"),
+            MealPlanViewData(day: .sunday, title: "")
         ]
 
         subject.updateMealPlan()
@@ -48,14 +48,14 @@ class MealPlanPresenterTests: XCTestCase {
     }
 
     func testTappingDayDisplaysSelectMealScreen() {
-        subject.dayTapped(day: "Monday")
+        subject.dayTapped(day: .monday)
 
         XCTAssertTrue(view.displayCalled)
         XCTAssertTrue(view.displayed is SelectMealViewController)
         let nextPresenter = (view.displayed as? SelectMealViewController)?.presenter
         XCTAssertTrue(nextPresenter is SelectMealPresenter)
         let selectedDay = (nextPresenter as? SelectMealPresenter)?.day
-        XCTAssertEqual("Monday", selectedDay?.rawValue)
+        XCTAssertEqual(.monday, selectedDay)
     }
 }
 
