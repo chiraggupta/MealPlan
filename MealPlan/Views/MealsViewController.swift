@@ -18,7 +18,6 @@ class MealsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        presenter = presenter ?? MealsPresenter(view: self)
         presenter.updateMeals()
     }
 

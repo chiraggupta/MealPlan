@@ -4,6 +4,7 @@ import Foundation
 
 protocol MealPlanPresenting {
     func updateMealPlan()
+    func myMealsTapped()
     func configureSelectMealView(view: Any, day: String)
 }
 
@@ -24,6 +25,10 @@ class MealPlanPresenter: MealPlanPresenting {
 
     func createMealPlanViewData(from mealPlan: WeeklyMealPlan) -> [MealPlanViewData] {
         return DayOfWeek.all.map { MealPlanViewData(day: $0.rawValue, title:mealPlan[$0]?.title) }
+    }
+
+    func myMealsTapped() {
+        view.displayModally(MealsFactory().makeViewController())
     }
 
     func configureSelectMealView(view: Any, day: String) {

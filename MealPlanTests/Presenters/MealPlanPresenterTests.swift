@@ -64,6 +64,17 @@ class MealPlanPresenterTests: XCTestCase {
 
         XCTAssertNil(view.presenter, "presenter should not be set")
     }
+
+    func testTappingMyMealsDisplaysSomethingModally() {
+        subject.myMealsTapped()
+
+        XCTAssertTrue(view.displayModallyCalled)
+        XCTAssertTrue(view.displayedModally is UINavigationController)
+        let topOfNavigation = (view.displayedModally as? UINavigationController)?.topViewController
+        XCTAssertTrue(topOfNavigation is MealsViewController)
+        let presenter = (topOfNavigation as? MealsViewController)?.presenter
+        XCTAssertTrue(presenter is MealsPresenter)
+    }
 }
 
 // MARK: Test doubles
@@ -71,10 +82,17 @@ extension MealPlanPresenterTests {
     class MockMealPlanView: MealPlanViewType {
         private(set) fileprivate var setCalled = false
         private(set) fileprivate var setArguments = [MealPlanViewData]()
+        private(set) fileprivate var displayModallyCalled = false
+        private(set) fileprivate var displayedModally: UIViewController?
 
         func set(mealPlanViewData: [MealPlanViewData]) {
             setCalled = true
             setArguments = mealPlanViewData
+        }
+
+        func displayModally(_ viewController: UIViewController) {
+            displayModallyCalled = true
+            displayedModally = viewController
         }
     }
 

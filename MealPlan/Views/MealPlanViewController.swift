@@ -4,6 +4,7 @@ import UIKit
 
 protocol MealPlanViewType: class {
     func set(mealPlanViewData: [MealPlanViewData])
+    func displayModally(_ viewController: UIViewController)
 }
 
 class MealPlanViewController: UIViewController {
@@ -29,12 +30,21 @@ class MealPlanViewController: UIViewController {
             presenter.configureSelectMealView(view: segue.destination, day: day)
         }
     }
+
+    @IBAction func myMealsTapped(_ sender: UIBarButtonItem) {
+        presenter.myMealsTapped()
+    }
+
 }
 
 // MARK: MealPlanViewType conformance
 extension MealPlanViewController: MealPlanViewType {
     func set(mealPlanViewData: [MealPlanViewData]) {
         self.mealPlanViewData = mealPlanViewData
+    }
+
+    func displayModally(_ viewController: UIViewController) {
+        present(viewController, animated: true)
     }
 }
 

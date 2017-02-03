@@ -64,6 +64,12 @@ class MealPlanViewControllerTests: XCTestCase {
         subject.prepare(for: makeSegue(identifier: "foo_segue"), sender: UITableViewCell())
         XCTAssertFalse(presenter.configureCalled, "configure cell should not be called")
     }
+
+    func testMyMealsTappedCallsPresenter() {
+        subject.myMealsTapped(UIBarButtonItem())
+
+        XCTAssertTrue(presenter.myMealsTappedCalled)
+    }
 }
 
 // MARK: Test doubles
@@ -71,6 +77,7 @@ extension MealPlanViewControllerTests {
     class MockMealPlanPresenter: MealPlanPresenting {
         fileprivate var updateMealPlanCalled = false
         fileprivate var configureCalled = false
+        fileprivate var myMealsTappedCalled = false
         fileprivate var configuredView: Any?
         fileprivate var configuredDay = ""
 
@@ -82,6 +89,10 @@ extension MealPlanViewControllerTests {
             configureCalled = true
             configuredView = view
             configuredDay = day
+        }
+
+        func myMealsTapped() {
+            myMealsTappedCalled = true
         }
     }
 
