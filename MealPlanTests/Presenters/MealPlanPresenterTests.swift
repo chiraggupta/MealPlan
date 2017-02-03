@@ -36,36 +36,7 @@ class MealPlanPresenterTests: XCTestCase {
         XCTAssertEqual(expectedViewData, view.setArguments, "incorrect meals were set")
     }
 
-    func testConfigureSelectMeal() {
-        let view = MockSelectMealView()
-        subject.configureSelectMealView(view: view, day: "Monday")
-
-        XCTAssertNotNil(view.presenter, "select meal presenter was not set")
-
-        guard let selectMealPresenter = view.presenter as? SelectMealPresenter else {
-            XCTFail("select meal presenter should be an instance of SelectMealPresenter")
-            return
-        }
-        XCTAssertEqual(.monday, selectMealPresenter.day, "select meal presenter had wrong day set")
-        XCTAssertTrue((selectMealPresenter.view as? MockSelectMealView) != nil,
-                      "select meal presenter had a wrong view set")
-    }
-
-    func testConfigureSelectMealWithIncorrectDay() {
-        let view = MockSelectMealView()
-        subject.configureSelectMealView(view: view, day: "Amazingday")
-
-        XCTAssertNil(view.presenter, "presenter should not be set")
-    }
-
-    func testConfigureSelectMealWithIncorrectViewType() {
-        let view = FakeViewWithPresenter()
-        subject.configureSelectMealView(view: view, day: "Monday")
-
-        XCTAssertNil(view.presenter, "presenter should not be set")
-    }
-
-    func testTappingMyMealsDisplaysSomethingModally() {
+    func testTappingMyMealsDisplaysMealsScreenModally() {
         subject.myMealsTapped()
 
         XCTAssertTrue(view.displayModallyCalled)
@@ -74,6 +45,17 @@ class MealPlanPresenterTests: XCTestCase {
         XCTAssertTrue(topOfNavigation is MealsViewController)
         let presenter = (topOfNavigation as? MealsViewController)?.presenter
         XCTAssertTrue(presenter is MealsPresenter)
+    }
+
+    func testTappingDayDisplaysSelectMealScreen() {
+        subject.dayTapped(day: "Monday")
+
+        XCTAssertTrue(view.displayCalled)
+        XCTAssertTrue(view.displayed is SelectMealViewController)
+        let nextPresenter = (view.displayed as? SelectMealViewController)?.presenter
+        XCTAssertTrue(nextPresenter is SelectMealPresenter)
+        let selectedDay = (nextPresenter as? SelectMealPresenter)?.day
+        XCTAssertEqual("Monday", selectedDay?.rawValue)
     }
 }
 
@@ -84,19 +66,22 @@ extension MealPlanPresenterTests {
         private(set) fileprivate var setArguments = [MealPlanViewData]()
         private(set) fileprivate var displayModallyCalled = false
         private(set) fileprivate var displayedModally: UIViewController?
+        private(set) fileprivate var displayCalled = false
+        private(set) fileprivate var displayed: UIViewController?
 
         func set(mealPlanViewData: [MealPlanViewData]) {
             setCalled = true
             setArguments = mealPlanViewData
         }
 
+        func display(_ viewController: UIViewController) {
+            displayCalled = true
+            displayed = viewController
+        }
+
         func displayModally(_ viewController: UIViewController) {
             displayModallyCalled = true
             displayedModally = viewController
         }
-    }
-
-    class FakeViewWithPresenter {
-        var presenter: MealPlanPresenter!
     }
 }

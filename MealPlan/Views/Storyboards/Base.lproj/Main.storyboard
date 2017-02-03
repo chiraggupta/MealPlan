@@ -48,13 +48,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="k1d-A4-89V" kind="show" identifier="SelectMealSegue" id="eG6-yd-xjV"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="eA6-aj-gRc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="KQO-Dn-Xkd"/>
                                 </connections>
                             </tableView>
                         </subviews>

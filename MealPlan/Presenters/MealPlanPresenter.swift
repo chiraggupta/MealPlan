@@ -5,7 +5,7 @@ import Foundation
 protocol MealPlanPresenting {
     func updateMealPlan()
     func myMealsTapped()
-    func configureSelectMealView(view: Any, day: String)
+    func dayTapped(day: String)
 }
 
 class MealPlanPresenter: MealPlanPresenting {
@@ -31,18 +31,12 @@ class MealPlanPresenter: MealPlanPresenting {
         view.displayModally(MealsFactory().makeViewController())
     }
 
-    func configureSelectMealView(view: Any, day: String) {
-        guard let view = view as? SelectMealViewType else {
-            NSLog("ERROR: configureSelectMeal should receive a view of type SelectMealViewType")
+    func dayTapped(day: String) {
+        guard let selectedDay = DayOfWeek(rawValue: day) else {
+            NSLog("ERROR: Invalid day tapped \(day)")
             return
         }
 
-        guard let dayOfWeek = DayOfWeek(rawValue: day) else {
-            NSLog("ERROR: configureSelectMeal received an invalid day: \(day)")
-            return
-        }
-
-        let selectMealPresenter = SelectMealPresenter(day: dayOfWeek, view: view)
-        view.presenter = selectMealPresenter
+        view.display(SelectMealFactory(day: selectedDay).makeViewController())
     }
 }

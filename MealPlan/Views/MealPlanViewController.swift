@@ -4,6 +4,7 @@ import UIKit
 
 protocol MealPlanViewType: class {
     func set(mealPlanViewData: [MealPlanViewData])
+    func display(_ viewController: UIViewController)
     func displayModally(_ viewController: UIViewController)
 }
 
@@ -20,27 +21,19 @@ class MealPlanViewController: UIViewController {
         tableView.reloadData()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SelectMealSegue" {
-            guard let day = (sender as? UITableViewCell)?.textLabel?.text else {
-                NSLog("ERROR: SelectMealSegue received an invalid sender cell")
-                return
-            }
-
-            presenter.configureSelectMealView(view: segue.destination, day: day)
-        }
-    }
-
     @IBAction func myMealsTapped(_ sender: UIBarButtonItem) {
         presenter.myMealsTapped()
     }
-
 }
 
 // MARK: MealPlanViewType conformance
 extension MealPlanViewController: MealPlanViewType {
     func set(mealPlanViewData: [MealPlanViewData]) {
         self.mealPlanViewData = mealPlanViewData
+    }
+
+    func display(_ viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     func displayModally(_ viewController: UIViewController) {
@@ -62,5 +55,13 @@ extension MealPlanViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = viewDataForDay.title
 
         return cell
+    }
+}
+
+// MARK: TableView delegate
+extension MealPlanViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedDay = mealPlanViewData[indexPath.row].day
+        presenter.dayTapped(day: selectedDay)
     }
 }

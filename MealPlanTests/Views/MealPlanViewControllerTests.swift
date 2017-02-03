@@ -39,60 +39,40 @@ class MealPlanViewControllerTests: XCTestCase {
         }
     }
 
-    func testSelectMealSegue() {
-        let segue = makeSegue(identifier: "SelectMealSegue")
-
-        subject.prepare(for: segue, sender: makeCell(title: "foo_day"))
-
-        XCTAssertTrue(presenter.configureCalled, "configure cell was not called")
-        XCTAssertEqual("foo_day", presenter.configuredDay, "configure cell day was incorrect")
-
-        guard let view = presenter.configuredView as? UIViewController else {
-            XCTFail("configure cell view was of incorrect type")
-            return
-        }
-
-        XCTAssertEqual(segue.destination, view, "configure cell destination was incorrect")
-    }
-
-    func testSelectMealSegueWithEmptyCell() {
-        subject.prepare(for: makeSegue(identifier: "SelectMealSegue"), sender: UITableViewCell())
-        XCTAssertFalse(presenter.configureCalled, "configure cell should not be called")
-    }
-
-    func testIncorrectSegue() {
-        subject.prepare(for: makeSegue(identifier: "foo_segue"), sender: UITableViewCell())
-        XCTAssertFalse(presenter.configureCalled, "configure cell should not be called")
-    }
-
     func testMyMealsTappedCallsPresenter() {
         subject.myMealsTapped(UIBarButtonItem())
 
         XCTAssertTrue(presenter.myMealsTappedCalled)
+    }
+
+    func testSelectingTableviewCellSendsDaySelectedEvent() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        subject.tableView(subject.tableView, didSelectRowAt: indexPath)
+
+        XCTAssertTrue(presenter.dayTappedCalled)
+        XCTAssertEqual("Monday", presenter.dayTapped)
     }
 }
 
 // MARK: Test doubles
 extension MealPlanViewControllerTests {
     class MockMealPlanPresenter: MealPlanPresenting {
-        fileprivate var updateMealPlanCalled = false
-        fileprivate var configureCalled = false
-        fileprivate var myMealsTappedCalled = false
-        fileprivate var configuredView: Any?
-        fileprivate var configuredDay = ""
+        private(set) fileprivate var updateMealPlanCalled = false
+        private(set) fileprivate var myMealsTappedCalled = false
+        private(set) fileprivate var dayTappedCalled = false
+        private(set) fileprivate var dayTapped: String?
 
         func updateMealPlan() {
             updateMealPlanCalled = true
         }
 
-        func configureSelectMealView(view: Any, day: String) {
-            configureCalled = true
-            configuredView = view
-            configuredDay = day
-        }
-
         func myMealsTapped() {
             myMealsTappedCalled = true
+        }
+
+        func dayTapped(day: String) {
+            dayTappedCalled = true
+            dayTapped = day
         }
     }
 
@@ -107,17 +87,5 @@ extension MealPlanViewControllerTests {
             MealPlanViewData(day: "Saturday", title: "meal 3"),
             MealPlanViewData(day: "Sunday", title: "")
         ]
-    }
-
-    func makeSegue(identifier: String) -> UIStoryboardSegue {
-        let destination = UIViewController()
-        destination.restorationIdentifier = "unique_foo"
-        return UIStoryboardSegue(identifier: identifier, source: subject, destination: destination)
-    }
-
-    func makeCell(title: String) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "foo_day"
-        return cell
     }
 }
