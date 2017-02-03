@@ -1,16 +1,17 @@
 // MealPlan by Chirag Gupta
 
-import Foundation
+import UIKit
 
 class MealPlanCoordinator: ViewControllerMaking {
-    var storyboardID = "Main"
-    var viewControllerID = "Navigation_MealPlanViewController"
+    typealias ViewControllerType = MealPlanViewController
 
-    lazy var viewController: MealPlanViewController = self.makeViewController()
+    let storyboardID = "Main"
+    let viewControllerID = "MealPlanViewController"
 
-    private func makeViewController() -> MealPlanViewController {
+    func make() -> UIViewController {
         let vc: MealPlanViewController = instantiate()
         vc.presenter = MealPlanPresenter(view: vc)
-        return vc
+
+        return UINavigationController(rootViewController: vc)
     }
 }
