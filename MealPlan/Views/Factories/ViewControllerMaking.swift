@@ -8,7 +8,7 @@ protocol ViewControllerMaking {
     var storyboardID: String { get }
     var viewControllerID: String { get }
 
-    func make() -> UIViewController
+    func makeViewController() -> UIViewController
 }
 
 extension ViewControllerMaking {

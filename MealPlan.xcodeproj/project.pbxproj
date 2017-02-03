@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C40E62051E39583500A5F0C5 /* MealPlanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E62041E39583500A5F0C5 /* MealPlanCoordinator.swift */; };
+		C40E62051E39583500A5F0C5 /* MealPlanFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E62041E39583500A5F0C5 /* MealPlanFactory.swift */; };
 		C417AD6F1E4522FC0004C6FF /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417AD6E1E4522FC0004C6FF /* AppDelegateTests.swift */; };
 		C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41845371E1AF4880042E44C /* AppDelegate.swift */; };
 		C418453B1E1AF51C0042E44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CB92271E1A2CBA004F0E27 /* LaunchScreen.storyboard */; };
@@ -73,7 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C40E62041E39583500A5F0C5 /* MealPlanCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanCoordinator.swift; sourceTree = "<group>"; };
+		C40E62041E39583500A5F0C5 /* MealPlanFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealPlanFactory.swift; sourceTree = "<group>"; };
 		C417AD6E1E4522FC0004C6FF /* AppDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		C41845361E1AF4880042E44C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C41845371E1AF4880042E44C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +157,7 @@
 		C41845341E1AF3E90042E44C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4CAB6321E2EC33E00900003 /* Factories */,
 				C4ECAE801E26A64D003649D4 /* Common */,
 				C41845331E1AF3CF0042E44C /* Storyboards */,
 				C43822881E25FADF00179062 /* AddMealAlertCreator.swift */,
@@ -202,13 +203,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		C4CAB6321E2EC33E00900003 /* Coordinators */ = {
+		C4CAB6321E2EC33E00900003 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				C40E62041E39583500A5F0C5 /* MealPlanCoordinator.swift */,
+				C40E62041E39583500A5F0C5 /* MealPlanFactory.swift */,
 				C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */,
 			);
-			path = Coordinators;
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		C4CB92121E1A2CBA004F0E27 = {
@@ -233,7 +234,6 @@
 		C4CB921D1E1A2CBA004F0E27 /* MealPlan */ = {
 			isa = PBXGroup;
 			children = (
-				C4CAB6321E2EC33E00900003 /* Coordinators */,
 				C4E1BD241E1C5A9200811965 /* Model */,
 				C41845341E1AF3E90042E44C /* Views */,
 				C47D867F1E212AB9008FC4A3 /* ViewData */,
@@ -247,7 +247,6 @@
 		C4CB92321E1A2CBA004F0E27 /* MealPlanTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4DE4FC81E3946680010CE52 /* Coordinators */,
 				C4E1BD271E1C5D0E00811965 /* Model */,
 				C4D418F71E1EFC33002B0D66 /* Views */,
 				C4D418F01E1EF16A002B0D66 /* Presenters */,
@@ -280,6 +279,7 @@
 		C4D418F71E1EFC33002B0D66 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4DE4FC81E3946680010CE52 /* Factories */,
 				C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */,
 				C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */,
 				C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */,
@@ -296,12 +296,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		C4DE4FC81E3946680010CE52 /* Coordinators */ = {
+		C4DE4FC81E3946680010CE52 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
 				C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */,
 			);
-			path = Coordinators;
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		C4E1BD241E1C5A9200811965 /* Model */ = {
@@ -462,7 +462,7 @@
 				C47D86841E215B5A008FC4A3 /* CollectionUtils.swift in Sources */,
 				C47D86811E212AE2008FC4A3 /* MealPlanViewData.swift in Sources */,
 				C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */,
-				C40E62051E39583500A5F0C5 /* MealPlanCoordinator.swift in Sources */,
+				C40E62051E39583500A5F0C5 /* MealPlanFactory.swift in Sources */,
 				C4E9D7261E204237008926BC /* Meal.swift in Sources */,
 				C471A8361E2826CF000A6F07 /* SelectMealViewController.swift in Sources */,
 				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,

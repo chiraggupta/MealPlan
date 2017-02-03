@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupRootViewController() {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = MealPlanCoordinator().make()
+        self.window?.rootViewController = MealPlanFactory().makeViewController()
         self.window?.makeKeyAndVisible()
     }
 }
