@@ -19,16 +19,9 @@ class SelectMealPresenterTests: XCTestCase {
                                       mealsProvider: mealsModel)
     }
 
-    func givenMeals(_ meals: [String]) {
-        for meal in meals {
-            mealsModel.add(meal: Meal(title: meal))
-        }
-    }
-
     func testLoadTitle() {
         subject.loadTitle()
 
-        XCTAssert(view.setTitleCalled, "view title not set")
         XCTAssertEqual("Monday", view.setTitleArgument, "view title not set to Monday")
     }
 
@@ -37,7 +30,6 @@ class SelectMealPresenterTests: XCTestCase {
 
         subject.loadMeals()
 
-        XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(["foo_meal", "bar_meal"], view.setArguments, "incorrect meals were set")
     }
 
@@ -68,21 +60,25 @@ class SelectMealPresenterTests: XCTestCase {
 }
 
 // MARK: Test doubles
-class MockSelectMealView: SelectMealViewType {
-    var presenter: SelectMealPresenting!
-
-    private(set) fileprivate var setTitleCalled: Bool = false
-    private(set) fileprivate var setTitleArgument = ""
-    private(set) fileprivate var setCalled: Bool = false
-    private(set) fileprivate var setArguments = [String]()
-
-    func set(title: String) {
-        setTitleCalled = true
-        setTitleArgument = title
+extension SelectMealPresenterTests {
+    func givenMeals(_ meals: [String]) {
+        for meal in meals {
+            mealsModel.add(meal: Meal(title: meal))
+        }
     }
 
-    func set(meals: [String]) {
-        setCalled = true
-        setArguments = meals
+    class MockSelectMealView: SelectMealViewType {
+        var presenter: SelectMealPresenting!
+
+        private(set) var setTitleArgument = ""
+        private(set) var setArguments = [String]()
+
+        func set(title: String) {
+            setTitleArgument = title
+        }
+
+        func set(meals: [String]) {
+            setArguments = meals
+        }
     }
 }
