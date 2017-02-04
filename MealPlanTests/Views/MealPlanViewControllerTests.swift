@@ -57,10 +57,10 @@ class MealPlanViewControllerTests: XCTestCase {
 // MARK: Test doubles
 extension MealPlanViewControllerTests {
     class MockMealPlanPresenter: MealPlanPresenting {
-        private(set) fileprivate var updateMealPlanCalled = false
-        private(set) fileprivate var myMealsTappedCalled = false
-        private(set) fileprivate var dayTappedCalled = false
-        private(set) fileprivate var dayTapped: DayOfWeek?
+        private(set) var updateMealPlanCalled = false
+        private(set) var myMealsTappedCalled = false
+        private(set) var dayTappedCalled = false
+        private(set) var dayTapped: DayOfWeek?
 
         func updateMealPlan() {
             updateMealPlanCalled = true

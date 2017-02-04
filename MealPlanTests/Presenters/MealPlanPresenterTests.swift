@@ -62,12 +62,12 @@ class MealPlanPresenterTests: XCTestCase {
 // MARK: Test doubles
 extension MealPlanPresenterTests {
     class MockMealPlanView: MealPlanViewType {
-        private(set) fileprivate var setCalled = false
-        private(set) fileprivate var setArguments = [MealPlanViewData]()
-        private(set) fileprivate var displayModallyCalled = false
-        private(set) fileprivate var displayedModally: UIViewController?
-        private(set) fileprivate var displayCalled = false
-        private(set) fileprivate var displayed: UIViewController?
+        private(set) var setCalled = false
+        private(set) var setArguments = [MealPlanViewData]()
+        private(set) var displayModallyCalled = false
+        private(set) var displayedModally: UIViewController?
+        private(set) var displayCalled = false
+        private(set) var displayed: UIViewController?
 
         func set(mealPlanViewData: [MealPlanViewData]) {
             setCalled = true

@@ -53,7 +53,7 @@ class AddMealAlertTests: XCTestCase {
 // MARK: Test doubles
 extension AddMealAlertTests {
     class PartialMockAlertActionCreator: AlertActionCreator {
-        var handlerStorage = [String: AlertActionHandler]()
+        private(set) var handlerStorage = [String: AlertActionHandler]()
 
         override func create(title: String, style: UIAlertActionStyle, handler: AlertActionHandler?) -> UIAlertAction {
             handlerStorage[title] = handler

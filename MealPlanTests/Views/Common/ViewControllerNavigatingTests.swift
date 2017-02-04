@@ -45,7 +45,7 @@ class ViewControllerNavigatingTests: QuickSpec {
     }
 
     class PartialMockNavigation: UINavigationController {
-        private(set) fileprivate var pushedViewController: UIViewController?
+        private(set) var pushedViewController: UIViewController?
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             pushedViewController = viewController
         }
@@ -57,13 +57,13 @@ class ViewControllerNavigatingTests: QuickSpec {
             return customNavigationController
         }
 
-        private(set) fileprivate var presented: UIViewController?
+        private(set) var presented: UIViewController?
         override func present(_ viewControllerToPresent: UIViewController,
                               animated flag: Bool, completion: (() -> Void)? = nil) {
             presented = viewControllerToPresent
         }
 
-        private(set) fileprivate var dismissCalled = false
+        private(set) var dismissCalled = false
         override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
             dismissCalled = true
         }

@@ -76,11 +76,9 @@ class SelectMealViewControllerTests: XCTestCase {
 // MARK: Test doubles
 extension SelectMealViewControllerTests {
     class MockSelectMealPresenter: SelectMealPresenting {
-        private (set) fileprivate var loadMealsCalled = false
-        private (set) fileprivate var selectCalled = false
-        private (set) fileprivate var selectedMeal: String?
-
-        func loadTitle() {}
+        private(set) var loadMealsCalled = false
+        private(set) var selectCalled = false
+        private(set) var selectedMeal: String?
 
         func loadMeals() {
             loadMealsCalled = true
@@ -94,10 +92,12 @@ extension SelectMealViewControllerTests {
         func getSelectedMeal() -> String? {
             return selectedMeal
         }
+
+        func loadTitle() {}
     }
 
     class PartialMockTableView: UITableView {
-        var reloadedIndexPaths = [IndexPath]()
+        private(set) var reloadedIndexPaths = [IndexPath]()
         override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
             reloadedIndexPaths = indexPaths
         }

@@ -24,8 +24,8 @@ class ViewControllerMakingTests: QuickSpec {
     class MixedUpViewControllerFactory: ViewControllerMaking {
         typealias ViewControllerType = MealPlanViewController
 
-        var storyboardID = "Main"
-        var viewControllerID = "MealsViewController"
+        let storyboardID = "Main"
+        let viewControllerID = "MealsViewController"
 
         func makeViewController() -> UIViewController { return instantiate() }
     }
