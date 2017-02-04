@@ -157,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C417AD771E45488F0004C6FF /* ViewControllerNavigatingTests.swift */,
+				C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -298,7 +299,6 @@
 			isa = PBXGroup;
 			children = (
 				C417AD761E4548630004C6FF /* Common */,
-				C4DE4FC81E3946680010CE52 /* Factories */,
 				C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */,
 				C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */,
 				C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */,
@@ -313,14 +313,6 @@
 				C47D86891E216B9F008FC4A3 /* CollectionUtilsTests.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		C4DE4FC81E3946680010CE52 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				C4DE4FC91E39470B0010CE52 /* ViewControllerMakingTests.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		C4E1BD241E1C5A9200811965 /* Model */ = {
