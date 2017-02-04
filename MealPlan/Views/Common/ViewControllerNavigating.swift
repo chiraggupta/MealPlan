@@ -5,6 +5,8 @@ import UIKit
 protocol ViewControllerNavigating: class {
     func display(_ viewController: UIViewController)
     func displayModally(_ viewController: UIViewController)
+
+    func hide()
 }
 
 extension ViewControllerNavigating where Self: UIViewController {
@@ -14,5 +16,9 @@ extension ViewControllerNavigating where Self: UIViewController {
 
     func displayModally(_ viewController: UIViewController) {
         present(viewController, animated: true)
+    }
+
+    func hide() {
+        dismiss(animated: true)
     }
 }

@@ -32,6 +32,15 @@ class ViewControllerNavigatingTests: QuickSpec {
                     expect(subject.presented).to(equal(fooViewController))
                 }
             }
+
+            context("when closed") {
+                beforeEach {
+                    subject.hide()
+                }
+                it("dismisses self") {
+                    expect(subject.dismissCalled).to(beTrue())
+                }
+            }
         }
     }
 
@@ -52,6 +61,11 @@ class ViewControllerNavigatingTests: QuickSpec {
         override func present(_ viewControllerToPresent: UIViewController,
                               animated flag: Bool, completion: (() -> Void)? = nil) {
             presented = viewControllerToPresent
+        }
+
+        private(set) fileprivate var dismissCalled = false
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            dismissCalled = true
         }
     }
 }
