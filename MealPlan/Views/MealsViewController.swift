@@ -2,7 +2,7 @@
 
 import UIKit
 
-protocol MealsViewType: class {
+protocol MealsViewType: ViewControllerNavigating {
     func set(meals: [Meal])
     func reload()
 }
@@ -38,7 +38,7 @@ class MealsViewController: UIViewController {
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        presenter.doneTapped()
     }
 }
 

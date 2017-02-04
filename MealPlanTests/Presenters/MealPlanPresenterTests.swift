@@ -84,6 +84,6 @@ extension MealPlanPresenterTests {
             displayedModally = viewController
         }
 
-        func hide() {}
+        func hideModal() {}
     }
 }

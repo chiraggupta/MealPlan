@@ -35,7 +35,7 @@ class ViewControllerNavigatingTests: QuickSpec {
 
             context("when closed") {
                 beforeEach {
-                    subject.hide()
+                    subject.hideModal()
                 }
                 it("dismisses self") {
                     expect(subject.dismissCalled).to(beTrue())

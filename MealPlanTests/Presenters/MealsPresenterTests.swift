@@ -61,6 +61,12 @@ class MealsPresenterTests: XCTestCase {
         XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
     }
+
+    func testTappingDoneHidesView() {
+        subject.doneTapped()
+
+        XCTAssertTrue(view.hideCalled)
+    }
 }
 
 // MARK: Test doubles
@@ -68,6 +74,7 @@ class MockMealsView: MealsViewType {
     private(set) fileprivate var setCalled: Bool = false
     private(set) fileprivate var setArguments = [Meal]()
     private(set) fileprivate var reloadCalled: Bool = false
+    private(set) fileprivate var hideCalled = false
 
     func set(meals: [Meal]) {
         setCalled = true
@@ -77,4 +84,11 @@ class MockMealsView: MealsViewType {
     func reload() {
         reloadCalled = true
     }
+
+    func hideModal() {
+        hideCalled = true
+    }
+
+    func display(_ viewController: UIViewController) {}
+    func displayModally(_ viewController: UIViewController) {}
 }

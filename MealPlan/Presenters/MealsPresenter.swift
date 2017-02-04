@@ -6,6 +6,7 @@ protocol MealsPresenting {
     func updateMeals()
     func add(meal: Meal)
     func remove(meal: Meal)
+    func doneTapped()
 }
 
 class MealsPresenter: MealsPresenting {
@@ -30,5 +31,9 @@ class MealsPresenter: MealsPresenting {
     func remove(meal: Meal) {
         model.remove(meal: meal)
         view.set(meals: model.getMeals())
+    }
+
+    func doneTapped() {
+        view.hideModal()
     }
 }

@@ -85,6 +85,12 @@ class MealsViewControllerTests: XCTestCase {
         let newCount = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count - 1, newCount, "count should be one lesser")
     }
+
+    func testTappingDoneCallsPresenter() {
+        subject.done(UIBarButtonItem())
+
+        XCTAssertTrue(presenter.doneTappedCalled)
+    }
 }
 
 // MARK: Test doubles
@@ -93,6 +99,7 @@ class MockMealsPresenter: MealsPresenting {
     fileprivate var addMealCalled = false
     fileprivate var addMealArgument: Meal?
     fileprivate var removeMealCalled = false
+    fileprivate var doneTappedCalled = false
 
     let view: MealsViewType!
     var meals: [Meal]!
@@ -121,6 +128,10 @@ class MockMealsPresenter: MealsPresenting {
             meals.remove(at: mealToRemove)
         }
         view.set(meals: meals)
+    }
+
+    func doneTapped() {
+        doneTappedCalled = true
     }
 }
 
