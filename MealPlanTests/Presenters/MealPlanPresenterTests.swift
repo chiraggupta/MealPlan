@@ -32,14 +32,12 @@ class MealPlanPresenterTests: XCTestCase {
 
         subject.updateMealPlan()
 
-        XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(expectedViewData, view.setArguments, "incorrect meals were set")
     }
 
     func testTappingMyMealsDisplaysMealsScreenModally() {
         subject.myMealsTapped()
 
-        XCTAssertTrue(view.displayModallyCalled)
         XCTAssertTrue(view.displayedModally is UINavigationController)
         let topOfNavigation = (view.displayedModally as? UINavigationController)?.topViewController
         XCTAssertTrue(topOfNavigation is MealsViewController)
@@ -50,7 +48,6 @@ class MealPlanPresenterTests: XCTestCase {
     func testTappingDayDisplaysSelectMealScreen() {
         subject.dayTapped(day: .monday)
 
-        XCTAssertTrue(view.displayCalled)
         XCTAssertTrue(view.displayed is SelectMealViewController)
         let nextPresenter = (view.displayed as? SelectMealViewController)?.presenter
         XCTAssertTrue(nextPresenter is SelectMealPresenter)
@@ -62,25 +59,19 @@ class MealPlanPresenterTests: XCTestCase {
 // MARK: Test doubles
 extension MealPlanPresenterTests {
     class MockMealPlanView: MealPlanViewType {
-        private(set) var setCalled = false
         private(set) var setArguments = [MealPlanViewData]()
-        private(set) var displayModallyCalled = false
         private(set) var displayedModally: UIViewController?
-        private(set) var displayCalled = false
         private(set) var displayed: UIViewController?
 
         func set(mealPlanViewData: [MealPlanViewData]) {
-            setCalled = true
             setArguments = mealPlanViewData
         }
 
         func display(_ viewController: UIViewController) {
-            displayCalled = true
             displayed = viewController
         }
 
         func displayModally(_ viewController: UIViewController) {
-            displayModallyCalled = true
             displayedModally = viewController
         }
 
