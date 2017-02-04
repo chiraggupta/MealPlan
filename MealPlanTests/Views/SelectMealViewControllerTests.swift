@@ -52,7 +52,6 @@ class SelectMealViewControllerTests: XCTestCase {
         let indexPath = IndexPath(row: 0, section: 0)
         subject.tableView(subject.tableView, didSelectRowAt: indexPath)
 
-        XCTAssertTrue(presenter.selectCalled)
         XCTAssertEqual("foo_meal", presenter.selectedMeal)
     }
 
@@ -77,7 +76,6 @@ class SelectMealViewControllerTests: XCTestCase {
 extension SelectMealViewControllerTests {
     class MockSelectMealPresenter: SelectMealPresenting {
         private(set) var loadMealsCalled = false
-        private(set) var selectCalled = false
         private(set) var selectedMeal: String?
 
         func loadMeals() {
@@ -85,7 +83,6 @@ extension SelectMealViewControllerTests {
         }
 
         func select(mealTitle: String) {
-            selectCalled = true
             selectedMeal = mealTitle
         }
 

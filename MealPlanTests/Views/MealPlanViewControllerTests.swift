@@ -49,7 +49,6 @@ class MealPlanViewControllerTests: XCTestCase {
         let indexPath = IndexPath(row: 0, section: 0)
         subject.tableView(subject.tableView, didSelectRowAt: indexPath)
 
-        XCTAssertTrue(presenter.dayTappedCalled)
         XCTAssertEqual(.monday, presenter.dayTapped)
     }
 }
@@ -59,7 +58,6 @@ extension MealPlanViewControllerTests {
     class MockMealPlanPresenter: MealPlanPresenting {
         private(set) var updateMealPlanCalled = false
         private(set) var myMealsTappedCalled = false
-        private(set) var dayTappedCalled = false
         private(set) var dayTapped: DayOfWeek?
 
         func updateMealPlan() {
@@ -71,7 +69,6 @@ extension MealPlanViewControllerTests {
         }
 
         func dayTapped(day: DayOfWeek) {
-            dayTappedCalled = true
             dayTapped = day
         }
     }
