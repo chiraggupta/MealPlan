@@ -20,7 +20,6 @@ class MealsPresenterTests: XCTestCase {
 
         subject.updateMeals()
 
-        XCTAssertTrue(view.setCalled, "meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
         XCTAssertTrue(view.reloadCalled, "view was not reloaded")
     }
@@ -38,7 +37,6 @@ class MealsPresenterTests: XCTestCase {
         let barMeal = Meal(title: "bar_meal")
         subject.add(meal: barMeal)
 
-        XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
         XCTAssertTrue(view.reloadCalled, "view was not reloaded")
     }
@@ -58,37 +56,36 @@ class MealsPresenterTests: XCTestCase {
         let barMeal = Meal(title: "bar_meal")
         subject.remove(meal: barMeal)
 
-        XCTAssertTrue(view.setCalled, "view meals were not set")
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
     }
 
     func testTappingDoneHidesView() {
         subject.doneTapped()
 
-        XCTAssertTrue(view.hideCalled)
+        XCTAssertTrue(view.hideModalCalled)
     }
 }
 
 // MARK: Test doubles
-class MockMealsView: MealsViewType {
-    private(set) fileprivate var setCalled: Bool = false
-    private(set) fileprivate var setArguments = [Meal]()
-    private(set) fileprivate var reloadCalled: Bool = false
-    private(set) fileprivate var hideCalled = false
+extension MealsPresenterTests {
+    class MockMealsView: MealsViewType {
+        private(set) var setArguments = [Meal]()
+        private(set) var reloadCalled = false
+        private(set) var hideModalCalled = false
 
-    func set(meals: [Meal]) {
-        setCalled = true
-        setArguments = meals
+        func set(meals: [Meal]) {
+            setArguments = meals
+        }
+
+        func reload() {
+            reloadCalled = true
+        }
+
+        func hideModal() {
+            hideModalCalled = true
+        }
+
+        func display(_ viewController: UIViewController) {}
+        func displayModally(_ viewController: UIViewController) {}
     }
-
-    func reload() {
-        reloadCalled = true
-    }
-
-    func hideModal() {
-        hideCalled = true
-    }
-
-    func display(_ viewController: UIViewController) {}
-    func displayModally(_ viewController: UIViewController) {}
 }
