@@ -2,10 +2,8 @@
 
 import UIKit
 
-protocol MealPlanViewType: class {
+protocol MealPlanViewType: ViewControllerNavigating {
     func set(mealPlanViewData: [MealPlanViewData])
-    func display(_ viewController: UIViewController)
-    func displayModally(_ viewController: UIViewController)
 }
 
 class MealPlanViewController: UIViewController {
@@ -30,14 +28,6 @@ class MealPlanViewController: UIViewController {
 extension MealPlanViewController: MealPlanViewType {
     func set(mealPlanViewData: [MealPlanViewData]) {
         self.mealPlanViewData = mealPlanViewData
-    }
-
-    func display(_ viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func displayModally(_ viewController: UIViewController) {
-        present(viewController, animated: true)
     }
 }
 
