@@ -94,52 +94,54 @@ class MealsViewControllerTests: XCTestCase {
 }
 
 // MARK: Test doubles
-class MockMealsPresenter: MealsPresenting {
-    fileprivate var updateMealsCalled = false
-    fileprivate var addMealCalled = false
-    fileprivate var addMealArgument: Meal?
-    fileprivate var removeMealCalled = false
-    fileprivate var doneTappedCalled = false
+extension MealsViewControllerTests {
+    class MockMealsPresenter: MealsPresenting {
+        let view: MealsViewType!
 
-    let view: MealsViewType!
-    var meals: [Meal]!
+        private(set) var updateMealsCalled = false
+        private(set) var addMealCalled = false
+        private(set) var addMealArgument: Meal?
+        private(set) var removeMealCalled = false
+        private(set) var doneTappedCalled = false
+        private(set) var meals: [Meal]!
 
-    init(view: MealsViewType, initialMeals: [Meal]) {
-        self.view = view
-        meals = initialMeals
-    }
-
-    func updateMeals() {
-        updateMealsCalled = true
-        view.set(meals: meals)
-        view.reload()
-    }
-
-    func add(meal: Meal) {
-        addMealCalled = true
-        addMealArgument = meal
-        meals.append(meal)
-        updateMeals()
-    }
-
-    func remove(meal: Meal) {
-        removeMealCalled = true
-        if let mealToRemove = meals.index(of: meal) {
-            meals.remove(at: mealToRemove)
+        init(view: MealsViewType, initialMeals: [Meal]) {
+            self.view = view
+            meals = initialMeals
         }
-        view.set(meals: meals)
+
+        func updateMeals() {
+            updateMealsCalled = true
+            view.set(meals: meals)
+            view.reload()
+        }
+
+        func add(meal: Meal) {
+            addMealCalled = true
+            addMealArgument = meal
+            meals.append(meal)
+            updateMeals()
+        }
+
+        func remove(meal: Meal) {
+            removeMealCalled = true
+            if let mealToRemove = meals.index(of: meal) {
+                meals.remove(at: mealToRemove)
+            }
+            view.set(meals: meals)
+        }
+
+        func doneTapped() {
+            doneTappedCalled = true
+        }
     }
 
-    func doneTapped() {
-        doneTappedCalled = true
-    }
-}
+    struct MockAddMealAlertCreator: AlertCreator {
+        let resultMealTitle: String
 
-struct MockAddMealAlertCreator: AlertCreator {
-    let resultMealTitle: String
-
-    func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
-        successHandler(resultMealTitle)
-        return UIAlertController()
+        func create(successHandler: @escaping (String) -> Void) -> UIAlertController {
+            successHandler(resultMealTitle)
+            return UIAlertController()
+        }
     }
 }
