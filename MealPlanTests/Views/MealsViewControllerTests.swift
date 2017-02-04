@@ -11,11 +11,11 @@ class MealsViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        subject = makeViewController(storyboard: "Main")
+        subject = MealsFactory().instantiate()
         presenter = MockMealsPresenter(view: subject, initialMeals: initialMeals)
         subject.presenter = presenter
 
-        subject.display()
+        subject.setAsRootViewController()
     }
 
     func testViewDidLoadCallsPresenterUpdateMeals() {

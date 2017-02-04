@@ -9,11 +9,11 @@ class SelectMealViewControllerTests: XCTestCase {
     let meals = ["foo_meal", "bar_meal"]
 
     override func setUp() {
-        subject = makeViewController(storyboard: "Main")
+        subject = SelectMealFactory(day: .monday).instantiate()
         subject.presenter = presenter
 
         subject.set(meals: meals)
-        subject.display()
+        subject.setAsRootViewController()
     }
 
     func testViewDidLoadLoadsMeals() {
