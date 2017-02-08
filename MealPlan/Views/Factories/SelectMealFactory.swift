@@ -16,7 +16,8 @@ class SelectMealFactory: ViewControllerMaking {
 
     func makeViewController() -> UIViewController {
         let vc = instantiate()
-        vc.presenter = SelectMealPresenter(day: day, view: vc)
+        vc.presenter = SelectMealPresenter(day: day, view: vc, mealPlanProvider: WeeklyMealPlanModel(),
+                                           mealsProvider: MealsModel())
         return vc
     }
 }

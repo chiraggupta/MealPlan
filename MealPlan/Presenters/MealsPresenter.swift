@@ -11,26 +11,26 @@ protocol MealsPresenting {
 
 class MealsPresenter: MealsPresenting {
     unowned let view: MealsViewType
-    fileprivate let model: MealsProvider
+    fileprivate let mealsProvider: MealsProvider
 
-    init(view: MealsViewType, model: MealsProvider = MealsModel()) {
+    init(view: MealsViewType, mealsProvider: MealsProvider) {
         self.view = view
-        self.model = model
+        self.mealsProvider = mealsProvider
     }
 
     func updateMeals() {
-        view.set(meals: model.getMeals())
+        view.set(meals: mealsProvider.getMeals())
         view.reload()
     }
 
     func add(meal: Meal) {
-        model.add(meal: meal)
+        mealsProvider.add(meal: meal)
         updateMeals()
     }
 
     func remove(meal: Meal) {
-        model.remove(meal: meal)
-        view.set(meals: model.getMeals())
+        mealsProvider.remove(meal: meal)
+        view.set(meals: mealsProvider.getMeals())
     }
 
     func doneTapped() {

@@ -9,8 +9,8 @@ class MealPlanFactory: ViewControllerMaking {
     let viewControllerID = "MealPlanViewController"
 
     func makeViewController() -> UIViewController {
-        let vc: MealPlanViewController = instantiate()
-        vc.presenter = MealPlanPresenter(view: vc)
+        let vc = instantiate()
+        vc.presenter = MealPlanPresenter(view: vc, mealPlanProvider: WeeklyMealPlanModel())
 
         return UINavigationController(rootViewController: vc)
     }

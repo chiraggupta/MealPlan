@@ -16,7 +16,7 @@ class MealPlanPresenterTests: XCTestCase {
         model.select(meal: Meal(title: "bar_meal"), day: .wednesday)
         model.select(meal: Meal(title: "baz_meal"), day: .saturday)
 
-        subject = MealPlanPresenter(view: view, model: model)
+        subject = MealPlanPresenter(view: view, mealPlanProvider: model)
     }
 
     func testUpdateMealPlanSetsMealPlanViewData() {

@@ -11,7 +11,7 @@ class MealsPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        subject = MealsPresenter(view: view, model: model)
+        subject = MealsPresenter(view: view, mealsProvider: model)
     }
 
     func testUpdateMealsForView() {

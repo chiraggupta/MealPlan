@@ -15,10 +15,8 @@ class SelectMealPresenter: SelectMealPresenting {
     let mealPlanProvider: WeeklyMealPlanProvider!
     let day: DayOfWeek
 
-    init(day: DayOfWeek,
-         view: SelectMealViewType,
-         mealPlanProvider: WeeklyMealPlanProvider = WeeklyMealPlanModel(),
-         mealsProvider: MealsProvider = MealsModel()) {
+    init(day: DayOfWeek, view: SelectMealViewType, mealPlanProvider: WeeklyMealPlanProvider,
+         mealsProvider: MealsProvider) {
         self.day = day
         self.view = view
         self.mealsProvider = mealsProvider

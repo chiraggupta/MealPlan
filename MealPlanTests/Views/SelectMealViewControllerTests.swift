@@ -4,12 +4,13 @@ import XCTest
 @testable import MealPlan
 
 class SelectMealViewControllerTests: XCTestCase {
-    var subject: SelectMealViewController!
+    var subject: SelectMealViewController = SelectMealFactory(day: .monday).instantiate()
     var presenter = MockSelectMealPresenter()
     let meals = ["foo_meal", "bar_meal"]
 
     override func setUp() {
-        subject = SelectMealFactory(day: .monday).instantiate()
+        super.setUp()
+
         subject.presenter = presenter
 
         subject.set(meals: meals)

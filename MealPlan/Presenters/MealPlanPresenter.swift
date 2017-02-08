@@ -10,15 +10,15 @@ protocol MealPlanPresenting {
 
 class MealPlanPresenter: MealPlanPresenting {
     unowned let view: MealPlanViewType
-    fileprivate let model: WeeklyMealPlanProvider
+    fileprivate let mealPlanProvider: WeeklyMealPlanProvider
 
-    init(view: MealPlanViewType, model: WeeklyMealPlanProvider = WeeklyMealPlanModel()) {
+    init(view: MealPlanViewType, mealPlanProvider: WeeklyMealPlanProvider) {
         self.view = view
-        self.model = model
+        self.mealPlanProvider = mealPlanProvider
     }
 
     func updateMealPlan() {
-        let mealPlan = model.getWeeklyMealPlan()
+        let mealPlan = mealPlanProvider.getWeeklyMealPlan()
         let weeklyMealData = createMealPlanViewData(from: mealPlan)
         view.set(mealPlanViewData: weeklyMealData)
     }
