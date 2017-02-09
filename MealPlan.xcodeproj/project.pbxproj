@@ -23,6 +23,9 @@
 		C438228B1E25FD6100179062 /* AddMealAlertCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */; };
 		C46BFF651E291EBA001D4C15 /* SelectMealViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */; };
 		C46BFF681E296F89001D4C15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C46BFF661E296F89001D4C15 /* Main.storyboard */; };
+		C46DB9051E4BB0E8001C1005 /* MealPlan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C46DB9031E4BB0E8001C1005 /* MealPlan.xcdatamodeld */; };
+		C46DB9071E4BB111001C1005 /* NSPersistentContainer+Make.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46DB9061E4BB111001C1005 /* NSPersistentContainer+Make.swift */; };
+		C46DB90A1E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46DB9091E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift */; };
 		C471A8321E2824D2000A6F07 /* SelectMealPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C471A8311E2824D2000A6F07 /* SelectMealPresenter.swift */; };
 		C471A8341E2824EB000A6F07 /* SelectMealPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C471A8331E2824EB000A6F07 /* SelectMealPresenterTests.swift */; };
 		C471A8361E2826CF000A6F07 /* SelectMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C471A8351E2826CF000A6F07 /* SelectMealViewController.swift */; };
@@ -91,6 +94,9 @@
 		C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreatorTests.swift; sourceTree = "<group>"; };
 		C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewControllerTests.swift; sourceTree = "<group>"; };
 		C46BFF671E296F89001D4C15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C46DB9041E4BB0E8001C1005 /* MealPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealPlan.xcdatamodel; sourceTree = "<group>"; };
+		C46DB9061E4BB111001C1005 /* NSPersistentContainer+Make.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Make.swift"; sourceTree = "<group>"; };
+		C46DB9091E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer_MakeTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		C471A8311E2824D2000A6F07 /* SelectMealPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealPresenter.swift; sourceTree = "<group>"; };
 		C471A8331E2824EB000A6F07 /* SelectMealPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealPresenterTests.swift; sourceTree = "<group>"; };
 		C471A8351E2826CF000A6F07 /* SelectMealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +210,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C46DB9081E4BC6F0001C1005 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C46DB9091E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		C47D867F1E212AB9008FC4A3 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +232,15 @@
 				C47D86831E215B5A008FC4A3 /* CollectionUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C4994FA41E4BB09A00851152 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C46DB9031E4BB0E8001C1005 /* MealPlan.xcdatamodeld */,
+				C46DB9061E4BB111001C1005 /* NSPersistentContainer+Make.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		C4CAB6321E2EC33E00900003 /* Factories */ = {
@@ -318,6 +341,7 @@
 		C4E1BD241E1C5A9200811965 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C4994FA41E4BB09A00851152 /* CoreData */,
 				C4EBC4B21E22AD5900C69CF7 /* UserDefaultsType.swift */,
 				C4E9D7291E204B4A008926BC /* DayOfWeek.swift */,
 				C4E9D7251E204237008926BC /* Meal.swift */,
@@ -330,6 +354,7 @@
 		C4E1BD271E1C5D0E00811965 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C46DB9081E4BC6F0001C1005 /* CoreData */,
 				C4E1BD221E1C594B00811965 /* MealsModelTests.swift */,
 				C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */,
 			);
@@ -477,10 +502,12 @@
 				C47D86811E212AE2008FC4A3 /* MealPlanViewData.swift in Sources */,
 				C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */,
 				C40E62051E39583500A5F0C5 /* MealPlanFactory.swift in Sources */,
+				C46DB9051E4BB0E8001C1005 /* MealPlan.xcdatamodeld in Sources */,
 				C4E9D7261E204237008926BC /* Meal.swift in Sources */,
 				C471A8361E2826CF000A6F07 /* SelectMealViewController.swift in Sources */,
 				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,
 				C47D868E1E217FAE008FC4A3 /* MealsPresenter.swift in Sources */,
+				C46DB9071E4BB111001C1005 /* NSPersistentContainer+Make.swift in Sources */,
 				C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */,
 				C4E693571E24564F00EDFE97 /* AlertActionCreator.swift in Sources */,
 				C4E9D72A1E204B4A008926BC /* DayOfWeek.swift in Sources */,
@@ -497,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4D418F41E1EF3FD002B0D66 /* MealPlanPresenterTests.swift in Sources */,
+				C46DB90A1E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift in Sources */,
 				C47D868C1E216BA4008FC4A3 /* TestUtils.swift in Sources */,
 				C4D418F61E1EFC24002B0D66 /* MealPlanViewControllerTests.swift in Sources */,
 				C438228B1E25FD6100179062 /* AddMealAlertCreatorTests.swift in Sources */,
@@ -729,6 +757,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C46DB9031E4BB0E8001C1005 /* MealPlan.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C46DB9041E4BB0E8001C1005 /* MealPlan.xcdatamodel */,
+			);
+			currentVersion = C46DB9041E4BB0E8001C1005 /* MealPlan.xcdatamodel */;
+			path = MealPlan.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C4CB92131E1A2CBA004F0E27 /* Project object */;
 }
