@@ -10,10 +10,6 @@ extension NSPersistentContainer {
             container.persistentStoreDescriptions = descriptions
         }
 
-        if descriptions.count > 0 {
-            container.persistentStoreDescriptions = descriptions
-        }
-
         container.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
                 assertionFailure("ERROR: \(error), \(error.userInfo)")
