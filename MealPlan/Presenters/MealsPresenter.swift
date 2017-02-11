@@ -24,8 +24,9 @@ class MealsPresenter: MealsPresenting {
     }
 
     func add(meal: Meal) {
-        mealsProvider.add(meal: meal)
-        updateMeals()
+        if mealsProvider.add(meal: meal) {
+            updateMeals()
+        }
     }
 
     func remove(meal: Meal) {

@@ -63,7 +63,7 @@ class SelectMealPresenterTests: XCTestCase {
 extension SelectMealPresenterTests {
     func givenMeals(_ meals: [String]) {
         for meal in meals {
-            mealsModel.add(meal: Meal(title: meal))
+            _ = mealsModel.add(meal: Meal(title: meal))
         }
     }
 

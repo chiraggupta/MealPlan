@@ -4,12 +4,12 @@ import Foundation
 
 protocol MealsProvider {
     func getMeals() -> [Meal]
-    func add(meal: Meal)
+    func add(meal: Meal) -> Bool
     func remove(meal: Meal)
 }
 
 struct MealsModel: MealsProvider {
-    private let userDefaults: UserDefaultsType!
+    fileprivate let userDefaults: UserDefaultsType!
     let key = "Meals"
 
     init(userDefaults: UserDefaultsType = UserDefaults.standard) {
@@ -22,21 +22,15 @@ struct MealsModel: MealsProvider {
         return meals.map { Meal(title: $0) }
     }
 
-    private func getMealsFromStorage() -> [String] {
-        if let storedMeals = userDefaults.object(forKey: key) as? [String] {
-            return storedMeals
-        }
-        return []
-    }
-
-    func add(meal: Meal) {
+    func add(meal: Meal) -> Bool {
         let existingMeals = getMealsFromStorage()
         if existingMeals.contains(meal.title) {
-            return
+            return false
         }
 
         let updatedMeals = existingMeals + [meal.title]
         userDefaults.set(updatedMeals, forKey: key)
+        return true
     }
 
     func remove(meal: Meal) {
@@ -47,5 +41,15 @@ struct MealsModel: MealsProvider {
 
         meals.remove(at: position)
         userDefaults.set(meals, forKey: key)
+    }
+}
+
+// MARK: Storage methods
+extension MealsModel {
+    fileprivate func getMealsFromStorage() -> [String] {
+        if let storedMeals = userDefaults.object(forKey: key) as? [String] {
+            return storedMeals
+        }
+        return []
     }
 }
