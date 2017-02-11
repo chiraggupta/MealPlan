@@ -38,6 +38,8 @@
 		C47D868E1E217FAE008FC4A3 /* MealsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D868D1E217FAE008FC4A3 /* MealsPresenter.swift */; };
 		C47D86901E21801F008FC4A3 /* MealsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D868F1E21801F008FC4A3 /* MealsPresenterTests.swift */; };
 		C47D86921E2181AD008FC4A3 /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D86911E2181AD008FC4A3 /* MealsViewController.swift */; };
+		C49879CC1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49879CA1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift */; };
+		C49879CD1E4FB35F00FD5605 /* MealEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49879CB1E4FB35F00FD5605 /* MealEntity+CoreDataProperties.swift */; };
 		C4A2FF521E219209009AC6AD /* MealsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */; };
 		C4CAB6361E2EC38A00900003 /* ViewControllerMaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */; };
 		C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB92201E1A2CBA004F0E27 /* MealPlanViewController.swift */; };
@@ -111,6 +113,8 @@
 		C47D868D1E217FAE008FC4A3 /* MealsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsPresenter.swift; sourceTree = "<group>"; };
 		C47D868F1E21801F008FC4A3 /* MealsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsPresenterTests.swift; sourceTree = "<group>"; };
 		C47D86911E2181AD008FC4A3 /* MealsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
+		C49879CA1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MealEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C49879CB1E4FB35F00FD5605 /* MealEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MealEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealsViewControllerTests.swift; sourceTree = "<group>"; };
 		C4CAB6351E2EC38A00900003 /* ViewControllerMaking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerMaking.swift; sourceTree = "<group>"; };
 		C4CB921B1E1A2CBA004F0E27 /* MealPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,9 +243,19 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		C49879C91E4FB31E00FD5605 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C49879CA1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift */,
+				C49879CB1E4FB35F00FD5605 /* MealEntity+CoreDataProperties.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		C4994FA41E4BB09A00851152 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				C49879C91E4FB31E00FD5605 /* Entities */,
 				C46DB9031E4BB0E8001C1005 /* MealPlan.xcdatamodeld */,
 				C46DB9061E4BB111001C1005 /* NSPersistentContainer+Make.swift */,
 				C41A40D71E4F2F0C007918DC /* Storage.swift */,
@@ -514,6 +528,7 @@
 				C471A8361E2826CF000A6F07 /* SelectMealViewController.swift in Sources */,
 				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,
 				C47D868E1E217FAE008FC4A3 /* MealsPresenter.swift in Sources */,
+				C49879CD1E4FB35F00FD5605 /* MealEntity+CoreDataProperties.swift in Sources */,
 				C46DB9071E4BB111001C1005 /* NSPersistentContainer+Make.swift in Sources */,
 				C4E1BD261E1C5AB800811965 /* MealsModel.swift in Sources */,
 				C4E693571E24564F00EDFE97 /* AlertActionCreator.swift in Sources */,
@@ -522,6 +537,7 @@
 				C471A8321E2824D2000A6F07 /* SelectMealPresenter.swift in Sources */,
 				C41845391E1AF4880042E44C /* AppDelegate.swift in Sources */,
 				C4CAB6361E2EC38A00900003 /* ViewControllerMaking.swift in Sources */,
+				C49879CC1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift in Sources */,
 				C4CB92211E1A2CBA004F0E27 /* MealPlanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
