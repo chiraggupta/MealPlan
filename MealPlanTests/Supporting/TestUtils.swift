@@ -3,6 +3,7 @@
 import UIKit
 import XCTest
 @testable import MealPlan
+import CoreData
 
 extension UIViewController {
     func setAsRootViewController() {
@@ -19,5 +20,14 @@ class MockUserDefaults: UserDefaultsType {
 
     func object(forKey defaultName: String) -> Any? {
         return storage[defaultName]
+    }
+}
+
+enum TestUtils {
+    static func makeInMemoryPersistenContainer() -> NSPersistentContainer {
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+
+        return NSPersistentContainer.make(descriptions: [description])
     }
 }
