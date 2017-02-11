@@ -6,7 +6,7 @@ import XCTest
 class MealsViewControllerTests: XCTestCase {
     var subject: MealsViewController = MealsFactory().instantiate()
     var presenter: MockMealsPresenter!
-    let initialMeals = [Meal(title: "foo_meal")]
+    let initialMeals = [Meal(name: "foo_meal")]
 
     override func setUp() {
         super.setUp()
@@ -31,7 +31,7 @@ class MealsViewControllerTests: XCTestCase {
             let indexPath = IndexPath(row: i, section: 0)
             let cell = subject.tableView(subject.tableView, cellForRowAt: indexPath)
 
-            XCTAssertEqual(initialMeals[i].title, cell.textLabel?.text, "meal \(i + 1) is incorrect")
+            XCTAssertEqual(initialMeals[i].name, cell.textLabel?.text, "meal \(i + 1) is incorrect")
         }
     }
 
@@ -51,7 +51,7 @@ class MealsViewControllerTests: XCTestCase {
         subject.add(UIBarButtonItem())
 
         XCTAssertTrue(presenter.addMealCalled)
-        XCTAssertEqual(Meal(title: "bar_meal"), presenter.addMealArgument)
+        XCTAssertEqual(Meal(name: "bar_meal"), presenter.addMealArgument)
 
         let newCount = subject.tableView.numberOfRows(inSection: 0)
         XCTAssertEqual(initialMeals.count + 1, newCount, "count should be one lesser")
@@ -65,7 +65,7 @@ class MealsViewControllerTests: XCTestCase {
         subject.addMealAlertCreator = MockAddMealAlertCreator(resultMealTitle: "  bar_meal  \t")
         subject.add(UIBarButtonItem())
 
-        XCTAssertEqual(Meal(title: "bar_meal"), presenter.addMealArgument)
+        XCTAssertEqual(Meal(name: "bar_meal"), presenter.addMealArgument)
     }
 
     func testAddSuccessHandlerDoesNotAddMealsWithEmptyTitle() {

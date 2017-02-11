@@ -3,9 +3,9 @@
 import Foundation
 
 struct Meal: Equatable {
-    var title: String
+    var name: String
 }
 
 func == (lhs: Meal, rhs: Meal) -> Bool {
-    return lhs.title == rhs.title
+    return lhs.name == rhs.name
 }

@@ -28,16 +28,16 @@ class WeeklyMealPlanModelSpec: QuickSpec {
                         ], forKey: "WeeklyMealPlan")
                 }
                 it("gets the meal plan") {
-                    let expectedPlan = [DayOfWeek.wednesday: Meal(title: "foo_meal"),
-                                        DayOfWeek.saturday: Meal(title: "bar_meal"),
-                                        DayOfWeek.sunday: Meal(title: "baz_meal")]
+                    let expectedPlan = [DayOfWeek.wednesday: Meal(name: "foo_meal"),
+                                        DayOfWeek.saturday: Meal(name: "bar_meal"),
+                                        DayOfWeek.sunday: Meal(name: "baz_meal")]
                     expect(subject.getWeeklyMealPlan()).to(equal(expectedPlan))
                 }
             }
         }
 
         describe("select a meal") {
-            let fooMeal = Meal(title: "foo_meal")
+            let fooMeal = Meal(name: "foo_meal")
             beforeEach {
                 subject.select(meal: fooMeal, day: .monday)
             }
@@ -46,7 +46,7 @@ class WeeklyMealPlanModelSpec: QuickSpec {
             }
 
             describe("select another meal for the same day") {
-                let barMeal = Meal(title: "bar_meal")
+                let barMeal = Meal(name: "bar_meal")
                 beforeEach {
                     subject.select(meal: barMeal, day: .monday)
                 }

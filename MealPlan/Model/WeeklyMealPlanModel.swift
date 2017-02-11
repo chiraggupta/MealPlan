@@ -23,7 +23,7 @@ struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
 
         for day in DayOfWeek.all {
             if let mealTitle = rawMealPlan[day.rawValue] {
-                mealPlan[day] = Meal(title: mealTitle)
+                mealPlan[day] = Meal(name: mealTitle)
             }
         }
 
@@ -39,7 +39,7 @@ struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
 
     func select(meal: Meal, day: DayOfWeek) {
         var mealPlan = getMealPlanFromStorage()
-        mealPlan[day.rawValue] = meal.title
+        mealPlan[day.rawValue] = meal.name
 
         userDefaults.set(mealPlan, forKey: key)
     }

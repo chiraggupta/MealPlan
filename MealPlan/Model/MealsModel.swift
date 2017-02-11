@@ -24,23 +24,23 @@ struct MealsModel: MealsProvider {
 
         return meals
             .flatMap { $0.name }
-            .map { Meal(title: $0) }
+            .map { Meal(name: $0) }
     }
 
     func add(meal: Meal) -> Bool {
-        if getStoredMeal(name: meal.title) != nil {
+        if getStoredMeal(name: meal.name) != nil {
             return false
         }
 
         let newMeal = MealEntity(context: mainContext)
-        newMeal.name = meal.title
+        newMeal.name = meal.name
 
         Storage.saveContext(mainContext)
         return true
     }
 
     func remove(meal: Meal) {
-        guard let mealEntity = getStoredMeal(name: meal.title) else {
+        guard let mealEntity = getStoredMeal(name: meal.name) else {
             return
         }
 

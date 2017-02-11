@@ -12,9 +12,9 @@ class MealPlanPresenterTests: XCTestCase {
         super.setUp()
 
         model = WeeklyMealPlanModel(userDefaults: MockUserDefaults())
-        model.select(meal: Meal(title: "foo_meal"), day: .monday)
-        model.select(meal: Meal(title: "bar_meal"), day: .wednesday)
-        model.select(meal: Meal(title: "baz_meal"), day: .saturday)
+        model.select(meal: Meal(name: "foo_meal"), day: .monday)
+        model.select(meal: Meal(name: "bar_meal"), day: .wednesday)
+        model.select(meal: Meal(name: "baz_meal"), day: .saturday)
 
         subject = MealPlanPresenter(view: view, mealPlanProvider: model)
     }

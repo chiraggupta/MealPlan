@@ -16,8 +16,8 @@ class MealsPresenterTests: XCTestCase {
     }
 
     func testUpdateMealsForView() {
-        _ = model.add(meal: Meal(title: "foo_meal"))
-        _ = model.add(meal: Meal(title: "bar_meal"))
+        _ = model.add(meal: Meal(name: "foo_meal"))
+        _ = model.add(meal: Meal(name: "bar_meal"))
 
         subject.updateMeals()
 
@@ -26,16 +26,16 @@ class MealsPresenterTests: XCTestCase {
     }
 
     func testAddMealForModel() {
-        let fooMeal = Meal(title: "foo_meal")
+        let fooMeal = Meal(name: "foo_meal")
         _ = model.add(meal: fooMeal)
 
         XCTAssertEqual([fooMeal], model.getMeals(), "meal not added to model")
     }
 
     func testAddMealForView() {
-        _ = model.add(meal: Meal(title: "foo_meal"))
+        _ = model.add(meal: Meal(name: "foo_meal"))
 
-        let barMeal = Meal(title: "bar_meal")
+        let barMeal = Meal(name: "bar_meal")
         subject.add(meal: barMeal)
 
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
@@ -43,7 +43,7 @@ class MealsPresenterTests: XCTestCase {
     }
 
     func testRemoveMealForModel() {
-        let fooMeal = Meal(title: "foo_meal")
+        let fooMeal = Meal(name: "foo_meal")
         _ = model.add(meal: fooMeal)
 
         subject.remove(meal: fooMeal)
@@ -52,9 +52,9 @@ class MealsPresenterTests: XCTestCase {
     }
 
     func testRemoveMealForView() {
-        _ = model.add(meal: Meal(title: "foo_meal"))
+        _ = model.add(meal: Meal(name: "foo_meal"))
 
-        let barMeal = Meal(title: "bar_meal")
+        let barMeal = Meal(name: "bar_meal")
         subject.remove(meal: barMeal)
 
         XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")

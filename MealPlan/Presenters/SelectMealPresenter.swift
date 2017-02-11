@@ -28,12 +28,12 @@ class SelectMealPresenter: SelectMealPresenting {
     }
 
     func loadMeals() {
-        let meals = mealsProvider.getMeals().map {$0.title}
+        let meals = mealsProvider.getMeals().map {$0.name}
         view.set(meals: meals)
     }
 
     func select(mealTitle: String) {
-        let meal = Meal(title: mealTitle)
+        let meal = Meal(name: mealTitle)
         if !mealsProvider.getMeals().contains(meal) {
             NSLog("ERROR: Invalid meal selected: \(mealTitle)")
             return
@@ -43,6 +43,6 @@ class SelectMealPresenter: SelectMealPresenting {
     }
 
     func getSelectedMeal() -> String? {
-        return mealPlanProvider.getWeeklyMealPlan()[day]?.title
+        return mealPlanProvider.getWeeklyMealPlan()[day]?.name
     }
 }

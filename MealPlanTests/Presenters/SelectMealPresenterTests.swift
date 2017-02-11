@@ -37,7 +37,7 @@ class SelectMealPresenterTests: XCTestCase {
 
         subject.select(mealTitle: "foo_meal")
 
-        XCTAssertEqual([.monday: Meal(title: "foo_meal")], mealPlanModel.getWeeklyMealPlan(), "meal not selected")
+        XCTAssertEqual([.monday: Meal(name: "foo_meal")], mealPlanModel.getWeeklyMealPlan(), "meal not selected")
     }
 
     func testSelectInvalidMeal() {
@@ -49,7 +49,7 @@ class SelectMealPresenterTests: XCTestCase {
     }
 
     func testGetSelectedMeal() {
-        mealPlanModel.select(meal: Meal(title: "foo_meal"), day: .monday)
+        mealPlanModel.select(meal: Meal(name: "foo_meal"), day: .monday)
         XCTAssertEqual("foo_meal", subject.getSelectedMeal(), "foo_meal should be selected")
     }
 
@@ -62,7 +62,7 @@ class SelectMealPresenterTests: XCTestCase {
 extension SelectMealPresenterTests {
     func givenMeals(_ meals: [String]) {
         for meal in meals {
-            _ = mealsModel.add(meal: Meal(title: meal))
+            _ = mealsModel.add(meal: Meal(name: meal))
         }
     }
 

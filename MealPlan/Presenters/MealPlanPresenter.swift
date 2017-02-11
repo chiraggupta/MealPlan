@@ -24,7 +24,7 @@ class MealPlanPresenter: MealPlanPresenting {
     }
 
     func createMealPlanViewData(from mealPlan: WeeklyMealPlan) -> [MealPlanViewData] {
-        return DayOfWeek.all.map { MealPlanViewData(day: $0, title:mealPlan[$0]?.title) }
+        return DayOfWeek.all.map { MealPlanViewData(day: $0, title:mealPlan[$0]?.name) }
     }
 
     func myMealsTapped() {

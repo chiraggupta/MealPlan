@@ -33,7 +33,7 @@ class MealsViewController: UIViewController {
     func addMealIfValid(title: String) {
         let trimmedMealTitle = title.trimmingCharacters(in: .whitespaces)
         if !trimmedMealTitle.isEmpty {
-            presenter.add(meal: Meal(title: trimmedMealTitle))
+            presenter.add(meal: Meal(name: trimmedMealTitle))
         }
     }
 
@@ -61,7 +61,7 @@ extension MealsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealsCell", for: indexPath)
-        cell.textLabel?.text = meals[indexPath.row].title
+        cell.textLabel?.text = meals[indexPath.row].name
 
         return cell
     }

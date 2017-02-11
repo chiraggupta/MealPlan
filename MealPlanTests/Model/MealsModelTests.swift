@@ -13,7 +13,7 @@ class MealsModelSpec: QuickSpec {
 
         describe("adding meals") {
             describe("first meal") {
-                let firstMeal = Meal(title: "foo_meal")
+                let firstMeal = Meal(name: "foo_meal")
                 var result = false
                 beforeEach {
                     result = subject.add(meal: firstMeal)
@@ -38,7 +38,7 @@ class MealsModelSpec: QuickSpec {
                         }
                     }
                     context("when it is not a duplicate") {
-                        let secondMeal = Meal(title: "bar_meal")
+                        let secondMeal = Meal(name: "bar_meal")
                         beforeEach {
                             result = subject.add(meal: secondMeal)
                         }
@@ -54,8 +54,8 @@ class MealsModelSpec: QuickSpec {
         }
 
         describe("removing meals") {
-            let fooMeal = Meal(title: "foo_meal")
-            let barMeal = Meal(title: "bar_meal")
+            let fooMeal = Meal(name: "foo_meal")
+            let barMeal = Meal(name: "bar_meal")
             beforeEach {
                 _ = subject.add(meal: fooMeal)
             }
