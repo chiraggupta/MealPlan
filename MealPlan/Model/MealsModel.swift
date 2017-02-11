@@ -10,13 +10,13 @@ protocol MealsProvider {
 }
 
 struct MealsModel: MealsProvider {
-    private let persistentContainer: NSPersistentContainer
-    fileprivate var mainContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
+    let contextProvider: ContextProviding
+    fileprivate var context: NSManagedObjectContext {
+        return contextProvider.mainContext
     }
 
-    init(persistentContainer: NSPersistentContainer = NSPersistentContainer.make()) {
-        self.persistentContainer = persistentContainer
+    init(contextProvider: ContextProviding = NSPersistentContainer.make()) {
+        self.contextProvider = contextProvider
     }
 
     func getMeals() -> [Meal] {
@@ -32,10 +32,10 @@ struct MealsModel: MealsProvider {
             return false
         }
 
-        let newMeal = MealEntity(context: mainContext)
+        let newMeal = MealEntity(context: context)
         newMeal.name = meal.name
 
-        Storage.saveContext(mainContext)
+        Storage.saveContext(context)
         return true
     }
 
@@ -44,15 +44,15 @@ struct MealsModel: MealsProvider {
             return
         }
 
-        mainContext.delete(mealEntity)
-        Storage.saveContext(mainContext)
+        context.delete(mealEntity)
+        Storage.saveContext(context)
     }
 }
 
-// MARK: Storage methods
+// MARK: Fetch request methods
 extension MealsModel {
     fileprivate func getStoredMeals() -> [MealEntity] {
-        return Storage.fetch(MealEntity.fetchRequest(), context: mainContext)
+        return Storage.fetch(MealEntity.fetchRequest(), context: context)
     }
 
     fileprivate func getStoredMeal(name: String) -> MealEntity? {
@@ -60,6 +60,6 @@ extension MealsModel {
         request.predicate = NSPredicate(format: "name == %@", name)
         request.fetchLimit = 1
 
-        return Storage.fetch(request, context: mainContext).first
+        return Storage.fetch(request, context: context).first
     }
 }
