@@ -6,11 +6,12 @@ import XCTest
 class MealsPresenterTests: XCTestCase {
     var subject: MealsPresenter!
     let view = MockMealsView()
-    let model = MealsModel(userDefaults: MockUserDefaults())
+    var model: MealsModel!
 
     override func setUp() {
         super.setUp()
 
+        model = MealsModel(persistentContainer: TestUtils.makeInMemoryPersistenContainer())
         subject = MealsPresenter(view: view, mealsProvider: model)
     }
 

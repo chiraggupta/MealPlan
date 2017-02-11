@@ -7,10 +7,8 @@ import Nimble
 class MealsModelSpec: QuickSpec {
     override func spec() {
         var subject: MealsModel!
-        var defaults: MockUserDefaults!
         beforeEach {
-            defaults = MockUserDefaults()
-            subject = MealsModel(userDefaults: defaults)
+            subject = MealsModel(persistentContainer: TestUtils.makeInMemoryPersistenContainer())
         }
 
         describe("adding meals") {

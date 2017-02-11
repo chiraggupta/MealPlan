@@ -12,9 +12,8 @@ class SelectMealPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let defaults = MockUserDefaults()
-        mealsModel = MealsModel(userDefaults: defaults)
-        mealPlanModel = WeeklyMealPlanModel(userDefaults: defaults)
+        mealsModel = MealsModel(persistentContainer: TestUtils.makeInMemoryPersistenContainer())
+        mealPlanModel = WeeklyMealPlanModel(userDefaults: MockUserDefaults())
         subject = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
                                       mealsProvider: mealsModel)
     }

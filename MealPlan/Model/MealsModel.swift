@@ -1,6 +1,7 @@
 // MealPlan by Chirag Gupta
 
 import Foundation
+import CoreData
 
 protocol MealsProvider {
     func getMeals() -> [Meal]
@@ -9,47 +10,56 @@ protocol MealsProvider {
 }
 
 struct MealsModel: MealsProvider {
-    fileprivate let userDefaults: UserDefaultsType!
-    let key = "Meals"
+    private let persistentContainer: NSPersistentContainer
+    fileprivate var mainContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
 
-    init(userDefaults: UserDefaultsType = UserDefaults.standard) {
-        self.userDefaults = userDefaults
+    init(persistentContainer: NSPersistentContainer = NSPersistentContainer.make()) {
+        self.persistentContainer = persistentContainer
     }
 
     func getMeals() -> [Meal] {
-        let meals = getMealsFromStorage()
+        let meals = getStoredMeals()
 
-        return meals.map { Meal(title: $0) }
+        return meals
+            .flatMap { $0.name }
+            .map { Meal(title: $0) }
     }
 
     func add(meal: Meal) -> Bool {
-        let existingMeals = getMealsFromStorage()
-        if existingMeals.contains(meal.title) {
+        if getStoredMeal(name: meal.title) != nil {
             return false
         }
 
-        let updatedMeals = existingMeals + [meal.title]
-        userDefaults.set(updatedMeals, forKey: key)
+        let newMeal = MealEntity(context: mainContext)
+        newMeal.name = meal.title
+
+        Storage.saveContext(mainContext)
         return true
     }
 
     func remove(meal: Meal) {
-        var meals = getMealsFromStorage()
-        guard let position = meals.index(of: meal.title) else {
+        guard let mealEntity = getStoredMeal(name: meal.title) else {
             return
         }
 
-        meals.remove(at: position)
-        userDefaults.set(meals, forKey: key)
+        mainContext.delete(mealEntity)
+        Storage.saveContext(mainContext)
     }
 }
 
 // MARK: Storage methods
 extension MealsModel {
-    fileprivate func getMealsFromStorage() -> [String] {
-        if let storedMeals = userDefaults.object(forKey: key) as? [String] {
-            return storedMeals
-        }
-        return []
+    fileprivate func getStoredMeals() -> [MealEntity] {
+        return Storage.fetch(MealEntity.fetchRequest(), context: mainContext)
+    }
+
+    fileprivate func getStoredMeal(name: String) -> MealEntity? {
+        let request: NSFetchRequest<MealEntity> = MealEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", name)
+        request.fetchLimit = 1
+
+        return Storage.fetch(request, context: mainContext).first
     }
 }
