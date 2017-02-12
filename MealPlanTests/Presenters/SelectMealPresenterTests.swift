@@ -1,75 +1,122 @@
 // MealPlan by Chirag Gupta
 
-import XCTest
+import Quick
+import Nimble
 @testable import MealPlan
 
-class SelectMealPresenterTests: XCTestCase {
-    var subject: SelectMealPresenter!
-    let view = MockSelectMealView()
-    var mealsModel: MealsProvider!
-    var mealPlanModel: WeeklyMealPlanProvider!
+class SelectMealPresenterTests: QuickSpec {
+    override func spec() {
+        var subject: SelectMealPresenter!
+        let view = MockSelectMealView()
+        var mealsProvider: MockMealsProvider!
+        var mealPlanProvider: MockWeeklyMealPlanProvider!
 
-    override func setUp() {
-        super.setUp()
+        beforeEach {
+            mealsProvider = MockMealsProvider()
+            mealPlanProvider = MockWeeklyMealPlanProvider()
+            subject = SelectMealPresenter(day: .wednesday, view: view, mealPlanProvider: mealPlanProvider,
+                                          mealsProvider: mealsProvider)
+        }
 
-        mealsModel = MealsModel(contextProvider: makeInMemoryPersistenContainer())
-        mealPlanModel = WeeklyMealPlanModel(contextProvider: FakeContextProvider(), userDefaults: MockUserDefaults())
-        subject = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
-                                      mealsProvider: mealsModel)
-    }
+        describe("loading title") {
+            beforeEach {
+                subject.loadTitle()
+            }
+            it("sets the view title to selected day") {
+                expect(view.setTitle).to(equal("Wednesday"))
+            }
+        }
 
-    func testLoadTitle() {
-        subject.loadTitle()
+        describe("loading meals") {
+            beforeEach {
+                mealsProvider.meals = [Meal(name: "wild_boar"), Meal(name: "empty_peanut_butter")]
+                subject.loadMeals()
+            }
+            it("updates the view with the list of stored meals") {
+                expect(view.setMeals).to(equal(["wild_boar", "empty_peanut_butter"]))
+            }
+        }
 
-        XCTAssertEqual("Monday", view.setTitleArgument, "view title not set to Monday")
-    }
+        describe("selecting meals") {
+            beforeEach {
+                subject.select(mealTitle: "wild_boar")
+            }
+            it("selects the right day") {
+                expect(mealPlanProvider.selectedDay).to(equal(DayOfWeek.wednesday))
+            }
+            it("selects the right meal") {
+                expect(mealPlanProvider.selectedMeal).to(equal(Meal(name: "wild_boar")))
+            }
+        }
 
-    func testShowMeals() {
-        givenMeals(["foo_meal", "bar_meal"])
-
-        subject.loadMeals()
-
-        XCTAssertEqual(["foo_meal", "bar_meal"], view.setArguments, "incorrect meals were set")
-    }
-
-    func testSelectMeals() {
-        givenMeals(["foo_meal", "bar_meal"])
-
-        subject.select(mealTitle: "foo_meal")
-
-        XCTAssertEqual([.monday: Meal(name: "foo_meal")], mealPlanModel.getWeeklyMealPlan(), "meal not selected")
-    }
-
-    func testGetSelectedMeal() {
-        mealPlanModel.select(meal: Meal(name: "foo_meal"), day: .monday)
-        XCTAssertEqual("foo_meal", subject.getSelectedMeal(), "foo_meal should be selected")
-    }
-
-    func testGetSelectedMealWithEmptyMealPlan() {
-        XCTAssertNil(subject.getSelectedMeal(), "no meal should be selected")
+        describe("getting selected meal") {
+            context("when there is a meal selected for the given day") {
+                beforeEach {
+                    mealPlanProvider.weeklyMealPlan = [.wednesday: Meal(name: "dharma_canned_food")]
+                }
+                it("returns the selected meal") {
+                    expect(subject.getSelectedMeal()).to(equal("dharma_canned_food"))
+                }
+            }
+            context("when there is no meal selected for the given day") {
+                beforeEach {
+                    mealPlanProvider.weeklyMealPlan = [.monday: Meal(name: "dharma_canned_food")]
+                }
+                it("returns nil") {
+                    expect(subject.getSelectedMeal()).to(beNil())
+                }
+            }
+            context("when the meal plan is empty") {
+                beforeEach {
+                    mealPlanProvider.weeklyMealPlan = WeeklyMealPlan()
+                }
+                it("returns nil") {
+                    expect(subject.getSelectedMeal()).to(beNil())
+                }
+            }
+        }
     }
 }
 
 // MARK: Test doubles
 extension SelectMealPresenterTests {
-    func givenMeals(_ meals: [String]) {
-        for meal in meals {
-            _ = mealsModel.add(meal: Meal(name: meal))
-        }
-    }
-
     class MockSelectMealView: SelectMealViewType {
         var presenter: SelectMealPresenting!
 
-        private(set) var setTitleArgument = ""
-        private(set) var setArguments = [String]()
+        private(set) var setTitle = ""
+        private(set) var setMeals = [String]()
 
         func set(title: String) {
-            setTitleArgument = title
+            setTitle = title
         }
 
         func set(meals: [String]) {
-            setArguments = meals
+            setMeals = meals
+        }
+    }
+
+    class MockMealsProvider: MealsProvider {
+        var meals = [Meal]()
+        func getMeals() -> [Meal] {
+            return meals
+        }
+
+        func add(meal: Meal) -> Bool { return false }
+        func remove(meal: Meal) {}
+    }
+
+    class MockWeeklyMealPlanProvider: WeeklyMealPlanProvider {
+        var weeklyMealPlan = WeeklyMealPlan()
+        var selectedMeal: Meal?
+        var selectedDay: DayOfWeek?
+
+        func getWeeklyMealPlan() -> WeeklyMealPlan {
+            return weeklyMealPlan
+        }
+
+        func select(meal: Meal, day: DayOfWeek) {
+            selectedMeal = meal
+            selectedDay = day
         }
     }
 }
