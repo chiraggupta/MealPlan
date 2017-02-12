@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayPlanEntity" representedClassName="DayPlanEntity" syncable="YES">
+        <attribute name="day" attributeType="String" syncable="YES"/>
+        <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="dayPlans" inverseEntity="MealEntity" syncable="YES"/>
+    </entity>
     <entity name="MealEntity" representedClassName="MealEntity" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="dayPlans" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPlanEntity" inverseName="meal" inverseEntity="DayPlanEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MealEntity" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="MealEntity" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="DayPlanEntity" positionX="117" positionY="-18" width="128" height="75"/>
     </elements>
 </model>
