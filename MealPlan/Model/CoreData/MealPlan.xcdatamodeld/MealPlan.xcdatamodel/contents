@@ -4,12 +4,18 @@
         <attribute name="day" attributeType="String" syncable="YES"/>
         <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="dayPlans" inverseEntity="MealEntity" syncable="YES"/>
     </entity>
+    <entity name="IngredientEntity" representedClassName="IngredientEntity" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MealEntity" inverseName="ingredients" inverseEntity="MealEntity" syncable="YES"/>
+    </entity>
     <entity name="MealEntity" representedClassName="MealEntity" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="dayPlans" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPlanEntity" inverseName="meal" inverseEntity="DayPlanEntity" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IngredientEntity" inverseName="meals" inverseEntity="IngredientEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MealEntity" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="DayPlanEntity" positionX="117" positionY="-18" width="128" height="75"/>
+        <element name="MealEntity" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="IngredientEntity" positionX="27" positionY="9" width="128" height="75"/>
     </elements>
 </model>

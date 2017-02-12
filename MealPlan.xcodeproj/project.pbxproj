@@ -21,6 +21,8 @@
 		C41F2C341E2FF9B800028E60 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C321E2FF9B800028E60 /* Nimble.framework */; };
 		C41F2C361E2FFB2100028E60 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C311E2FF9B800028E60 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C41F2C371E2FFB2100028E60 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C321E2FF9B800028E60 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C426A2A31E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2A11E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift */; };
+		C426A2A41E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2A21E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift */; };
 		C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43822881E25FADF00179062 /* AddMealAlertCreator.swift */; };
 		C438228B1E25FD6100179062 /* AddMealAlertCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */; };
 		C46BFF651E291EBA001D4C15 /* SelectMealViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */; };
@@ -98,6 +100,8 @@
 		C41A40D91E4F3AC8007918DC /* StorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageTests.swift; sourceTree = "<group>"; };
 		C41F2C311E2FF9B800028E60 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		C41F2C321E2FF9B800028E60 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		C426A2A11E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C426A2A21E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C43822881E25FADF00179062 /* AddMealAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreator.swift; sourceTree = "<group>"; };
 		C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreatorTests.swift; sourceTree = "<group>"; };
 		C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewControllerTests.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		C49879C91E4FB31E00FD5605 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C426A2A11E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift */,
+				C426A2A21E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift */,
 				C4F61D641E506D7700B0A17C /* DayPlanEntity+CoreDataClass.swift */,
 				C4F61D651E506D7700B0A17C /* DayPlanEntity+CoreDataProperties.swift */,
 				C49879CA1E4FB35F00FD5605 /* MealEntity+CoreDataClass.swift */,
@@ -528,10 +534,12 @@
 				C41A40D81E4F2F0C007918DC /* Storage.swift in Sources */,
 				C47D86841E215B5A008FC4A3 /* CollectionUtils.swift in Sources */,
 				C47D86811E212AE2008FC4A3 /* MealPlanViewData.swift in Sources */,
+				C426A2A41E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift in Sources */,
 				C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */,
 				C40E62051E39583500A5F0C5 /* MealPlanFactory.swift in Sources */,
 				C46DB9051E4BB0E8001C1005 /* MealPlan.xcdatamodeld in Sources */,
 				C4E9D7261E204237008926BC /* Meal.swift in Sources */,
+				C426A2A31E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift in Sources */,
 				C471A8361E2826CF000A6F07 /* SelectMealViewController.swift in Sources */,
 				C4D418F21E1EF1A3002B0D66 /* MealPlanPresenter.swift in Sources */,
 				C47D868E1E217FAE008FC4A3 /* MealsPresenter.swift in Sources */,

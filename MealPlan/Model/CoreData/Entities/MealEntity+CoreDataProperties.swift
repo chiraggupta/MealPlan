@@ -10,6 +10,7 @@ extension MealEntity {
 
     @NSManaged public var name: String?
     @NSManaged public var dayPlans: NSSet?
+    @NSManaged public var ingredients: NSSet?
 
 }
 
@@ -27,5 +28,22 @@ extension MealEntity {
 
     @objc(removeDayPlans:)
     @NSManaged public func removeFromDayPlans(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for ingredients
+extension MealEntity {
+
+    @objc(addIngredientsObject:)
+    @NSManaged public func addToIngredients(_ value: IngredientEntity)
+
+    @objc(removeIngredientsObject:)
+    @NSManaged public func removeFromIngredients(_ value: IngredientEntity)
+
+    @objc(addIngredients:)
+    @NSManaged public func addToIngredients(_ values: NSSet)
+
+    @objc(removeIngredients:)
+    @NSManaged public func removeFromIngredients(_ values: NSSet)
 
 }
