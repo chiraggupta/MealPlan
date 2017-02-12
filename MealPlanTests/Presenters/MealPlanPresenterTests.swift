@@ -1,58 +1,74 @@
 // MealPlan by Chirag Gupta
 
-import XCTest
+import Quick
+import Nimble
 @testable import MealPlan
 
-class MealPlanPresenterTests: XCTestCase {
-    private var subject: MealPlanPresenter!
-    private let view = MockMealPlanView()
-    private var model: WeeklyMealPlanProvider!
+class MealPlanPresenterTests: QuickSpec {
+    override func spec() {
+        var subject: MealPlanPresenter!
+        let view = MockMealPlanView()
+        var mealPlanProvider: MockWeeklyMealPlanProvider!
 
-    override func setUp() {
-        super.setUp()
+        beforeEach {
+            mealPlanProvider = MockWeeklyMealPlanProvider(weeklyMealPlan: [
+                .monday: Meal(name: "island_boar"),
+                .wednesday: Meal(name: "empty_peanut_butter"),
+                .saturday: Meal(name: "dharma_canned_food")
+                ])
+            subject = MealPlanPresenter(view: view, mealPlanProvider: mealPlanProvider,
+                                        contextProvider: FakeContextProvider())
+        }
 
-        model = WeeklyMealPlanModel(contextProvider: FakeContextProvider(), userDefaults: MockUserDefaults())
-        model.select(meal: Meal(name: "foo_meal"), day: .monday)
-        model.select(meal: Meal(name: "bar_meal"), day: .wednesday)
-        model.select(meal: Meal(name: "baz_meal"), day: .saturday)
+        describe("updating meal plan") {
+            beforeEach {
+                subject.updateMealPlan()
+            }
 
-        subject = MealPlanPresenter(view: view, mealPlanProvider: model, contextProvider: FakeContextProvider())
-    }
+            it("updates the view with formatted meal plan data") {
+                let expectedViewData = [
+                    MealPlanViewData(day: .monday, title: "island_boar"),
+                    MealPlanViewData(day: .tuesday, title: ""),
+                    MealPlanViewData(day: .wednesday, title: "empty_peanut_butter"),
+                    MealPlanViewData(day: .thursday, title: ""),
+                    MealPlanViewData(day: .friday, title: ""),
+                    MealPlanViewData(day: .saturday, title: "dharma_canned_food"),
+                    MealPlanViewData(day: .sunday, title: "")
+                ]
 
-    func testUpdateMealPlanSetsMealPlanViewData() {
-        let expectedViewData = [
-            MealPlanViewData(day: .monday, title: "foo_meal"),
-            MealPlanViewData(day: .tuesday, title: ""),
-            MealPlanViewData(day: .wednesday, title: "bar_meal"),
-            MealPlanViewData(day: .thursday, title: ""),
-            MealPlanViewData(day: .friday, title: ""),
-            MealPlanViewData(day: .saturday, title: "baz_meal"),
-            MealPlanViewData(day: .sunday, title: "")
-        ]
+                expect(view.setArguments).to(equal(expectedViewData))
+            }
+        }
 
-        subject.updateMealPlan()
+        describe("tapping my meals") {
+            var displayedViewController: UIViewController?
+            beforeEach {
+                subject.myMealsTapped()
+            }
+            it("shows MealsViewController embedded in a navigation controller") {
+                expect(view.displayedModally).to(beAKindOf(UINavigationController.self))
+                displayedViewController = (view.displayedModally as? UINavigationController)?.topViewController
+                expect(displayedViewController).to(beAKindOf(MealsViewController.self))
+            }
+            it("sets the correct presenter on the displayed view") {
+                let presenter = (displayedViewController as? MealsViewController)?.presenter
+                expect(presenter).to(beAKindOf(MealsPresenter.self))
+            }
+        }
 
-        XCTAssertEqual(expectedViewData, view.setArguments, "incorrect meals were set")
-    }
-
-    func testTappingMyMealsDisplaysMealsScreenModally() {
-        subject.myMealsTapped()
-
-        XCTAssertTrue(view.displayedModally is UINavigationController)
-        let topOfNavigation = (view.displayedModally as? UINavigationController)?.topViewController
-        XCTAssertTrue(topOfNavigation is MealsViewController)
-        let presenter = (topOfNavigation as? MealsViewController)?.presenter
-        XCTAssertTrue(presenter is MealsPresenter)
-    }
-
-    func testTappingDayDisplaysSelectMealScreen() {
-        subject.dayTapped(day: .monday)
-
-        XCTAssertTrue(view.displayed is SelectMealViewController)
-        let nextPresenter = (view.displayed as? SelectMealViewController)?.presenter
-        XCTAssertTrue(nextPresenter is SelectMealPresenter)
-        let selectedDay = (nextPresenter as? SelectMealPresenter)?.day
-        XCTAssertEqual(.monday, selectedDay)
+        describe("selecting a day") {
+            beforeEach {
+                subject.dayTapped(day: .wednesday)
+            }
+            it("shows SelectMealViewController") {
+                expect(view.displayed).to(beAKindOf(SelectMealViewController.self))
+            }
+            it("configures the next presenter correctly") {
+                let presenter = (view.displayed as? SelectMealViewController)?.presenter
+                expect(presenter).to(beAKindOf(SelectMealPresenter.self))
+                expect((presenter as? SelectMealPresenter)?.day).to(equal(DayOfWeek.wednesday))
+            }
+        }
     }
 }
 
@@ -76,5 +92,14 @@ extension MealPlanPresenterTests {
         }
 
         func hideModal() {}
+    }
+
+    struct MockWeeklyMealPlanProvider: WeeklyMealPlanProvider {
+        let weeklyMealPlan: WeeklyMealPlan
+        func getWeeklyMealPlan() -> WeeklyMealPlan {
+            return weeklyMealPlan
+        }
+
+        func select(meal: Meal, day: DayOfWeek) {}
     }
 }
