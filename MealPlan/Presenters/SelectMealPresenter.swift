@@ -24,7 +24,7 @@ class SelectMealPresenter: SelectMealPresenting {
     }
 
     func loadTitle() {
-        view.set(title: "\(day.rawValue)")
+        view.set(title: day.rawValue)
     }
 
     func loadMeals() {
@@ -34,11 +34,6 @@ class SelectMealPresenter: SelectMealPresenting {
 
     func select(mealTitle: String) {
         let meal = Meal(name: mealTitle)
-        if !mealsProvider.getMeals().contains(meal) {
-            NSLog("ERROR: Invalid meal selected: \(mealTitle)")
-            return
-        }
-
         mealPlanProvider.select(meal: meal, day: day)
     }
 

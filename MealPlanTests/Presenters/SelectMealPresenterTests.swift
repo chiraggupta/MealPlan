@@ -40,14 +40,6 @@ class SelectMealPresenterTests: XCTestCase {
         XCTAssertEqual([.monday: Meal(name: "foo_meal")], mealPlanModel.getWeeklyMealPlan(), "meal not selected")
     }
 
-    func testSelectInvalidMeal() {
-        givenMeals(["foo_meal"])
-
-        subject.select(mealTitle: "bar_meal")
-
-        XCTAssertEqual([:], mealPlanModel.getWeeklyMealPlan(), "meal should not be selected")
-    }
-
     func testGetSelectedMeal() {
         mealPlanModel.select(meal: Meal(name: "foo_meal"), day: .monday)
         XCTAssertEqual("foo_meal", subject.getSelectedMeal(), "foo_meal should be selected")
