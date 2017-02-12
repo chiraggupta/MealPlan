@@ -1,6 +1,7 @@
 // MealPlan by Chirag Gupta
 
 import Foundation
+import CoreData
 
 typealias WeeklyMealPlan = [DayOfWeek: Meal]
 
@@ -10,39 +11,59 @@ protocol WeeklyMealPlanProvider {
 }
 
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
-    private let userDefaults: UserDefaultsType!
-    let key = "WeeklyMealPlan"
-    let contextProvider: ContextProviding
+    private let contextProvider: ContextProviding
+    fileprivate var context: NSManagedObjectContext {
+        return contextProvider.mainContext
+    }
 
-    init(contextProvider: ContextProviding, userDefaults: UserDefaultsType = UserDefaults.standard) {
-        self.userDefaults = userDefaults
+    init(contextProvider: ContextProviding) {
         self.contextProvider = contextProvider
     }
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {
-        let rawMealPlan = getMealPlanFromStorage()
-        var mealPlan = WeeklyMealPlan()
+        var weekPlan = WeeklyMealPlan()
 
-        for day in DayOfWeek.all {
-            if let mealTitle = rawMealPlan[day.rawValue] {
-                mealPlan[day] = Meal(name: mealTitle)
+        let dayPlans = getStoredDayPlans()
+        for dayPlan in dayPlans {
+            if let day = dayPlan.day, let dayOfWeek = DayOfWeek(rawValue: day), let mealName = dayPlan.meal?.name {
+                weekPlan[dayOfWeek] = Meal(name: mealName)
             }
         }
 
-        return mealPlan
-    }
-
-    private func getMealPlanFromStorage() -> [String: String] {
-        if let storedMealPlan = userDefaults.object(forKey: key) as? [String: String] {
-            return storedMealPlan
-        }
-        return [:]
+        return weekPlan
     }
 
     func select(meal: Meal, day: DayOfWeek) {
-        var mealPlan = getMealPlanFromStorage()
-        mealPlan[day.rawValue] = meal.name
+        let mealsModel = MealsModel(contextProvider: contextProvider)
 
-        userDefaults.set(mealPlan, forKey: key)
+        guard let selectedMeal = mealsModel.getStoredMeal(name: meal.name) else {
+            assertionFailure("ERROR: Invalid meal \(meal.name) selected.")
+            return
+        }
+
+        if let dayPlan = getStoredDayPlan(day: day) {
+            dayPlan.meal = selectedMeal
+        } else {
+            let newDayPlan = DayPlanEntity(context: context)
+            newDayPlan.day = day.rawValue
+            newDayPlan.meal = selectedMeal
+        }
+
+        Storage.saveContext(context)
+    }
+}
+
+// MARK: Storage methods
+extension WeeklyMealPlanModel {
+    fileprivate func getStoredDayPlans() -> [DayPlanEntity] {
+        return Storage.fetch(DayPlanEntity.fetchRequest(), context: context)
+    }
+
+    fileprivate func getStoredDayPlan(day: DayOfWeek) -> DayPlanEntity? {
+        let request: NSFetchRequest<DayPlanEntity> = DayPlanEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "day == %@", day.rawValue)
+        request.fetchLimit = 1
+
+        return Storage.fetch(request, context: context).first
     }
 }

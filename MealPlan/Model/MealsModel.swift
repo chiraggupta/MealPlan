@@ -10,7 +10,7 @@ protocol MealsProvider {
 }
 
 struct MealsModel: MealsProvider {
-    let contextProvider: ContextProviding
+    private let contextProvider: ContextProviding
     fileprivate var context: NSManagedObjectContext {
         return contextProvider.mainContext
     }
@@ -55,7 +55,7 @@ extension MealsModel {
         return Storage.fetch(MealEntity.fetchRequest(), context: context)
     }
 
-    fileprivate func getStoredMeal(name: String) -> MealEntity? {
+    func getStoredMeal(name: String) -> MealEntity? {
         let request: NSFetchRequest<MealEntity> = MealEntity.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)
         request.fetchLimit = 1

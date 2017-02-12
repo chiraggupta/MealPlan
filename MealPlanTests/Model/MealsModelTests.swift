@@ -4,7 +4,7 @@ import Quick
 import Nimble
 @testable import MealPlan
 
-class MealsModelSpec: QuickSpec {
+class MealsModelTests: QuickSpec {
     override func spec() {
         var subject: MealsModel!
         beforeEach {
