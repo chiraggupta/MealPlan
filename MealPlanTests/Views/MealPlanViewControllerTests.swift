@@ -4,7 +4,7 @@ import XCTest
 @testable import MealPlan
 
 class MealPlanViewControllerTests: XCTestCase {
-    var subject: MealPlanViewController = MealPlanFactory().instantiate()
+    var subject: MealPlanViewController = MealPlanFactory(contextProvider: FakeContextProvider()).instantiate()
     let presenter = MockMealPlanPresenter()
 
     override func setUp() {

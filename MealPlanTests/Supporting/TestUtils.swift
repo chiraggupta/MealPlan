@@ -31,3 +31,7 @@ enum TestUtils {
         return NSPersistentContainer.make(descriptions: [description])
     }
 }
+
+struct FakeContextProvider: ContextProviding {
+    let mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+}

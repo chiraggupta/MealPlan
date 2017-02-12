@@ -4,7 +4,7 @@ import XCTest
 @testable import MealPlan
 
 class MealsViewControllerTests: XCTestCase {
-    var subject: MealsViewController = MealsFactory().instantiate()
+    var subject: MealsViewController = MealsFactory(contextProvider: FakeContextProvider()).instantiate()
     var presenter: MockMealsPresenter!
     let initialMeals = [Meal(name: "foo_meal")]
 

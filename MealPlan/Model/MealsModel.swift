@@ -15,7 +15,7 @@ struct MealsModel: MealsProvider {
         return contextProvider.mainContext
     }
 
-    init(contextProvider: ContextProviding = NSPersistentContainer.make()) {
+    init(contextProvider: ContextProviding) {
         self.contextProvider = contextProvider
     }
 

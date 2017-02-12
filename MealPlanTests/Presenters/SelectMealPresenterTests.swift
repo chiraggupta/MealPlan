@@ -13,7 +13,7 @@ class SelectMealPresenterTests: XCTestCase {
         super.setUp()
 
         mealsModel = MealsModel(contextProvider: TestUtils.makeInMemoryPersistenContainer())
-        mealPlanModel = WeeklyMealPlanModel(userDefaults: MockUserDefaults())
+        mealPlanModel = WeeklyMealPlanModel(contextProvider: FakeContextProvider(), userDefaults: MockUserDefaults())
         subject = SelectMealPresenter(day: .monday, view: view, mealPlanProvider: mealPlanModel,
                                       mealsProvider: mealsModel)
     }

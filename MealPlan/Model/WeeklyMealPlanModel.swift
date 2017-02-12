@@ -12,9 +12,11 @@ protocol WeeklyMealPlanProvider {
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
     private let userDefaults: UserDefaultsType!
     let key = "WeeklyMealPlan"
+    let contextProvider: ContextProviding
 
-    init(userDefaults: UserDefaultsType = UserDefaults.standard) {
+    init(contextProvider: ContextProviding, userDefaults: UserDefaultsType = UserDefaults.standard) {
         self.userDefaults = userDefaults
+        self.contextProvider = contextProvider
     }
 
     func getWeeklyMealPlan() -> WeeklyMealPlan {

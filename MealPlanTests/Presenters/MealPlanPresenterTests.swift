@@ -11,12 +11,12 @@ class MealPlanPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        model = WeeklyMealPlanModel(userDefaults: MockUserDefaults())
+        model = WeeklyMealPlanModel(contextProvider: FakeContextProvider(), userDefaults: MockUserDefaults())
         model.select(meal: Meal(name: "foo_meal"), day: .monday)
         model.select(meal: Meal(name: "bar_meal"), day: .wednesday)
         model.select(meal: Meal(name: "baz_meal"), day: .saturday)
 
-        subject = MealPlanPresenter(view: view, mealPlanProvider: model)
+        subject = MealPlanPresenter(view: view, mealPlanProvider: model, contextProvider: FakeContextProvider())
     }
 
     func testUpdateMealPlanSetsMealPlanViewData() {

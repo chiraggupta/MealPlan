@@ -1,6 +1,7 @@
 // MealPlan by Chirag Gupta
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,8 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupRootViewController() {
+        let persistentContainer = NSPersistentContainer.make()
+        let rootFactory = MealPlanFactory(contextProvider: persistentContainer)
+        let rootViewController = rootFactory.makeViewController()
+
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = MealPlanFactory().makeViewController()
+        self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
     }
 }

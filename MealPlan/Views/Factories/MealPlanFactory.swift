@@ -3,6 +3,12 @@
 import UIKit
 
 class MealPlanFactory: ViewControllerMaking {
+    private let contextProvider: ContextProviding
+
+    init(contextProvider: ContextProviding) {
+        self.contextProvider = contextProvider
+    }
+
     typealias ViewControllerType = MealPlanViewController
 
     let storyboardID = "Main"
@@ -10,7 +16,8 @@ class MealPlanFactory: ViewControllerMaking {
 
     func makeViewController() -> UIViewController {
         let vc = instantiate()
-        vc.presenter = MealPlanPresenter(view: vc, mealPlanProvider: WeeklyMealPlanModel())
+        let model = WeeklyMealPlanModel(contextProvider: contextProvider)
+        vc.presenter = MealPlanPresenter(view: vc, mealPlanProvider: model, contextProvider: contextProvider)
 
         return UINavigationController(rootViewController: vc)
     }

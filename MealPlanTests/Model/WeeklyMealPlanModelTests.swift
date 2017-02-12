@@ -11,7 +11,7 @@ class WeeklyMealPlanModelSpec: QuickSpec {
 
         beforeEach {
             defaults = MockUserDefaults()
-            subject = WeeklyMealPlanModel(userDefaults: defaults)
+            subject = WeeklyMealPlanModel(contextProvider: FakeContextProvider(), userDefaults: defaults)
         }
 
         describe("getting meal plan") {

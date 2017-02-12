@@ -9,7 +9,8 @@ class ViewControllerMakingTests: QuickSpec {
         describe("instantiating a view controller") {
             context("of type MealPlan") {
                 it("creates a view controller of the right type") {
-                    expect(MealPlanFactory().instantiate()).to(beAKindOf(MealPlanViewController.self))
+                    let factory = MealPlanFactory(contextProvider: FakeContextProvider())
+                    expect(factory.instantiate()).to(beAKindOf(MealPlanViewController.self))
                 }
             }
 

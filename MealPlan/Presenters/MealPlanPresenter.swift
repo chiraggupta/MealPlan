@@ -11,10 +11,12 @@ protocol MealPlanPresenting {
 class MealPlanPresenter: MealPlanPresenting {
     unowned let view: MealPlanViewType
     fileprivate let mealPlanProvider: WeeklyMealPlanProvider
+    private let contextProvider: ContextProviding
 
-    init(view: MealPlanViewType, mealPlanProvider: WeeklyMealPlanProvider) {
+    init(view: MealPlanViewType, mealPlanProvider: WeeklyMealPlanProvider, contextProvider: ContextProviding) {
         self.view = view
         self.mealPlanProvider = mealPlanProvider
+        self.contextProvider = contextProvider
     }
 
     func updateMealPlan() {
@@ -28,10 +30,12 @@ class MealPlanPresenter: MealPlanPresenting {
     }
 
     func myMealsTapped() {
-        view.displayModally(MealsFactory().makeViewController())
+        let mealsFactory = MealsFactory(contextProvider: contextProvider)
+        view.displayModally(mealsFactory.makeViewController())
     }
 
     func dayTapped(day: DayOfWeek) {
-        view.display(SelectMealFactory(day: day).makeViewController())
+        let selectMealFactory = SelectMealFactory(contextProvider: contextProvider, day: day)
+        view.display(selectMealFactory.makeViewController())
     }
 }

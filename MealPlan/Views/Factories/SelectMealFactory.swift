@@ -3,9 +3,11 @@
 import UIKit
 
 class SelectMealFactory: ViewControllerMaking {
+    private let contextProvider: ContextProviding
     private let day: DayOfWeek
 
-    init(day: DayOfWeek) {
+    init(contextProvider: ContextProviding, day: DayOfWeek) {
+        self.contextProvider = contextProvider
         self.day = day
     }
 
@@ -16,8 +18,10 @@ class SelectMealFactory: ViewControllerMaking {
 
     func makeViewController() -> UIViewController {
         let vc = instantiate()
-        vc.presenter = SelectMealPresenter(day: day, view: vc, mealPlanProvider: WeeklyMealPlanModel(),
-                                           mealsProvider: MealsModel())
+        let mealPlanModel = WeeklyMealPlanModel(contextProvider: contextProvider)
+        let mealsModel = MealsModel(contextProvider: contextProvider)
+        vc.presenter = SelectMealPresenter(day: day, view: vc, mealPlanProvider: mealPlanModel,
+                                           mealsProvider: mealsModel)
         return vc
     }
 }
