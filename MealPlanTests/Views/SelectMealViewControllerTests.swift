@@ -15,6 +15,7 @@ class SelectMealViewControllerTests: XCTestCase {
         subject = factory.instantiate()
         subject.presenter = presenter
         subject.set(meals: meals)
+        
         subject.setAsRootViewController()
     }
 

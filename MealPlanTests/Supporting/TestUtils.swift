@@ -11,18 +11,6 @@ extension UIViewController {
     }
 }
 
-class MockUserDefaults: UserDefaultsType {
-    var storage = [String: Any]()
-
-    func set(_ value: Any?, forKey defaultName: String) {
-        storage[defaultName] = value
-    }
-
-    func object(forKey defaultName: String) -> Any? {
-        return storage[defaultName]
-    }
-}
-
 func makeInMemoryPersistenContainer() -> NSPersistentContainer {
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
