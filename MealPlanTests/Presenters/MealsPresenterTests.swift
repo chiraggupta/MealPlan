@@ -11,7 +11,7 @@ class MealsPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        model = MealsModel(contextProvider: TestUtils.makeInMemoryPersistenContainer())
+        model = MealsModel(contextProvider: makeInMemoryPersistenContainer())
         subject = MealsPresenter(view: view, mealsProvider: model)
     }
 

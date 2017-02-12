@@ -23,13 +23,11 @@ class MockUserDefaults: UserDefaultsType {
     }
 }
 
-enum TestUtils {
-    static func makeInMemoryPersistenContainer() -> NSPersistentContainer {
-        let description = NSPersistentStoreDescription()
-        description.type = NSInMemoryStoreType
+func makeInMemoryPersistenContainer() -> NSPersistentContainer {
+    let description = NSPersistentStoreDescription()
+    description.type = NSInMemoryStoreType
 
-        return NSPersistentContainer.make(descriptions: [description])
-    }
+    return NSPersistentContainer.make(descriptions: [description])
 }
 
 struct FakeContextProvider: ContextProviding {

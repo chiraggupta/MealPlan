@@ -8,7 +8,7 @@ class MealsModelSpec: QuickSpec {
     override func spec() {
         var subject: MealsModel!
         beforeEach {
-            subject = MealsModel(contextProvider: TestUtils.makeInMemoryPersistenContainer())
+            subject = MealsModel(contextProvider: makeInMemoryPersistenContainer())
         }
 
         describe("adding meals") {
