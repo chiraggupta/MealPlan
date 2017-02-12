@@ -2,7 +2,6 @@
 
 import Quick
 import Nimble
-
 @testable import MealPlan
 
 class AppDelegateTests: QuickSpec {

@@ -2,8 +2,8 @@
 
 import UIKit
 import XCTest
-@testable import MealPlan
 import CoreData
+@testable import MealPlan
 
 extension UIViewController {
     func setAsRootViewController() {
