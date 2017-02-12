@@ -23,6 +23,8 @@
 		C41F2C371E2FFB2100028E60 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C41F2C321E2FF9B800028E60 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C426A2A31E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2A11E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift */; };
 		C426A2A41E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2A21E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift */; };
+		C426A2AA1E5109860074B6EA /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2A91E5109860074B6EA /* IngredientsModel.swift */; };
+		C426A2AE1E510FF50074B6EA /* IngredientsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C426A2AD1E510FF50074B6EA /* IngredientsModelTests.swift */; };
 		C43822891E25FADF00179062 /* AddMealAlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43822881E25FADF00179062 /* AddMealAlertCreator.swift */; };
 		C438228B1E25FD6100179062 /* AddMealAlertCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */; };
 		C46BFF651E291EBA001D4C15 /* SelectMealViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */; };
@@ -102,6 +104,8 @@
 		C41F2C321E2FF9B800028E60 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		C426A2A11E5105D40074B6EA /* IngredientEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C426A2A21E5105D40074B6EA /* IngredientEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IngredientEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C426A2A91E5109860074B6EA /* IngredientsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
+		C426A2AD1E510FF50074B6EA /* IngredientsModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsModelTests.swift; sourceTree = "<group>"; };
 		C43822881E25FADF00179062 /* AddMealAlertCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreator.swift; sourceTree = "<group>"; };
 		C438228A1E25FD6100179062 /* AddMealAlertCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealAlertCreatorTests.swift; sourceTree = "<group>"; };
 		C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewControllerTests.swift; sourceTree = "<group>"; };
@@ -379,6 +383,7 @@
 				C4E9D7251E204237008926BC /* Meal.swift */,
 				C4E1BD251E1C5AB800811965 /* MealsModel.swift */,
 				C4E9D72D1E204D72008926BC /* WeeklyMealPlanModel.swift */,
+				C426A2A91E5109860074B6EA /* IngredientsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				C46DB9081E4BC6F0001C1005 /* CoreData */,
 				C4E1BD221E1C594B00811965 /* MealsModelTests.swift */,
 				C4E9D72F1E204F1F008926BC /* WeeklyMealPlanModelTests.swift */,
+				C426A2AD1E510FF50074B6EA /* IngredientsModelTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 			files = (
 				C47D86921E2181AD008FC4A3 /* MealsViewController.swift in Sources */,
 				C417AD731E453C540004C6FF /* SelectMealFactory.swift in Sources */,
+				C426A2AA1E5109860074B6EA /* IngredientsModel.swift in Sources */,
 				C417AD711E4536200004C6FF /* MealsFactory.swift in Sources */,
 				C4E9D72E1E204D72008926BC /* WeeklyMealPlanModel.swift in Sources */,
 				C49879CF1E4FBF2F00FD5605 /* ContextProviding.swift in Sources */,
@@ -574,6 +581,7 @@
 				C46BFF651E291EBA001D4C15 /* SelectMealViewControllerTests.swift in Sources */,
 				C471A8341E2824EB000A6F07 /* SelectMealPresenterTests.swift in Sources */,
 				C47D86901E21801F008FC4A3 /* MealsPresenterTests.swift in Sources */,
+				C426A2AE1E510FF50074B6EA /* IngredientsModelTests.swift in Sources */,
 				C417AD781E45488F0004C6FF /* ViewControllerNavigatingTests.swift in Sources */,
 				C47D868A1E216B9F008FC4A3 /* CollectionUtilsTests.swift in Sources */,
 				C4DE4FCA1E39470B0010CE52 /* ViewControllerMakingTests.swift in Sources */,
