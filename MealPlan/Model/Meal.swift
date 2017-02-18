@@ -3,7 +3,7 @@
 import Foundation
 
 struct Meal: Equatable {
-    var name: String
+    let name: String
 }
 
 func == (lhs: Meal, rhs: Meal) -> Bool {
