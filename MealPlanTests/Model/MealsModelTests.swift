@@ -7,8 +7,10 @@ import Nimble
 class MealsModelTests: QuickSpec {
     override func spec() {
         var subject: MealsModel!
+        var contextProvider: ContextProviding!
         beforeEach {
-            subject = MealsModel(contextProvider: makeInMemoryPersistenContainer())
+            contextProvider = makeInMemoryPersistenContainer()
+            subject = MealsModel(contextProvider: contextProvider)
         }
 
         describe("adding meals") {
@@ -23,6 +25,16 @@ class MealsModelTests: QuickSpec {
                 }
                 it("stores the first meal") {
                     expect(subject.getMeals()).to(equal([firstMeal]))
+                }
+
+                describe("saving behaviour") {
+                    beforeEach {
+                        contextProvider.mainContext.reset()
+                    }
+
+                    it("keeps updates after reset") {
+                        expect(subject.getMeals()).to(equal([firstMeal]))
+                    }
                 }
 
                 describe("second meal") {
@@ -73,6 +85,16 @@ class MealsModelTests: QuickSpec {
                 }
                 it("removes the meal") {
                     expect(subject.getMeals().count) == 0
+                }
+
+                describe("saving behaviour") {
+                    beforeEach {
+                        contextProvider.mainContext.reset()
+                    }
+
+                    it("keeps updates after reset") {
+                        expect(subject.getMeals().count) == 0
+                    }
                 }
             }
         }
