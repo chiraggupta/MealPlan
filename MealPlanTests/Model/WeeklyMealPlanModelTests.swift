@@ -11,9 +11,10 @@ class WeeklyMealPlanModelTests: QuickSpec {
         let emptyPeanutButter = Meal(name: "empty_peanut_butter")
 
         var subject: WeeklyMealPlanProvider!
+        var contextProvider: ContextProviding!
 
         beforeEach {
-            let contextProvider = makeInMemoryPersistenContainer()
+            contextProvider = makeInMemoryPersistenContainer()
             subject = WeeklyMealPlanModel(contextProvider: contextProvider)
 
             let mealsModel = MealsModel(contextProvider: contextProvider)
@@ -49,6 +50,16 @@ class WeeklyMealPlanModelTests: QuickSpec {
             }
             it("updates the weekly meal plan") {
                 expect(subject.getWeeklyMealPlan()).to(equal([.monday: dharmaCannedFood]))
+            }
+
+            describe("saving behaviour") {
+                beforeEach {
+                    contextProvider.mainContext.reset()
+                }
+
+                it("keeps updates after reset") {
+                    expect(subject.getWeeklyMealPlan()).to(equal([.monday: dharmaCannedFood]))
+                }
             }
 
             describe("selecting another meal for the same day") {
