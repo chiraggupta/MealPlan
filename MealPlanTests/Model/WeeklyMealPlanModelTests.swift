@@ -31,9 +31,9 @@ class WeeklyMealPlanModelTests: QuickSpec {
             }
             context("when meals are selected for multiple days") {
                 beforeEach {
-                    subject.select(meal: islandBoar, day: .wednesday)
-                    subject.select(meal: dharmaCannedFood, day: .saturday)
-                    subject.select(meal: emptyPeanutButter, day: .sunday)
+                    subject.select(mealName: islandBoar.name, day: .wednesday)
+                    subject.select(mealName: dharmaCannedFood.name, day: .saturday)
+                    subject.select(mealName: emptyPeanutButter.name, day: .sunday)
                 }
                 it("gets the weekly meal plan") {
                     let expectedPlan = [DayOfWeek.wednesday: islandBoar,
@@ -46,7 +46,7 @@ class WeeklyMealPlanModelTests: QuickSpec {
 
         describe("selecting a meal") {
             beforeEach {
-                subject.select(meal: dharmaCannedFood, day: .monday)
+                subject.select(mealName: dharmaCannedFood.name, day: .monday)
             }
             it("updates the weekly meal plan") {
                 expect(subject.getWeeklyMealPlan()).to(equal([.monday: dharmaCannedFood]))
@@ -64,7 +64,7 @@ class WeeklyMealPlanModelTests: QuickSpec {
 
             describe("selecting another meal for the same day") {
                 beforeEach {
-                    subject.select(meal: islandBoar, day: .monday)
+                    subject.select(mealName: islandBoar.name, day: .monday)
                 }
                 it("replaces the existing meal") {
                     expect(subject.getWeeklyMealPlan()).to(equal([.monday: islandBoar]))
@@ -73,7 +73,7 @@ class WeeklyMealPlanModelTests: QuickSpec {
 
             describe("selecting a meal that does not exist in the database") {
                 it("it throws an assertion") {
-                    expect { () -> Void in _ = subject.select(meal: Meal(name: "fish_biscuits"), day: .monday) }
+                    expect { () -> Void in _ = subject.select(mealName: "fish_biscuits", day: .monday) }
                         .to(throwAssertion())
                 }
             }

@@ -33,8 +33,7 @@ class SelectMealPresenter: SelectMealPresenting {
     }
 
     func select(mealTitle: String) {
-        let meal = Meal(name: mealTitle)
-        mealPlanProvider.select(meal: meal, day: day)
+        mealPlanProvider.select(mealName: mealTitle, day: day)
     }
 
     func getSelectedMeal() -> String? {

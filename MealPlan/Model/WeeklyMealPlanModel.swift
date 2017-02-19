@@ -7,7 +7,7 @@ typealias WeeklyMealPlan = [DayOfWeek: Meal]
 
 protocol WeeklyMealPlanProvider {
     func getWeeklyMealPlan() -> WeeklyMealPlan
-    func select(meal: Meal, day: DayOfWeek)
+    func select(mealName: String, day: DayOfWeek)
 }
 
 struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
@@ -33,11 +33,11 @@ struct WeeklyMealPlanModel: WeeklyMealPlanProvider {
         return weekPlan
     }
 
-    func select(meal: Meal, day: DayOfWeek) {
+    func select(mealName: String, day: DayOfWeek) {
         let mealsModel = MealsModel(contextProvider: contextProvider)
 
-        guard let selectedMeal = mealsModel.getStoredMeal(name: meal.name) else {
-            assertionFailure("ERROR: Invalid meal \(meal.name) selected.")
+        guard let selectedMeal = mealsModel.getStoredMeal(name: mealName) else {
+            assertionFailure("ERROR: Invalid meal \(mealName) selected.")
             return
         }
 

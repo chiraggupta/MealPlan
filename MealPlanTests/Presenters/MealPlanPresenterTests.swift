@@ -100,6 +100,6 @@ extension MealPlanPresenterTests {
             return weeklyMealPlan
         }
 
-        func select(meal: Meal, day: DayOfWeek) {}
+        func select(mealName: String, day: DayOfWeek) {}
     }
 }

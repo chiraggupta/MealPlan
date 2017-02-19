@@ -45,7 +45,7 @@ class SelectMealPresenterTests: QuickSpec {
                 expect(mealPlanProvider.selectedDay).to(equal(DayOfWeek.wednesday))
             }
             it("selects the right meal") {
-                expect(mealPlanProvider.selectedMeal).to(equal(Meal(name: "wild_boar")))
+                expect(mealPlanProvider.selectedMeal).to(equal("wild_boar"))
             }
         }
 
@@ -107,15 +107,15 @@ extension SelectMealPresenterTests {
 
     class MockWeeklyMealPlanProvider: WeeklyMealPlanProvider {
         var weeklyMealPlan = WeeklyMealPlan()
-        var selectedMeal: Meal?
+        var selectedMeal: String?
         var selectedDay: DayOfWeek?
 
         func getWeeklyMealPlan() -> WeeklyMealPlan {
             return weeklyMealPlan
         }
 
-        func select(meal: Meal, day: DayOfWeek) {
-            selectedMeal = meal
+        func select(mealName: String, day: DayOfWeek) {
+            selectedMeal = mealName
             selectedDay = day
         }
     }
