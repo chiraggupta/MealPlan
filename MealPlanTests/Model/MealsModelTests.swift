@@ -67,13 +67,12 @@ class MealsModelTests: QuickSpec {
 
         describe("removing meals") {
             let fooMeal = Meal(name: "foo_meal")
-            let barMeal = Meal(name: "bar_meal")
             beforeEach {
                 _ = subject.add(meal: fooMeal)
             }
             context("when the meal does not exist") {
                 beforeEach {
-                    subject.remove(meal: barMeal)
+                    subject.remove(mealName: "bar_meal")
                 }
                 it("does nothing") {
                     expect(subject.getMeals()).to(equal([fooMeal]))
@@ -81,7 +80,7 @@ class MealsModelTests: QuickSpec {
             }
             context("when the meal exists") {
                 beforeEach {
-                    subject.remove(meal: fooMeal)
+                    subject.remove(mealName: "foo_meal")
                 }
                 it("removes the meal") {
                     expect(subject.getMeals().count) == 0

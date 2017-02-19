@@ -102,7 +102,7 @@ extension SelectMealPresenterTests {
         }
 
         func add(meal: Meal) -> Bool { return false }
-        func remove(meal: Meal) {}
+        func remove(mealName: String) {}
     }
 
     class MockWeeklyMealPlanProvider: WeeklyMealPlanProvider {

@@ -75,7 +75,7 @@ extension MealsViewController: UITableViewDelegate {
         if editingStyle == .delete {
             tableView.beginUpdates()
 
-            presenter.remove(meal: meals[indexPath.row])
+            presenter.remove(mealName: meals[indexPath.row].name)
             tableView.deleteRows(at: [indexPath], with: .automatic)
 
             tableView.endUpdates()

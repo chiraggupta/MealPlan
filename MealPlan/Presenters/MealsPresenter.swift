@@ -5,7 +5,7 @@ import Foundation
 protocol MealsPresenting {
     func updateMeals()
     func add(meal: Meal)
-    func remove(meal: Meal)
+    func remove(mealName: String)
     func doneTapped()
 }
 
@@ -29,8 +29,8 @@ class MealsPresenter: MealsPresenting {
         }
     }
 
-    func remove(meal: Meal) {
-        mealsProvider.remove(meal: meal)
+    func remove(mealName: String) {
+        mealsProvider.remove(mealName: mealName)
         view.set(meals: mealsProvider.getMeals())
     }
 

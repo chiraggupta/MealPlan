@@ -122,11 +122,13 @@ extension MealsViewControllerTests {
             updateMeals()
         }
 
-        func remove(meal: Meal) {
+        func remove(mealName: String) {
             removeMealCalled = true
-            if let mealToRemove = meals.index(of: meal) {
-                meals.remove(at: mealToRemove)
+
+            if let indexToRemove = meals.index(where: {$0.name == mealName}) {
+                meals.remove(at: indexToRemove)
             }
+
             view.set(meals: meals)
         }
 

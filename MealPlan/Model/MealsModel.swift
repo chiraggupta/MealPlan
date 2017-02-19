@@ -6,7 +6,7 @@ import CoreData
 protocol MealsProvider {
     func getMeals() -> [Meal]
     func add(meal: Meal) -> Bool
-    func remove(meal: Meal)
+    func remove(mealName: String)
 }
 
 struct MealsModel: MealsProvider {
@@ -39,8 +39,8 @@ struct MealsModel: MealsProvider {
         return true
     }
 
-    func remove(meal: Meal) {
-        guard let mealEntity = getStoredMeal(name: meal.name) else {
+    func remove(mealName: String) {
+        guard let mealEntity = getStoredMeal(name: mealName) else {
             return
         }
 
