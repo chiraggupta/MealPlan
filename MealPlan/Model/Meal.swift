@@ -4,8 +4,12 @@ import Foundation
 
 struct Meal: Equatable {
     init(name: String) {
+        self.init(name: name, ingredients: [])
+    }
+
+    init(name: String, ingredients: [Ingredient]) {
         self.name = name
-        self.ingredients = []
+        self.ingredients = ingredients
     }
 
     let name: String
