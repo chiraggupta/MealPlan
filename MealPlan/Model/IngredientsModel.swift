@@ -15,12 +15,15 @@ struct IngredientsModel {
         self.contextProvider = contextProvider
     }
 
-    func add(ingredients: [Ingredient]) {
+    func add(ingredients: [Ingredient]) -> [IngredientEntity] {
+        var storedIngredients = [IngredientEntity]()
         for ingredient in ingredients {
-            add(ingredient: ingredient)
+            let storedIngredient = add(ingredient: ingredient)
+            storedIngredients.append(storedIngredient)
         }
 
         Storage.saveContext(context)
+        return storedIngredients
     }
 
     func getIngredients() -> [Ingredient] {
@@ -31,20 +34,21 @@ struct IngredientsModel {
 
 // MARK: Private methods
 extension IngredientsModel {
-    fileprivate func add(ingredient: Ingredient) {
-        guard getIngredient(ingredient) == nil else {
-            return
+    fileprivate func add(ingredient: Ingredient) -> IngredientEntity {
+        if let storedIngredient = getIngredient(ingredient) {
+            return storedIngredient
         }
 
         let newIngredient = IngredientEntity(context: context)
         newIngredient.name = ingredient
+        return newIngredient
     }
 
-    fileprivate func getIngredient(_ ingredient: Ingredient) -> Ingredient? {
+    fileprivate func getIngredient(_ ingredient: Ingredient) -> IngredientEntity? {
         let request: NSFetchRequest<IngredientEntity> = IngredientEntity.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", ingredient)
         request.fetchLimit = 1
 
-        return Storage.fetch(request, context: context).first?.name
+        return Storage.fetch(request, context: context).first
     }
 }

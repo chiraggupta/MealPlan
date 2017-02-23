@@ -15,13 +15,19 @@ class IngredientsModelTests: QuickSpec {
         }
 
         describe("adding ingredients") {
+            var result = [IngredientEntity]()
             beforeEach {
-                subject.add(ingredients: ["peanut cheese", "oil balls"])
+                result = subject.add(ingredients: ["peanut cheese", "oil balls"])
             }
-            it("has the added ingredients") {
+            it("adds them") {
                 let ingredients = subject.getIngredients()
                 expect(ingredients.count) == 2
                 expect(ingredients).to(contain(["peanut cheese", "oil balls"]))
+            }
+            it("returns the added ingredients") {
+                expect(result.count) == 2
+                expect(result[0].name).to(equal("peanut cheese"))
+                expect(result[1].name).to(equal("oil balls"))
             }
 
             describe("saving behaviour") {
@@ -38,12 +44,17 @@ class IngredientsModelTests: QuickSpec {
 
             describe("adding duplicates") {
                 beforeEach {
-                    subject.add(ingredients: ["peanut cheese", "bitter balls"])
+                    result = subject.add(ingredients: ["peanut cheese", "bitter balls"])
                 }
                 it("doesn't store the duplicates") {
                     let ingredients = subject.getIngredients()
                     expect(ingredients.count) == 3
                     expect(ingredients).to(contain(["peanut cheese", "oil balls", "bitter balls"]))
+                }
+                it("returns the added ingredients") {
+                    expect(result.count) == 2
+                    expect(result[0].name).to(equal("peanut cheese"))
+                    expect(result[1].name).to(equal("bitter balls"))
                 }
             }
         }
