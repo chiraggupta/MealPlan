@@ -15,14 +15,16 @@ struct MealsModel: MealsProvider {
         return contextProvider.mainContext
     }
 
+    private let ingredientsModel: IngredientsModel
+
     init(contextProvider: ContextProviding) {
         self.contextProvider = contextProvider
+        ingredientsModel = IngredientsModel(contextProvider: contextProvider)
     }
 
     func getMeals() -> [Meal] {
-        let meals = getStoredMeals()
-
-        return meals.map { Meal(name: $0.name) }
+        let storedMeals = getStoredMeals()
+        return storedMeals.map { Meal(name: $0.name, ingredients: $0.getListOfIngredients()) }
     }
 
     func add(meal: Meal) -> Bool {
@@ -32,6 +34,9 @@ struct MealsModel: MealsProvider {
 
         let newMeal = MealEntity(context: context)
         newMeal.name = meal.name
+
+        let storedIngredients = ingredientsModel.add(ingredients: meal.ingredients)
+        newMeal.addToIngredients(NSSet(array: storedIngredients))
 
         Storage.saveContext(context)
         return true

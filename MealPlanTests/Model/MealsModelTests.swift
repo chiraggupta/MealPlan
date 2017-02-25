@@ -63,6 +63,29 @@ class MealsModelTests: QuickSpec {
                     }
                 }
             }
+
+            describe("meal with ingredients") {
+                let meal = Meal(name: "foo_meal", ingredients: ["bluesalt", "purplesalt"])
+                var result = false
+
+                beforeEach {
+                    result = subject.add(meal: meal)
+                }
+                it("succeeds") {
+                    expect(result).to(beTrue())
+                }
+                it("stores the meal with ingredients") {
+                    let ingredientsFromAddedMeal = subject.getMeals().first?.ingredients
+                    expect(ingredientsFromAddedMeal).to(contain(["bluesalt", "purplesalt"]))
+                }
+
+                it("stores the ingredients") {
+                    let ingredientsModel = IngredientsModel(contextProvider: contextProvider)
+                    let storedIngredients = ingredientsModel.getIngredients()
+
+                    expect(storedIngredients).to(contain(["bluesalt", "purplesalt"]))
+                }
+            }
         }
 
         describe("removing meals") {
