@@ -8,9 +8,9 @@ extension MealEntity {
         return NSFetchRequest<MealEntity>(entityName: "MealEntity")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var dayPlans: NSSet?
-    @NSManaged public var ingredients: NSSet?
+    @NSManaged public var ingredients: NSSet
 
 }
 

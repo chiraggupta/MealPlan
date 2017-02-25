@@ -22,9 +22,7 @@ struct MealsModel: MealsProvider {
     func getMeals() -> [Meal] {
         let meals = getStoredMeals()
 
-        return meals
-            .flatMap { $0.name }
-            .map { Meal(name: $0) }
+        return meals.map { Meal(name: $0.name) }
     }
 
     func add(meal: Meal) -> Bool {
