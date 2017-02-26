@@ -2,8 +2,32 @@
 
 import UIKit
 
-typealias AddMealViewType = ViewControllerNavigating
+protocol AddMealViewType: ViewControllerNavigating {
+    func setSaveButtonState(enabled: Bool)
+}
 
-class AddMealViewController: UIViewController, AddMealViewType {
+class AddMealViewController: UIViewController {
     var presenter: AddMealPresenting!
+
+    @IBOutlet weak var mealNameField: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        presenter.cancelTapped()
+    }
+
+    @IBAction func saveTapped(_ sender: UIBarButtonItem) {
+        presenter.saveTapped()
+    }
+
+    @IBAction func mealNameChanged() {
+        presenter.mealNameChanged(to: mealNameField.text!)
+    }
+}
+
+// MARK: AddMealViewType conformance
+extension AddMealViewController: AddMealViewType {
+    func setSaveButtonState(enabled: Bool) {
+        saveButton.isEnabled = enabled
+    }
 }

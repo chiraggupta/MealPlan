@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,18 +30,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YD6-ZS-jBx" id="Vr8-Ha-F44">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jip-1C-h8F">
-                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqy-1s-glj">
-                                                    <rect key="frame" x="296" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="296" y="11" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -93,11 +94,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AoB-OR-xEi" id="W9F-la-6pM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HdE-Gb-RWc">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -138,7 +139,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dQw-gQ-YcO" id="Qab-n0-z6W">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -181,7 +182,7 @@
         <!--Add Meal-->
         <scene sceneID="7VX-fF-UR2">
             <objects>
-                <viewController storyboardIdentifier="AddMealViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wDE-G5-ROy" userLabel="Add Meal" customClass="AddMealViewController" customModule="MealPlan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddMealViewController" title="Add Meal" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wDE-G5-ROy" userLabel="Add Meal" customClass="AddMealViewController" customModule="MealPlan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LXf-iP-uVt"/>
                         <viewControllerLayoutGuide type="bottom" id="X0c-xg-rPU"/>
@@ -189,12 +190,48 @@
                     <view key="view" contentMode="scaleToFill" id="kzg-mq-1LK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Los pollos hermanos" placeholder="Meal Name" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-78-bLu">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <action selector="mealNameChanged" destination="wDE-G5-ROy" eventType="editingChanged" id="dCQ-86-56s"/>
+                                    <outlet property="delegate" destination="wDE-G5-ROy" id="fkn-wR-Qg4"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oJM-78-bLu" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="3UY-0c-IiA"/>
+                            <constraint firstItem="oJM-78-bLu" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="HQJ-Qg-Eq1"/>
+                            <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="8" symbolic="YES" id="nyE-1c-2FI"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add Meal" id="Nzc-lC-nl1">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dgD-5S-h1X">
+                            <connections>
+                                <action selector="cancelTapped:" destination="wDE-G5-ROy" id="dX1-uz-Obd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="ko3-wW-A5u">
+                            <connections>
+                                <action selector="saveTapped:" destination="wDE-G5-ROy" id="JM9-3Q-auF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mealNameField" destination="oJM-78-bLu" id="RQL-4K-1XL"/>
+                        <outlet property="saveButton" destination="ko3-wW-A5u" id="I3i-vj-Rft"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVM-RE-9Ah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="-100"/>
+            <point key="canvasLocation" x="544.79999999999995" y="-100.29985007496252"/>
         </scene>
     </scenes>
 </document>

@@ -11,6 +11,9 @@ class AppDelegateTests: QuickSpec {
 
         describe("root view controller on launch") {
             beforeEach {
+                let delegate = UIApplication.shared.delegate as? AppDelegate
+                _ = delegate?.application(UIApplication.shared, didFinishLaunchingWithOptions: nil)
+
                 root = UIApplication.shared.keyWindow?.rootViewController
                 displayed = (root as? UINavigationController)?.topViewController
             }
