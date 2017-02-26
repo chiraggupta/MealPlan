@@ -20,7 +20,7 @@ class AddMealPresenter: AddMealPresenting {
     }
 
     func mealNameChanged(to newMealName: String) {
-        mealName = newMealName
+        mealName = newMealName.trimmingCharacters(in: .whitespaces)
 
         let saveButtonState = mealName.characters.count > 0
         view.setSaveButtonState(enabled: saveButtonState)

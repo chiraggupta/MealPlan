@@ -27,6 +27,14 @@ class AddMealPresenterTests: QuickSpec {
                     expect(view.saveButtonState).to(beTrue())
                 }
             }
+            context("it has whitespaces") {
+                beforeEach {
+                    subject.mealNameChanged(to: "  dharma canned food  \t")
+                }
+                it("trims and updates the meal name") {
+                    expect(subject.mealName).to(equal("dharma canned food"))
+                }
+            }
             context("it is invalid") {
                 beforeEach {
                     subject.mealNameChanged(to: "")
