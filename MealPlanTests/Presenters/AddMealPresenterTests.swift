@@ -8,10 +8,10 @@ class AddMealPresenterTests: QuickSpec {
     override func spec() {
         var subject: AddMealPresenter!
         let view = MockAddMealView()
-        var model: MealsModel!
+        var model: MockMealsProvider!
 
         beforeEach {
-            model = MealsModel(contextProvider: FakeContextProvider())
+            model = MockMealsProvider()
             subject = AddMealPresenter(view: view, mealsProvider: model)
         }
 
@@ -59,7 +59,11 @@ class AddMealPresenterTests: QuickSpec {
 
         describe("save tapped") {
             beforeEach {
+                subject.mealName = "empty peanut butter"
                 subject.saveTapped()
+            }
+            it("saves the last updated meal") {
+                expect(model.addedMeal).to(equal(Meal(name: "empty peanut butter")))
             }
             it("hides the view") {
                 expect(view.hideModalCalled).to(beTrue())
@@ -83,5 +87,16 @@ extension AddMealPresenterTests {
 
         func display(_ viewController: UIViewController) {}
         func displayModally(_ viewController: UIViewController) {}
+    }
+
+    class MockMealsProvider: MealsProvider {
+        private(set) var addedMeal: Meal?
+        func add(meal: Meal) -> Bool {
+            addedMeal = meal
+            return false
+        }
+
+        func getMeals() -> [Meal] { return [] }
+        func remove(mealName: String) {}
     }
 }

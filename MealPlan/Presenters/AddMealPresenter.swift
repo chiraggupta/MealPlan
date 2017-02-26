@@ -31,6 +31,7 @@ class AddMealPresenter: AddMealPresenting {
     }
 
     func saveTapped() {
+        mealsProvider.add(meal: Meal(name: mealName))
         view.hideModal()
     }
 }
