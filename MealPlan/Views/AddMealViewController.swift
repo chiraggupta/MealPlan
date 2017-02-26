@@ -21,7 +21,9 @@ class AddMealViewController: UIViewController {
     }
 
     @IBAction func mealNameChanged() {
-        presenter.mealNameChanged(to: mealNameField.text!)
+        if let mealName = mealNameField.text {
+            presenter.mealNameChanged(to: mealName)
+        }
     }
 }
 
