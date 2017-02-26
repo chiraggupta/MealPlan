@@ -33,7 +33,11 @@ class AddMealPresenter: AddMealPresenting {
     }
 
     func saveTapped() {
-        _ = mealsProvider.add(meal: Meal(name: mealName))
-        view.hideModal()
+        let mealAdded = mealsProvider.add(meal: Meal(name: mealName))
+        if mealAdded {
+            view.hideModal()
+        } else {
+            view.showDuplicateMealAlert()
+        }
     }
 }

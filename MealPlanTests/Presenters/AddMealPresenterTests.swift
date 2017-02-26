@@ -7,10 +7,11 @@ import Nimble
 class AddMealPresenterTests: QuickSpec {
     override func spec() {
         var subject: AddMealPresenter!
-        let view = MockAddMealView()
+        var view: MockAddMealView!
         var model: MockMealsProvider!
 
         beforeEach {
+            view = MockAddMealView()
             model = MockMealsProvider()
             let ingredientsModel = IngredientsModel(contextProvider: FakeContextProvider())
             subject = AddMealPresenter(view: view, mealsProvider: model, ingredientsProvider: ingredientsModel)
@@ -59,15 +60,29 @@ class AddMealPresenterTests: QuickSpec {
         }
 
         describe("save tapped") {
-            beforeEach {
-                subject.mealName = "empty peanut butter"
-                subject.saveTapped()
+            context("adding meal succeeds") {
+                beforeEach {
+                    subject.mealName = "empty peanut butter"
+                    subject.saveTapped()
+                }
+                it("saves the last updated meal") {
+                    expect(model.addedMeal).to(equal(Meal(name: "empty peanut butter")))
+                }
+                it("hides the view") {
+                    expect(view.hideModalCalled).to(beTrue())
+                }
             }
-            it("saves the last updated meal") {
-                expect(model.addedMeal).to(equal(Meal(name: "empty peanut butter")))
-            }
-            it("hides the view") {
-                expect(view.hideModalCalled).to(beTrue())
+            context("adding meal fails") {
+                beforeEach {
+                    model.addReturnValue = false
+                    subject.saveTapped()
+                }
+                it("shows duplicate meal alert") {
+                    expect(view.showDuplicateMealAlertCalled).to(beTrue())
+                }
+                it("does not hide the view") {
+                    expect(view.hideModalCalled).to(beFalse())
+                }
             }
         }
     }
@@ -86,15 +101,21 @@ extension AddMealPresenterTests {
             saveButtonState = enabled
         }
 
+        private(set) var showDuplicateMealAlertCalled = false
+        func showDuplicateMealAlert() {
+            showDuplicateMealAlertCalled = true
+        }
+
         func display(_ viewController: UIViewController) {}
         func displayModally(_ viewController: UIViewController) {}
     }
 
     class MockMealsProvider: MealsProvider {
+        var addReturnValue = true
         private(set) var addedMeal: Meal?
         func add(meal: Meal) -> Bool {
             addedMeal = meal
-            return false
+            return addReturnValue
         }
 
         func getMeals() -> [Meal] { return [] }

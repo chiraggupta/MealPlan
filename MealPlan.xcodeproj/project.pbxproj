@@ -361,9 +361,9 @@
 			isa = PBXGroup;
 			children = (
 				C4D418F31E1EF3FD002B0D66 /* MealPlanPresenterTests.swift */,
+				C4B6DAC51E62C8AB008BFFCB /* AddMealPresenterTests.swift */,
 				C47D868F1E21801F008FC4A3 /* MealsPresenterTests.swift */,
 				C471A8331E2824EB000A6F07 /* SelectMealPresenterTests.swift */,
-				C4B6DAC51E62C8AB008BFFCB /* AddMealPresenterTests.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -373,9 +373,9 @@
 			children = (
 				C417AD761E4548630004C6FF /* Common */,
 				C4D418F51E1EFC24002B0D66 /* MealPlanViewControllerTests.swift */,
+				C4B6DAC31E62C895008BFFCB /* AddMealViewControllerTests.swift */,
 				C4A2FF511E219209009AC6AD /* MealsViewControllerTests.swift */,
 				C46BFF641E291EBA001D4C15 /* SelectMealViewControllerTests.swift */,
-				C4B6DAC31E62C895008BFFCB /* AddMealViewControllerTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
