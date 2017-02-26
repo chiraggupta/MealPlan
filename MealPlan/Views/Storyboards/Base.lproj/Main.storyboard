@@ -66,7 +66,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meal Plan" id="cFd-dr-B2R">
-                        <barButtonItem key="leftBarButtonItem" title="My Meals" id="aIl-zI-qg3">
+                        <barButtonItem key="rightBarButtonItem" title="My Meals" id="aIl-zI-qg3">
                             <connections>
                                 <action selector="myMealsTapped:" destination="BYZ-38-t0r" id="Vxi-8a-uqk"/>
                             </connections>
@@ -159,7 +159,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Meals" id="cRm-d9-xca">
-                        <barButtonItem key="leftBarButtonItem" title="Done" id="lDD-54-thM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lDD-54-thM">
                             <connections>
                                 <action selector="done:" destination="pFF-8q-WMv" id="aRK-Ns-tnm"/>
                             </connections>
@@ -191,8 +191,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Meal Name" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-78-bLu">
-                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Meal Name" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-78-bLu">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -211,12 +211,12 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Meal" id="Nzc-lC-nl1">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dgD-5S-h1X">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dgD-5S-h1X">
                             <connections>
                                 <action selector="cancelTapped:" destination="wDE-G5-ROy" id="dX1-uz-Obd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="ko3-wW-A5u">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ko3-wW-A5u">
                             <connections>
                                 <action selector="saveTapped:" destination="wDE-G5-ROy" id="JM9-3Q-auF"/>
                             </connections>
