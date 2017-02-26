@@ -9,7 +9,6 @@ protocol MealsViewType: ViewControllerNavigating {
 
 class MealsViewController: UIViewController {
     var presenter: MealsPresenting!
-    var addMealAlertCreator: AlertCreator!
     fileprivate var meals = [Meal]()
 
     @IBOutlet weak var tableView: UITableView!
@@ -21,19 +20,7 @@ class MealsViewController: UIViewController {
     }
 
     @IBAction func add(_ sender: UIBarButtonItem) {
-        let alertCreator = addMealAlertCreator ?? AddMealAlertCreator()
-        let alertController = alertCreator.create { mealTitle in
-            self.addMealIfValid(title: mealTitle)
-        }
-
-        present(alertController, animated: true, completion: nil)
-    }
-
-    func addMealIfValid(title: String) {
-        let trimmedMealTitle = title.trimmingCharacters(in: .whitespaces)
-        if !trimmedMealTitle.isEmpty {
-            presenter.add(meal: Meal(name: trimmedMealTitle))
-        }
+        presenter.addTapped()
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
