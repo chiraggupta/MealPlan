@@ -54,7 +54,7 @@ class MealsViewControllerTests: XCTestCase {
     func testTappingDoneCallsPresenter() {
         subject.done(UIBarButtonItem())
 
-        XCTAssertTrue(presenter.doneTappedCalled)
+        XCTAssertTrue(presenter.cancelTappedCalled)
     }
 }
 
@@ -68,7 +68,7 @@ extension MealsViewControllerTests {
         private(set) var addMealArgument: Meal?
         private(set) var removeMealCalled = false
         private(set) var addTappedCalled = false
-        private(set) var doneTappedCalled = false
+        private(set) var cancelTappedCalled = false
         private(set) var meals: [Meal]!
 
         init(view: MealsViewType, initialMeals: [Meal]) {
@@ -103,8 +103,8 @@ extension MealsViewControllerTests {
             addTappedCalled = true
         }
 
-        func doneTapped() {
-            doneTappedCalled = true
+        func cancelTapped() {
+            cancelTappedCalled = true
         }
     }
 }

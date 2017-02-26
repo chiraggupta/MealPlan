@@ -24,7 +24,7 @@ class MealsViewController: UIViewController {
     }
 
     @IBAction func done(_ sender: UIBarButtonItem) {
-        presenter.doneTapped()
+        presenter.cancelTapped()
     }
 }
 

@@ -61,7 +61,7 @@ class MealsPresenterTests: XCTestCase {
     }
 
     func testTappingDoneHidesView() {
-        subject.doneTapped()
+        subject.cancelTapped()
 
         XCTAssertTrue(view.hideModalCalled)
     }
