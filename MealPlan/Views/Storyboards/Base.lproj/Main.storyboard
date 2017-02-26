@@ -159,9 +159,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Meals" id="cRm-d9-xca">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lDD-54-thM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="lDD-54-thM">
                             <connections>
-                                <action selector="done:" destination="pFF-8q-WMv" id="aRK-Ns-tnm"/>
+                                <action selector="close:" destination="pFF-8q-WMv" id="ywd-gi-fRe"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2pQ-ab-Hag">

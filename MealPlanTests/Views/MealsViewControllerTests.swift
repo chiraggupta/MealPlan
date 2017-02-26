@@ -51,10 +51,10 @@ class MealsViewControllerTests: XCTestCase {
         XCTAssertEqual(initialMeals.count - 1, newCount, "count should be one lesser")
     }
 
-    func testTappingDoneCallsPresenter() {
-        subject.done(UIBarButtonItem())
+    func testTappingCloseCallsPresenter() {
+        subject.close(UIBarButtonItem())
 
-        XCTAssertTrue(presenter.cancelTappedCalled)
+        XCTAssertTrue(presenter.closeTappedCalled)
     }
 }
 
@@ -66,7 +66,7 @@ extension MealsViewControllerTests {
         private(set) var updateMealsCalled = false
         private(set) var removeMealCalled = false
         private(set) var addTappedCalled = false
-        private(set) var cancelTappedCalled = false
+        private(set) var closeTappedCalled = false
         private(set) var meals: [Meal]!
 
         init(view: MealsViewType, initialMeals: [Meal]) {
@@ -94,8 +94,8 @@ extension MealsViewControllerTests {
             addTappedCalled = true
         }
 
-        func cancelTapped() {
-            cancelTappedCalled = true
+        func closeTapped() {
+            closeTappedCalled = true
         }
     }
 }

@@ -6,7 +6,7 @@ protocol MealsPresenting {
     func updateMeals()
     func remove(mealName: String)
     func addTapped()
-    func cancelTapped()
+    func closeTapped()
 }
 
 class MealsPresenter: MealsPresenting {
@@ -35,7 +35,7 @@ class MealsPresenter: MealsPresenting {
         view.displayModally(addMealFactory.makeViewController())
     }
 
-    func cancelTapped() {
+    func closeTapped() {
         view.hideModal()
     }
 }
