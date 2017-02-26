@@ -10,13 +10,12 @@ protocol MealsViewType: ViewControllerNavigating {
 class MealsViewController: UIViewController {
     var presenter: MealsPresenting!
     var addMealAlertCreator: AlertCreator!
+    fileprivate var meals = [Meal]()
 
     @IBOutlet weak var tableView: UITableView!
 
-    fileprivate var meals = [Meal]()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         presenter.updateMeals()
     }
