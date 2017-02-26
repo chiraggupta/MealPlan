@@ -6,16 +6,19 @@ protocol MealsPresenting {
     func updateMeals()
     func add(meal: Meal)
     func remove(mealName: String)
+    func addTapped()
     func doneTapped()
 }
 
 class MealsPresenter: MealsPresenting {
     unowned let view: MealsViewType
     fileprivate let mealsProvider: MealsProvider
+    private let contextProvider: ContextProviding
 
-    init(view: MealsViewType, mealsProvider: MealsProvider) {
+    init(view: MealsViewType, mealsProvider: MealsProvider, contextProvider: ContextProviding) {
         self.view = view
         self.mealsProvider = mealsProvider
+        self.contextProvider = contextProvider
     }
 
     func updateMeals() {
@@ -32,6 +35,11 @@ class MealsPresenter: MealsPresenting {
     func remove(mealName: String) {
         mealsProvider.remove(mealName: mealName)
         view.set(meals: mealsProvider.getMeals())
+    }
+
+    func addTapped() {
+        let addMealFactory = AddMealFactory(contextProvider: contextProvider)
+        view.displayModally(addMealFactory.makeViewController())
     }
 
     func doneTapped() {

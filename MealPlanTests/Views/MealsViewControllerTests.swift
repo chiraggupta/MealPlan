@@ -101,6 +101,7 @@ extension MealsViewControllerTests {
         private(set) var addMealCalled = false
         private(set) var addMealArgument: Meal?
         private(set) var removeMealCalled = false
+        private(set) var addTappedCalled = false
         private(set) var doneTappedCalled = false
         private(set) var meals: [Meal]!
 
@@ -130,6 +131,10 @@ extension MealsViewControllerTests {
             }
 
             view.set(meals: meals)
+        }
+
+        func addTapped() {
+            addTappedCalled = true
         }
 
         func doneTapped() {

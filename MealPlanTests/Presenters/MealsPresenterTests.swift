@@ -11,8 +11,9 @@ class MealsPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        model = MealsModel(contextProvider: makeInMemoryPersistenContainer())
-        subject = MealsPresenter(view: view, mealsProvider: model)
+        let contextProvider = makeInMemoryPersistenContainer()
+        model = MealsModel(contextProvider: contextProvider)
+        subject = MealsPresenter(view: view, mealsProvider: model, contextProvider: contextProvider)
     }
 
     func testUpdateMealsForView() {
@@ -64,6 +65,18 @@ class MealsPresenterTests: XCTestCase {
 
         XCTAssertTrue(view.hideModalCalled)
     }
+
+    func testTappingAddPresentsAddMealsViewController() {
+        subject.addTapped()
+
+        XCTAssertTrue(view.displayedModally is UINavigationController)
+
+        let displayedViewController = (view.displayedModally as? UINavigationController)?.topViewController
+        XCTAssertTrue(displayedViewController is AddMealViewController)
+
+        let presenter = (displayedViewController as? AddMealViewController)?.presenter
+        XCTAssertTrue(presenter is AddMealPresenter)
+    }
 }
 
 // MARK: Test doubles
@@ -72,6 +85,8 @@ extension MealsPresenterTests {
         private(set) var setArguments = [Meal]()
         private(set) var reloadCalled = false
         private(set) var hideModalCalled = false
+        private(set) var displayed: UIViewController?
+        private(set) var displayedModally: UIViewController?
 
         func set(meals: [Meal]) {
             setArguments = meals
@@ -85,7 +100,12 @@ extension MealsPresenterTests {
             hideModalCalled = true
         }
 
-        func display(_ viewController: UIViewController) {}
-        func displayModally(_ viewController: UIViewController) {}
+        func display(_ viewController: UIViewController) {
+            displayed = viewController
+        }
+
+        func displayModally(_ viewController: UIViewController) {
+            displayedModally = viewController
+        }
     }
 }
