@@ -178,5 +178,23 @@
             </objects>
             <point key="canvasLocation" x="-247" y="-100"/>
         </scene>
+        <!--Add Meal-->
+        <scene sceneID="7VX-fF-UR2">
+            <objects>
+                <viewController storyboardIdentifier="AddMealViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wDE-G5-ROy" userLabel="Add Meal" customClass="AddMealViewController" customModule="MealPlan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LXf-iP-uVt"/>
+                        <viewControllerLayoutGuide type="bottom" id="X0c-xg-rPU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kzg-mq-1LK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NVM-RE-9Ah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="545" y="-100"/>
+        </scene>
     </scenes>
 </document>
