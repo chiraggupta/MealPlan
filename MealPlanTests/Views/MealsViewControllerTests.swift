@@ -64,8 +64,6 @@ extension MealsViewControllerTests {
         let view: MealsViewType!
 
         private(set) var updateMealsCalled = false
-        private(set) var addMealCalled = false
-        private(set) var addMealArgument: Meal?
         private(set) var removeMealCalled = false
         private(set) var addTappedCalled = false
         private(set) var cancelTappedCalled = false
@@ -80,13 +78,6 @@ extension MealsViewControllerTests {
             updateMealsCalled = true
             view.set(meals: meals)
             view.reload()
-        }
-
-        func add(meal: Meal) {
-            addMealCalled = true
-            addMealArgument = meal
-            meals.append(meal)
-            updateMeals()
         }
 
         func remove(mealName: String) {

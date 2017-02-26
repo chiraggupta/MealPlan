@@ -33,16 +33,6 @@ class MealsPresenterTests: XCTestCase {
         XCTAssertEqual([fooMeal], model.getMeals(), "meal not added to model")
     }
 
-    func testAddMealForView() {
-        _ = model.add(meal: Meal(name: "foo_meal"))
-
-        let barMeal = Meal(name: "bar_meal")
-        subject.add(meal: barMeal)
-
-        XCTAssertEqual(model.getMeals(), view.setArguments, "incorrect meals were set")
-        XCTAssertTrue(view.reloadCalled, "view was not reloaded")
-    }
-
     func testRemoveMealForModel() {
         _ = model.add(meal: Meal(name: "foo_meal"))
 

@@ -4,7 +4,6 @@ import Foundation
 
 protocol MealsPresenting {
     func updateMeals()
-    func add(meal: Meal)
     func remove(mealName: String)
     func addTapped()
     func cancelTapped()
@@ -24,12 +23,6 @@ class MealsPresenter: MealsPresenting {
     func updateMeals() {
         view.set(meals: mealsProvider.getMeals())
         view.reload()
-    }
-
-    func add(meal: Meal) {
-        if mealsProvider.add(meal: meal) {
-            updateMeals()
-        }
     }
 
     func remove(mealName: String) {
