@@ -5,6 +5,10 @@ import CoreData
 
 typealias Ingredient = String
 
+protocol IngredientsProvider {
+    func getIngredients() -> [Ingredient]
+}
+
 struct IngredientsModel {
     private let contextProvider: ContextProviding
     fileprivate var context: NSManagedObjectContext {
@@ -25,7 +29,10 @@ struct IngredientsModel {
         Storage.saveContext(context)
         return storedIngredients
     }
+}
 
+// MARK: IngredientsProvider conformance
+extension IngredientsModel: IngredientsProvider {
     func getIngredients() -> [Ingredient] {
         let storedIngredients = Storage.fetch(IngredientEntity.fetchRequest(), context: context)
         return storedIngredients.flatMap { $0.name }

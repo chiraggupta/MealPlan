@@ -12,7 +12,8 @@ class AddMealPresenterTests: QuickSpec {
 
         beforeEach {
             model = MockMealsProvider()
-            subject = AddMealPresenter(view: view, mealsProvider: model)
+            let ingredientsModel = IngredientsModel(contextProvider: FakeContextProvider())
+            subject = AddMealPresenter(view: view, mealsProvider: model, ingredientsProvider: ingredientsModel)
         }
 
         describe("meal name changed") {

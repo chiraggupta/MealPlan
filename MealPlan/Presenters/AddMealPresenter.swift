@@ -10,13 +10,15 @@ protocol AddMealPresenting {
 
 class AddMealPresenter: AddMealPresenting {
     unowned let view: AddMealViewType
-    fileprivate let mealsProvider: MealsProvider
+    private let mealsProvider: MealsProvider
+    private let ingredientsProvider: IngredientsProvider
 
     var mealName = ""
 
-    init(view: AddMealViewType, mealsProvider: MealsProvider) {
+    init(view: AddMealViewType, mealsProvider: MealsProvider, ingredientsProvider: IngredientsProvider) {
         self.view = view
         self.mealsProvider = mealsProvider
+        self.ingredientsProvider = ingredientsProvider
     }
 
     func mealNameChanged(to newMealName: String) {
