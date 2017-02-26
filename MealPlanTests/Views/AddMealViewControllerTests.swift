@@ -64,6 +64,32 @@ class AddMealViewControllerTests: QuickSpec {
                 }
             }
         }
+
+        describe("duplicate meal") {
+            beforeEach {
+                subject.showDuplicateMealAlert()
+            }
+            it("shows an alert") {
+                expect(subject.presentedViewController).to(beAKindOf(UIAlertController.self))
+                expect(subject.presentedViewController?.view).toNot(beNil())
+            }
+            describe("alert configuration") {
+                var alert: UIAlertController?
+                beforeEach {
+                    alert = subject.presentedViewController as? UIAlertController
+                }
+                it("has the correct title") {
+                    expect(alert?.title).to(equal("Duplicate Meal"))
+                }
+                it("has the correct text") {
+                    expect(alert?.message).to(equal("A meal with the name same name already exists."))
+                }
+                it("has one action which is OK") {
+                    expect(alert?.actions.count) == 1
+                    expect(alert?.actions.first?.title).to(equal("OK"))
+                }
+            }
+        }
     }
 }
 

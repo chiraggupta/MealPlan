@@ -35,6 +35,12 @@ extension AddMealViewController: AddMealViewType {
     }
 
     func showDuplicateMealAlert() {
+        let alert = UIAlertController(title: "Duplicate Meal",
+                                      message: "A meal with the name same name already exists.",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
 
+        present(alert, animated: true)
     }
 }
