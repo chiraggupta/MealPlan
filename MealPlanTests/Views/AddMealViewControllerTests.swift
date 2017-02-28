@@ -18,6 +18,15 @@ class AddMealViewControllerTests: QuickSpec {
             subject.setAsRootViewController()
         }
 
+        describe("showing the view") {
+            beforeEach {
+                subject.viewDidAppear(false)
+            }
+            it("opens the keyboard focused on meal name") {
+                expect(subject.mealNameField.isFirstResponder).to(beTrue())
+            }
+        }
+
         describe("meal name field changes") {
             beforeEach {
                 subject.mealNameField.text = "blah"

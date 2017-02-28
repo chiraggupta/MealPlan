@@ -13,6 +13,12 @@ class AddMealViewController: UIViewController {
     @IBOutlet weak var mealNameField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        mealNameField.becomeFirstResponder()
+    }
+
     @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
         presenter.cancelTapped()
     }
