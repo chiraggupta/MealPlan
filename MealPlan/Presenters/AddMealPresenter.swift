@@ -5,6 +5,7 @@ import Foundation
 protocol AddMealPresenting {
     func mealNameChanged(to newMealName: String)
     func ingredientAdded(_ ingredient: Ingredient)
+    var ingredients: [Ingredient] { get }
     func saveTapped()
     func cancelTapped()
 }
@@ -41,6 +42,7 @@ class AddMealPresenter: AddMealPresenting {
         }
 
         ingredients.append(ingredient)
+        view.reloadIngredients()
     }
 
     func cancelTapped() {

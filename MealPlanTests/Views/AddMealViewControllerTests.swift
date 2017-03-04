@@ -139,6 +139,40 @@ class AddMealViewControllerTests: QuickSpec {
                 }
             }
         }
+
+        describe("ingredients collection") {
+            beforeEach {
+                presenter.ingredients = ["purple salt", "blue saly"]
+            }
+            it("has the correct number of items") {
+                let count = subject.collectionView(subject.ingredientsCollection, numberOfItemsInSection: 0)
+                expect(count) == 2
+            }
+            it("creates the ingredient cell with the correct ingredients") {
+                for index in 0..<presenter.ingredients.count {
+                    let indexPath = IndexPath(row: index, section: 0)
+                    let cell = subject.collectionView(subject.ingredientsCollection, cellForItemAt: indexPath)
+
+                    expect((cell as? AddIngredientCell)?.ingredientName.text).to(equal(presenter.ingredients[index]))
+                }
+            }
+            it("throws a fatal error if cell is incorrect") {
+                let indexPath = IndexPath(row: 0, section: 0)
+                expect { () -> Void in _ = subject.collectionView(MockCollectionView(), cellForItemAt: indexPath) }
+                    .to(throwAssertion())
+            }
+
+            describe("reloading ingredients") {
+                let mockIngredientsCollection = MockCollectionView()
+                beforeEach {
+                    subject.ingredientsCollection = mockIngredientsCollection
+                    subject.reloadIngredients()
+                }
+                it("reloads the ingredients collection") {
+                    expect(mockIngredientsCollection.reloadDataCalled).to(beTrue())
+                }
+            }
+        }
     }
 }
 
@@ -163,6 +197,29 @@ extension AddMealViewControllerTests {
         private(set) var addedIngredient: Ingredient?
         func ingredientAdded(_ ingredient: Ingredient) {
             addedIngredient = ingredient
+        }
+
+        var ingredients = [Ingredient]()
+    }
+
+    class MockCollectionView: UICollectionView {
+        init() {
+            super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                       collectionViewLayout: UICollectionViewFlowLayout())
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        override func dequeueReusableCell(withReuseIdentifier identifier: String,
+                                          for indexPath: IndexPath) -> UICollectionViewCell {
+            return UICollectionViewCell()
+        }
+
+        private(set) var reloadDataCalled = false
+        override func reloadData() {
+            reloadDataCalled = true
         }
     }
 }

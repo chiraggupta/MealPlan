@@ -4,6 +4,7 @@ import UIKit
 
 protocol AddMealViewType: ViewControllerNavigating {
     func setSaveButtonState(enabled: Bool)
+    func reloadIngredients()
     func showDuplicateMealAlert()
 }
 
@@ -12,6 +13,7 @@ class AddMealViewController: UIViewController {
 
     @IBOutlet weak var mealNameField: UITextField!
     @IBOutlet weak var ingredientField: UITextField!
+    @IBOutlet weak var ingredientsCollection: UICollectionView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
@@ -47,6 +49,10 @@ extension AddMealViewController: AddMealViewType {
         saveButton.isEnabled = enabled
     }
 
+    func reloadIngredients() {
+        ingredientsCollection.reloadData()
+    }
+
     func showDuplicateMealAlert() {
         let alert = UIAlertController(title: "Duplicate Meal",
                                       message: "A meal with the same name already exists.",
@@ -71,5 +77,24 @@ extension AddMealViewController: UITextFieldDelegate {
 
         textField.text = ""
         return true
+    }
+}
+
+// MARK: Ingredients collectionview data source
+extension AddMealViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter.ingredients.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddIngredientCell", for: indexPath)
+        guard let ingredientCell = cell as? AddIngredientCell else {
+            fatalError("Expected AddIngredientCell")
+        }
+        ingredientCell.ingredientName.text = presenter.ingredients[indexPath.row]
+
+        return ingredientCell
     }
 }
