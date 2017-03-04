@@ -158,11 +158,11 @@ class AddMealViewControllerTests: QuickSpec {
             }
             it("gets the correct size for ingredient cell") {
                 let correctSize = "purple salt".size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
-                let size = subject.collectionView(subject.ingredientsCollection,
-                                                  layout: subject.ingredientsCollection.collectionViewLayout,
-                                                  sizeForItemAt: IndexPath(row: 0, section: 0))
 
-                expect(size).to(equal(correctSize))
+                let indexPath = IndexPath(row: 0, section: 0)
+                let cell = subject.collectionView(subject.ingredientsCollection, cellForItemAt: indexPath)
+
+                expect(cell.frame.size).to(equal(correctSize))
             }
             it("throws a fatal error if cell is incorrect") {
                 let indexPath = IndexPath(row: 0, section: 0)

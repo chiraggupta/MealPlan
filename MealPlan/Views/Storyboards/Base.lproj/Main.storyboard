@@ -252,6 +252,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="wDE-G5-ROy" id="aX2-8q-VzE"/>
+                                    <outlet property="delegate" destination="wDE-G5-ROy" id="mER-0n-Icr"/>
                                 </connections>
                             </collectionView>
                         </subviews>
