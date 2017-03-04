@@ -18,12 +18,15 @@ class AddMealViewControllerTests: QuickSpec {
             subject.setAsRootViewController()
         }
 
-        describe("showing the view") {
+        describe("initial state") {
             beforeEach {
                 subject.viewDidAppear(false)
             }
-            it("opens the keyboard focused on meal name") {
+            it("keyboard is open and focused on meal name") {
                 expect(subject.mealNameField.isFirstResponder).to(beTrue())
+            }
+            it("save is disabled") {
+                expect(subject.saveButton.isEnabled).to(beFalse())
             }
         }
 

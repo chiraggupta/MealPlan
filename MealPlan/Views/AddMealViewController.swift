@@ -14,6 +14,12 @@ class AddMealViewController: UIViewController {
     @IBOutlet weak var ingredientField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setSaveButtonState(enabled: false)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
