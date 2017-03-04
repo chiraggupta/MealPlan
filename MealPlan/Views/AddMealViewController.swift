@@ -98,3 +98,13 @@ extension AddMealViewController: UICollectionViewDataSource {
         return ingredientCell
     }
 }
+
+// MARK: Ingredients collectionview flow layout delegate
+extension AddMealViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let ingredientText = presenter.ingredients[indexPath.row]
+        return ingredientText.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+    }
+}
