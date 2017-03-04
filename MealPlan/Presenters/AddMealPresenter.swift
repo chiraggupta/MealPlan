@@ -4,6 +4,7 @@ import Foundation
 
 protocol AddMealPresenting {
     func mealNameChanged(to newMealName: String)
+    func ingredientAdded(_ ingredient: Ingredient)
     func saveTapped()
     func cancelTapped()
 }
@@ -13,7 +14,8 @@ class AddMealPresenter: AddMealPresenting {
     private let mealsProvider: MealsProvider
     private let ingredientsProvider: IngredientsProvider
 
-    var mealName = ""
+    private(set) var mealName = ""
+    private(set) var ingredients = [Ingredient]()
 
     init(view: AddMealViewType, mealsProvider: MealsProvider, ingredientsProvider: IngredientsProvider) {
         self.view = view
@@ -26,6 +28,20 @@ class AddMealPresenter: AddMealPresenting {
 
         let saveButtonState = mealName.characters.count > 0
         view.setSaveButtonState(enabled: saveButtonState)
+    }
+
+    func ingredientAdded(_ ingredient: Ingredient) {
+        let ingredient = ingredient.trimmingCharacters(in: .whitespaces)
+        if ingredient.isEmpty {
+            return
+        }
+
+        if ingredients.contains(ingredient) {
+            return
+        }
+
+        ingredients.append(ingredient)
+        view.reloadIngredients()
     }
 
     func cancelTapped() {

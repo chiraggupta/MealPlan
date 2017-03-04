@@ -4,6 +4,7 @@ import UIKit
 
 protocol AddMealViewType: ViewControllerNavigating {
     func setSaveButtonState(enabled: Bool)
+    func reloadIngredients()
     func showDuplicateMealAlert()
 }
 
@@ -38,6 +39,9 @@ class AddMealViewController: UIViewController {
 extension AddMealViewController: AddMealViewType {
     func setSaveButtonState(enabled: Bool) {
         saveButton.isEnabled = enabled
+    }
+
+    func reloadIngredients() {
     }
 
     func showDuplicateMealAlert() {

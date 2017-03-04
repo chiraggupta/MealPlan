@@ -50,6 +50,49 @@ class AddMealPresenterTests: QuickSpec {
             }
         }
 
+        describe("adding ingredients") {
+            context("it is valid") {
+                beforeEach {
+                    subject.ingredientAdded("purple salt")
+                }
+                it("adds to the list") {
+                    expect(subject.ingredients).to(equal(["purple salt"]))
+                }
+                it("reloads the view") {
+                    expect(view.reloadIngredientsCalled).to(beTrue())
+                }
+
+                context("is a duplicate") {
+                    beforeEach {
+                        view = MockAddMealView()
+                        subject.ingredientAdded("purple salt")
+                    }
+                    it("does not add to the list") {
+                        expect(subject.ingredients).to(equal(["purple salt"]))
+                    }
+                    it("does not reload the view") {
+                        expect(view.reloadIngredientsCalled).to(beFalse())
+                    }
+                }
+            }
+            context("it is blank") {
+                beforeEach {
+                    subject.ingredientAdded("")
+                }
+                it("does not add the ingredient") {
+                    expect(subject.ingredients).to(beEmpty())
+                }
+            }
+            context("it is has whitespaces") {
+                beforeEach {
+                    subject.ingredientAdded("    purple salt    ")
+                }
+                it("adds to the list after trimming whitespaces") {
+                    expect(subject.ingredients).to(equal(["purple salt"]))
+                }
+            }
+        }
+
         describe("cancel tapped") {
             beforeEach {
                 subject.cancelTapped()
@@ -62,7 +105,7 @@ class AddMealPresenterTests: QuickSpec {
         describe("save tapped") {
             context("adding meal succeeds") {
                 beforeEach {
-                    subject.mealName = "empty peanut butter"
+                    subject.mealNameChanged(to: "empty peanut butter")
                     subject.saveTapped()
                 }
                 it("saves the last updated meal") {
@@ -104,6 +147,11 @@ extension AddMealPresenterTests {
         private(set) var showDuplicateMealAlertCalled = false
         func showDuplicateMealAlert() {
             showDuplicateMealAlertCalled = true
+        }
+
+        private(set) var reloadIngredientsCalled = false
+        func reloadIngredients() {
+            reloadIngredientsCalled = true
         }
 
         func display(_ viewController: UIViewController) {}

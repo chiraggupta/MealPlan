@@ -112,12 +112,17 @@ extension AddMealViewControllerTests {
 
         private(set) var saveTappedCalled = false
         func saveTapped() {
-            self.saveTappedCalled = true
+            saveTappedCalled = true
         }
 
         private(set) var cancelTappedCalled = false
         func cancelTapped() {
-            self.cancelTappedCalled = true
+            cancelTappedCalled = true
+        }
+
+        private(set) var addedIngredient: Ingredient?
+        func ingredientAdded(_ ingredient: Ingredient) {
+            addedIngredient = ingredient
         }
     }
 }
