@@ -41,7 +41,6 @@ class AddMealPresenter: AddMealPresenting {
         }
 
         ingredients.append(ingredient)
-        view.reloadIngredients()
     }
 
     func cancelTapped() {

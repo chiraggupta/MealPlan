@@ -4,7 +4,6 @@ import UIKit
 
 protocol AddMealViewType: ViewControllerNavigating {
     func setSaveButtonState(enabled: Bool)
-    func reloadIngredients()
     func showDuplicateMealAlert()
 }
 
@@ -12,6 +11,7 @@ class AddMealViewController: UIViewController {
     var presenter: AddMealPresenting!
 
     @IBOutlet weak var mealNameField: UITextField!
+    @IBOutlet weak var ingredientField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     override func viewDidAppear(_ animated: Bool) {
@@ -41,16 +41,29 @@ extension AddMealViewController: AddMealViewType {
         saveButton.isEnabled = enabled
     }
 
-    func reloadIngredients() {
-    }
-
     func showDuplicateMealAlert() {
         let alert = UIAlertController(title: "Duplicate Meal",
-                                      message: "A meal with the name same name already exists.",
+                                      message: "A meal with the same name already exists.",
                                       preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alert.addAction(okAction)
 
         present(alert, animated: true)
+    }
+}
+
+// MARK: UITextField delegate
+extension AddMealViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField != ingredientField {
+            return true
+        }
+
+        if let ingredient = textField.text {
+            presenter.ingredientAdded(ingredient)
+        }
+
+        textField.text = ""
+        return true
     }
 }

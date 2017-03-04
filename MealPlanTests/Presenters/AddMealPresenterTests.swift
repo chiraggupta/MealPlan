@@ -58,9 +58,6 @@ class AddMealPresenterTests: QuickSpec {
                 it("adds to the list") {
                     expect(subject.ingredients).to(equal(["purple salt"]))
                 }
-                it("reloads the view") {
-                    expect(view.reloadIngredientsCalled).to(beTrue())
-                }
 
                 context("is a duplicate") {
                     beforeEach {
@@ -69,9 +66,6 @@ class AddMealPresenterTests: QuickSpec {
                     }
                     it("does not add to the list") {
                         expect(subject.ingredients).to(equal(["purple salt"]))
-                    }
-                    it("does not reload the view") {
-                        expect(view.reloadIngredientsCalled).to(beFalse())
                     }
                 }
             }
@@ -147,11 +141,6 @@ extension AddMealPresenterTests {
         private(set) var showDuplicateMealAlertCalled = false
         func showDuplicateMealAlert() {
             showDuplicateMealAlertCalled = true
-        }
-
-        private(set) var reloadIngredientsCalled = false
-        func reloadIngredients() {
-            reloadIngredientsCalled = true
         }
 
         func display(_ viewController: UIViewController) {}

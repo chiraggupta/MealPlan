@@ -195,17 +195,38 @@
                                 <rect key="frame" x="16" y="72" width="343" height="29"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <connections>
                                     <action selector="mealNameChanged" destination="wDE-G5-ROy" eventType="editingChanged" id="dCQ-86-56s"/>
                                     <outlet property="delegate" destination="wDE-G5-ROy" id="fkn-wR-Qg4"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="din-b5-YD7">
+                                <rect key="frame" x="16" y="117" width="343" height="19.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Ingredient" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bRM-wa-U7F" userLabel="Ingredient Field">
+                                <rect key="frame" x="16" y="144" width="343" height="30"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wDE-G5-ROy" id="wR6-KB-o8S"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="3UY-0c-IiA"/>
+                            <constraint firstItem="din-b5-YD7" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="88d-QF-TZ8"/>
+                            <constraint firstItem="bRM-wa-U7F" firstAttribute="top" secondItem="din-b5-YD7" secondAttribute="bottom" constant="8" symbolic="YES" id="Bl1-2I-J8Y"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="HQJ-Qg-Eq1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="din-b5-YD7" secondAttribute="trailing" id="Hsx-by-hdX"/>
+                            <constraint firstItem="din-b5-YD7" firstAttribute="top" secondItem="oJM-78-bLu" secondAttribute="bottom" constant="16" id="OQ5-RK-AU1"/>
+                            <constraint firstItem="bRM-wa-U7F" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="P4C-ao-jqK"/>
+                            <constraint firstItem="bRM-wa-U7F" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="Ubr-VV-w0b"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="8" symbolic="YES" id="nyE-1c-2FI"/>
                         </constraints>
                     </view>
@@ -225,6 +246,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="ingredientField" destination="bRM-wa-U7F" id="LHd-Pl-F6q"/>
                         <outlet property="mealNameField" destination="oJM-78-bLu" id="RQL-4K-1XL"/>
                         <outlet property="saveButton" destination="ko3-wW-A5u" id="I3i-vj-Rft"/>
                     </connections>

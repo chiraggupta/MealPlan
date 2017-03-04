@@ -74,7 +74,7 @@ class AddMealViewControllerTests: QuickSpec {
             }
         }
 
-        describe("duplicate meal") {
+        describe("duplicate meal alert") {
             beforeEach {
                 subject.showDuplicateMealAlert()
             }
@@ -91,11 +91,48 @@ class AddMealViewControllerTests: QuickSpec {
                     expect(alert?.title).to(equal("Duplicate Meal"))
                 }
                 it("has the correct text") {
-                    expect(alert?.message).to(equal("A meal with the name same name already exists."))
+                    expect(alert?.message).to(equal("A meal with the same name already exists."))
                 }
                 it("has one action which is OK") {
                     expect(alert?.actions.count) == 1
                     expect(alert?.actions.first?.title).to(equal("OK"))
+                }
+            }
+        }
+
+        describe("data was entered on one of the text fields") {
+            var result = false
+            var textField: UITextField!
+            context("ingredient field") {
+                beforeEach {
+                    textField = subject.ingredientField
+                    textField.text = "purple salt"
+                    result = subject.textFieldShouldReturn(textField)
+                }
+                it("returns true") {
+                    expect(result).to(beTrue())
+                }
+                it("adds the ingredient") {
+                    expect(presenter.addedIngredient).to(equal("purple salt"))
+                }
+                it("resets the field") {
+                    expect(textField.text).to(beEmpty())
+                }
+            }
+            context("meal name field") {
+                beforeEach {
+                    textField = subject.mealNameField
+                    textField.text = "dharma canned food"
+                    result = subject.textFieldShouldReturn(textField)
+                }
+                it("returns true") {
+                    expect(result).to(beTrue())
+                }
+                it("does not add an ingredient") {
+                    expect(presenter.addedIngredient).to(beNil())
+                }
+                it("does not reset the field") {
+                    expect(textField.text).toNot(beEmpty())
                 }
             }
         }
