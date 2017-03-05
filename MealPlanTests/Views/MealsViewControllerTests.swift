@@ -6,7 +6,8 @@ import XCTest
 class MealsViewControllerTests: XCTestCase {
     var subject: MealsViewController = MealsFactory(contextProvider: FakeContextProvider()).instantiate()
     var presenter: MockMealsPresenter!
-    let initialMeals = [Meal(name: "foo_meal")]
+    let initialMeals = [Meal(name: "dharma canned food", ingredients: ["4", "8", "15"]),
+                        Meal(name: "wild boar")]
 
     override func setUp() {
         super.setUp()
@@ -32,6 +33,9 @@ class MealsViewControllerTests: XCTestCase {
             let cell = subject.tableView(subject.tableView, cellForRowAt: indexPath)
 
             XCTAssertEqual(initialMeals[i].name, cell.textLabel?.text, "meal \(i + 1) is incorrect")
+            XCTAssertEqual(initialMeals[i].ingredients.joined(separator: ", "),
+                           cell.detailTextLabel?.text,
+                           "ingredients \(i + 1) are incorrect")
         }
     }
 
@@ -93,7 +97,7 @@ extension MealsViewControllerTests {
         func addTapped() {
             addTappedCalled = true
         }
-
+        
         func closeTapped() {
             closeTappedCalled = true
         }

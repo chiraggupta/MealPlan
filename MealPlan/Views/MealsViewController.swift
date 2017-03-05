@@ -47,7 +47,11 @@ extension MealsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealsCell", for: indexPath)
-        cell.textLabel?.text = meals[indexPath.row].name
+
+        let meal = meals[indexPath.row]
+
+        cell.textLabel?.text = meal.name
+        cell.detailTextLabel?.text = meal.ingredients.joined(separator: ", ")
 
         return cell
     }
