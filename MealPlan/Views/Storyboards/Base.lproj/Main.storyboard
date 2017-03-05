@@ -34,17 +34,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jip-1C-h8F">
-                                                    <rect key="frame" x="15" y="12" width="33" height="19.5"/>
+                                                    <rect key="frame" x="15" y="11" width="35.5" height="21.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                    <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqy-1s-glj">
-                                                    <rect key="frame" x="298.5" y="12" width="41.5" height="19.5"/>
+                                                    <rect key="frame" x="293.5" y="11" width="46.5" height="21.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -100,8 +100,8 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HdE-Gb-RWc">
                                             <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -143,14 +143,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gs-Wv-Sdo">
-                                                    <rect key="frame" x="15" y="5" width="31.5" height="19.5"/>
+                                                    <rect key="frame" x="15" y="4" width="35.5" height="21.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hZg-lu-6uP">
-                                                    <rect key="frame" x="15" y="24.5" width="44" height="14.5"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -208,8 +208,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Meal Name" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="oJM-78-bLu">
-                                <rect key="frame" x="16" y="72" width="343" height="29"/>
-                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="16" y="76" width="343" height="29"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
@@ -218,22 +218,22 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="din-b5-YD7">
-                                <rect key="frame" x="16" y="117" width="343" height="19.5"/>
+                                <rect key="frame" x="16" y="121" width="343" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Ingredient" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bRM-wa-U7F" userLabel="Ingredient Field">
-                                <rect key="frame" x="16" y="144" width="343" height="30"/>
-                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="16" y="148" width="343" height="30"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="wDE-G5-ROy" id="wR6-KB-o8S"/>
                                 </connections>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GgB-aG-E2q">
-                                <rect key="frame" x="16" y="178" width="343" height="469"/>
+                                <rect key="frame" x="16" y="182" width="343" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dcm-8C-YHc">
                                     <size key="itemSize" width="50" height="50"/>
@@ -252,7 +252,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHb-KX-QaX">
                                                     <rect key="frame" x="25" y="25" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -281,11 +281,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="din-b5-YD7" secondAttribute="trailing" id="Hsx-by-hdX"/>
                             <constraint firstItem="din-b5-YD7" firstAttribute="top" secondItem="oJM-78-bLu" secondAttribute="bottom" constant="16" id="OQ5-RK-AU1"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="P4C-ao-jqK"/>
-                            <constraint firstItem="X0c-xg-rPU" firstAttribute="top" secondItem="GgB-aG-E2q" secondAttribute="bottom" constant="20" id="Pw2-Ow-0cg"/>
+                            <constraint firstItem="X0c-xg-rPU" firstAttribute="top" secondItem="GgB-aG-E2q" secondAttribute="bottom" constant="16" id="Pw2-Ow-0cg"/>
                             <constraint firstItem="GgB-aG-E2q" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="RwE-Ii-dZF"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="Ubr-VV-w0b"/>
                             <constraint firstItem="GgB-aG-E2q" firstAttribute="top" secondItem="bRM-wa-U7F" secondAttribute="bottom" constant="4" id="VYK-T6-qYj"/>
-                            <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="8" symbolic="YES" id="nyE-1c-2FI"/>
+                            <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="12" id="nyE-1c-2FI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GgB-aG-E2q" secondAttribute="trailing" id="wA2-fV-Wld"/>
                         </constraints>
                     </view>
