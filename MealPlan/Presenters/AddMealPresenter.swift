@@ -50,7 +50,7 @@ class AddMealPresenter: AddMealPresenting {
     }
 
     func saveTapped() {
-        let mealAdded = mealsProvider.add(meal: Meal(name: mealName))
+        let mealAdded = mealsProvider.add(meal: Meal(name: mealName, ingredients: ingredients))
         if mealAdded {
             view.hideModal()
         } else {

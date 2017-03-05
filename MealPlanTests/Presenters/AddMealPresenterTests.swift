@@ -105,11 +105,17 @@ class AddMealPresenterTests: QuickSpec {
         describe("save tapped") {
             context("adding meal succeeds") {
                 beforeEach {
-                    subject.mealNameChanged(to: "empty peanut butter")
+                    subject.mealNameChanged(to: "dharma canned food")
+                    subject.ingredientAdded("4")
+                    subject.ingredientAdded("8")
+                    subject.ingredientAdded("15")
                     subject.saveTapped()
                 }
-                it("saves the last updated meal") {
-                    expect(model.addedMeal).to(equal(Meal(name: "empty peanut butter")))
+                it("adds a meal with the right name") {
+                    expect(model.addedMeal?.name).to(equal("dharma canned food"))
+                }
+                it("adds a meal with the right ingredients") {
+                    expect(model.addedMeal?.ingredients).to(contain(["4", "8", "15"]))
                 }
                 it("hides the view") {
                     expect(view.hideModalCalled).to(beTrue())
