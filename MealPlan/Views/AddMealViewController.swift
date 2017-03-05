@@ -105,6 +105,9 @@ extension AddMealViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let ingredientText = presenter.ingredients[indexPath.row]
-        return ingredientText.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+        let tightFittingSize = ingredientText.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+        let sizeWithMargins = CGSize(width: ceil(tightFittingSize.width) + 8,
+                                     height: ceil(tightFittingSize.height) + 8)
+        return sizeWithMargins
     }
 }

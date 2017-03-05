@@ -97,7 +97,7 @@ extension MealsViewControllerTests {
         func addTapped() {
             addTappedCalled = true
         }
-        
+
         func closeTapped() {
             closeTappedCalled = true
         }

@@ -157,7 +157,8 @@ class AddMealViewControllerTests: QuickSpec {
                 }
             }
             it("gets the correct size for ingredient cell") {
-                let correctSize = "purple salt".size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+                let size = "purple salt".size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)])
+                let correctSize = CGSize(width: ceil(size.width) + 8, height: ceil(size.height) + 8)
 
                 let indexPath = IndexPath(row: 0, section: 0)
                 let cell = subject.collectionView(subject.ingredientsCollection, cellForItemAt: indexPath)
