@@ -217,14 +217,20 @@
                                     <outlet property="delegate" destination="wDE-G5-ROy" id="fkn-wR-Qg4"/>
                                 </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border" translatesAutoresizingMaskIntoConstraints="NO" id="Sgg-qS-QhL" userLabel="Meal Name Field Border">
+                                <rect key="frame" x="16" y="107" width="343" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Uhp-NA-qTd"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="din-b5-YD7">
-                                <rect key="frame" x="16" y="121" width="343" height="19.5"/>
+                                <rect key="frame" x="16" y="124" width="343" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bRM-wa-U7F" userLabel="Ingredient Field">
-                                <rect key="frame" x="16" y="148" width="343" height="20"/>
+                                <rect key="frame" x="16" y="151" width="343" height="20"/>
                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -232,8 +238,14 @@
                                     <outlet property="delegate" destination="wDE-G5-ROy" id="wR6-KB-o8S"/>
                                 </connections>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border" translatesAutoresizingMaskIntoConstraints="NO" id="bzg-xo-duq" userLabel="Ingredient Field Border">
+                                <rect key="frame" x="16" y="173" width="343" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Acp-s0-RXJ"/>
+                                </constraints>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GgB-aG-E2q">
-                                <rect key="frame" x="16" y="172" width="343" height="479"/>
+                                <rect key="frame" x="16" y="178" width="343" height="473"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dcm-8C-YHc">
                                     <size key="itemSize" width="50" height="50"/>
@@ -282,18 +294,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Sgg-qS-QhL" firstAttribute="top" secondItem="oJM-78-bLu" secondAttribute="bottom" constant="2" id="3GN-TW-A7F"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="3UY-0c-IiA"/>
                             <constraint firstItem="din-b5-YD7" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="88d-QF-TZ8"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="top" secondItem="din-b5-YD7" secondAttribute="bottom" constant="8" symbolic="YES" id="Bl1-2I-J8Y"/>
+                            <constraint firstItem="GgB-aG-E2q" firstAttribute="top" secondItem="bzg-xo-duq" secondAttribute="bottom" constant="4" id="G4t-pM-xX8"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="HQJ-Qg-Eq1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="din-b5-YD7" secondAttribute="trailing" id="Hsx-by-hdX"/>
-                            <constraint firstItem="din-b5-YD7" firstAttribute="top" secondItem="oJM-78-bLu" secondAttribute="bottom" constant="16" id="OQ5-RK-AU1"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="P4C-ao-jqK"/>
+                            <constraint firstItem="Sgg-qS-QhL" firstAttribute="trailing" secondItem="oJM-78-bLu" secondAttribute="trailing" id="P8U-9Z-DsF"/>
                             <constraint firstItem="X0c-xg-rPU" firstAttribute="top" secondItem="GgB-aG-E2q" secondAttribute="bottom" constant="16" id="Pw2-Ow-0cg"/>
+                            <constraint firstItem="Sgg-qS-QhL" firstAttribute="leading" secondItem="oJM-78-bLu" secondAttribute="leading" id="RS3-Hs-zF6"/>
                             <constraint firstItem="GgB-aG-E2q" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="RwE-Ii-dZF"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="Ubr-VV-w0b"/>
-                            <constraint firstItem="GgB-aG-E2q" firstAttribute="top" secondItem="bRM-wa-U7F" secondAttribute="bottom" constant="4" id="VYK-T6-qYj"/>
+                            <constraint firstItem="din-b5-YD7" firstAttribute="top" secondItem="Sgg-qS-QhL" secondAttribute="bottom" constant="16" id="YLX-Zm-aXi"/>
+                            <constraint firstItem="bzg-xo-duq" firstAttribute="trailing" secondItem="bRM-wa-U7F" secondAttribute="trailing" id="Yee-Bm-KcF"/>
+                            <constraint firstItem="bzg-xo-duq" firstAttribute="top" secondItem="bRM-wa-U7F" secondAttribute="bottom" constant="2" id="nJN-GT-tiJ"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="12" id="nyE-1c-2FI"/>
+                            <constraint firstItem="bzg-xo-duq" firstAttribute="leading" secondItem="bRM-wa-U7F" secondAttribute="leading" id="vZh-Kl-rj0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GgB-aG-E2q" secondAttribute="trailing" id="wA2-fV-Wld"/>
                         </constraints>
                     </view>
@@ -324,4 +342,7 @@
             <point key="canvasLocation" x="544.79999999999995" y="-100.29985007496252"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="border" width="240" height="1"/>
+    </resources>
 </document>
