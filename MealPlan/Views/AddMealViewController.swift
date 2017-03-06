@@ -64,11 +64,20 @@ extension AddMealViewController: AddMealViewType {
     }
 }
 
-// MARK: UITextField delegate
+// MARK: TextField methods
 extension AddMealViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField != ingredientField {
-            return true
+        appendIngredient(from: textField)
+        return true
+    }
+
+    @IBAction func addIngredientTapped() {
+        appendIngredient(from: ingredientField)
+    }
+
+    private func appendIngredient(from textField: UITextField) {
+        guard textField == ingredientField else {
+            return
         }
 
         if let ingredient = textField.text {
@@ -76,7 +85,6 @@ extension AddMealViewController: UITextFieldDelegate {
         }
 
         textField.text = ""
-        return true
     }
 }
 

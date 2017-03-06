@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bRM-wa-U7F" userLabel="Ingredient Field">
-                                <rect key="frame" x="16" y="151" width="343" height="20"/>
+                                <rect key="frame" x="16" y="151" width="313" height="20"/>
                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -238,8 +238,18 @@
                                     <outlet property="delegate" destination="wDE-G5-ROy" id="wR6-KB-o8S"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcx-Mm-3GF" userLabel="Add Button">
+                                <rect key="frame" x="333" y="150" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="WDJ-ww-fCY"/>
+                                    <constraint firstAttribute="height" constant="22" id="z7Q-wR-FLc"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="addIngredientTapped" destination="wDE-G5-ROy" eventType="touchUpInside" id="6wp-PF-2QB"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="border" translatesAutoresizingMaskIntoConstraints="NO" id="bzg-xo-duq" userLabel="Ingredient Field Border">
-                                <rect key="frame" x="16" y="173" width="343" height="1"/>
+                                <rect key="frame" x="16" y="173" width="313" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Acp-s0-RXJ"/>
                                 </constraints>
@@ -298,6 +308,7 @@
                             <constraint firstItem="oJM-78-bLu" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="3UY-0c-IiA"/>
                             <constraint firstItem="din-b5-YD7" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="88d-QF-TZ8"/>
                             <constraint firstItem="bRM-wa-U7F" firstAttribute="top" secondItem="din-b5-YD7" secondAttribute="bottom" constant="8" symbolic="YES" id="Bl1-2I-J8Y"/>
+                            <constraint firstItem="Lcx-Mm-3GF" firstAttribute="leading" secondItem="bRM-wa-U7F" secondAttribute="trailing" constant="4" id="DMu-CL-8Le"/>
                             <constraint firstItem="GgB-aG-E2q" firstAttribute="top" secondItem="bzg-xo-duq" secondAttribute="bottom" constant="4" id="G4t-pM-xX8"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="HQJ-Qg-Eq1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="din-b5-YD7" secondAttribute="trailing" id="Hsx-by-hdX"/>
@@ -306,9 +317,10 @@
                             <constraint firstItem="X0c-xg-rPU" firstAttribute="top" secondItem="GgB-aG-E2q" secondAttribute="bottom" constant="16" id="Pw2-Ow-0cg"/>
                             <constraint firstItem="Sgg-qS-QhL" firstAttribute="leading" secondItem="oJM-78-bLu" secondAttribute="leading" id="RS3-Hs-zF6"/>
                             <constraint firstItem="GgB-aG-E2q" firstAttribute="leading" secondItem="kzg-mq-1LK" secondAttribute="leadingMargin" id="RwE-Ii-dZF"/>
-                            <constraint firstItem="bRM-wa-U7F" firstAttribute="trailing" secondItem="kzg-mq-1LK" secondAttribute="trailingMargin" id="Ubr-VV-w0b"/>
                             <constraint firstItem="din-b5-YD7" firstAttribute="top" secondItem="Sgg-qS-QhL" secondAttribute="bottom" constant="16" id="YLX-Zm-aXi"/>
                             <constraint firstItem="bzg-xo-duq" firstAttribute="trailing" secondItem="bRM-wa-U7F" secondAttribute="trailing" id="Yee-Bm-KcF"/>
+                            <constraint firstAttribute="trailing" secondItem="Lcx-Mm-3GF" secondAttribute="trailing" constant="20" symbolic="YES" id="ZLJ-cn-VOJ"/>
+                            <constraint firstItem="Lcx-Mm-3GF" firstAttribute="centerY" secondItem="bRM-wa-U7F" secondAttribute="centerY" id="nIb-p7-xnQ"/>
                             <constraint firstItem="bzg-xo-duq" firstAttribute="top" secondItem="bRM-wa-U7F" secondAttribute="bottom" constant="2" id="nJN-GT-tiJ"/>
                             <constraint firstItem="oJM-78-bLu" firstAttribute="top" secondItem="LXf-iP-uVt" secondAttribute="bottom" constant="12" id="nyE-1c-2FI"/>
                             <constraint firstItem="bzg-xo-duq" firstAttribute="leading" secondItem="bRM-wa-U7F" secondAttribute="leading" id="vZh-Kl-rj0"/>

@@ -103,7 +103,7 @@ class AddMealViewControllerTests: QuickSpec {
             }
         }
 
-        describe("data was entered on one of the text fields") {
+        describe("entering data and pressing return") {
             var result = false
             var textField: UITextField!
             context("ingredient field") {
@@ -137,6 +137,19 @@ class AddMealViewControllerTests: QuickSpec {
                 it("does not reset the field") {
                     expect(textField.text).toNot(beEmpty())
                 }
+            }
+        }
+
+        describe("add ingredient button pressed") {
+            beforeEach {
+                subject.ingredientField.text = "purple salt"
+                subject.addIngredientTapped()
+            }
+            it("adds the ingredient") {
+                expect(presenter.addedIngredient).to(equal("purple salt"))
+            }
+            it("resets the field") {
+                expect(subject.ingredientField.text).to(beEmpty())
             }
         }
 
