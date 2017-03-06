@@ -116,7 +116,7 @@
 		C46BFF671E296F89001D4C15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C46DB9041E4BB0E8001C1005 /* MealPlan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealPlan.xcdatamodel; sourceTree = "<group>"; };
 		C46DB9061E4BB111001C1005 /* NSPersistentContainer+Make.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Make.swift"; sourceTree = "<group>"; };
-		C46DB9091E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer_MakeTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		C46DB9091E4BC710001C1005 /* NSPersistentContainer_MakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer_MakeTests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		C471A8311E2824D2000A6F07 /* SelectMealPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealPresenter.swift; sourceTree = "<group>"; };
 		C471A8331E2824EB000A6F07 /* SelectMealPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealPresenterTests.swift; sourceTree = "<group>"; };
 		C471A8351E2826CF000A6F07 /* SelectMealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectMealViewController.swift; sourceTree = "<group>"; };
@@ -313,7 +313,9 @@
 				C4CB921C1E1A2CBA004F0E27 /* Products */,
 				C41F2C301E2FF9B800028E60 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		C4CB921C1E1A2CBA004F0E27 /* Products */ = {
 			isa = PBXGroup;

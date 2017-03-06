@@ -4,11 +4,11 @@ import Foundation
 import CoreData
 
 protocol ContextProviding {
-    var mainContext: NSManagedObjectContext { get }
+  var mainContext: NSManagedObjectContext { get }
 }
 
 extension NSPersistentContainer: ContextProviding {
-    var mainContext: NSManagedObjectContext {
-        return viewContext
-    }
+  var mainContext: NSManagedObjectContext {
+    return viewContext
+  }
 }

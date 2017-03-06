@@ -3,5 +3,5 @@
 import UIKit
 
 class AddIngredientCell: UICollectionViewCell {
-    @IBOutlet weak var ingredientName: UILabel!
+  @IBOutlet weak var ingredientName: UILabel!
 }

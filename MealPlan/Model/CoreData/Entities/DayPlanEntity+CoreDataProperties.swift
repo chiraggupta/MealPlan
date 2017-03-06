@@ -4,11 +4,11 @@ import CoreData
 
 extension DayPlanEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<DayPlanEntity> {
-        return NSFetchRequest<DayPlanEntity>(entityName: "DayPlanEntity")
-    }
+  @nonobjc public class func fetchRequest() -> NSFetchRequest<DayPlanEntity> {
+    return NSFetchRequest<DayPlanEntity>(entityName: "DayPlanEntity")
+  }
 
-    @NSManaged public var day: String?
-    @NSManaged public var meal: MealEntity?
+  @NSManaged public var day: String?
+  @NSManaged public var meal: MealEntity?
 
 }
