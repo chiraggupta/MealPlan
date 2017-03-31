@@ -1,10 +1,10 @@
 language: objective-c
 
-osx_image: xcode8.2
+osx_image: xcode8.3
 
 script:
 - carthage bootstrap --platform iOS
-- xcodebuild -project MealPlan.xcodeproj -scheme MealPlan -destination 'platform=iOS Simulator,OS=10.2,id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12' clean build test
+- xcodebuild -project MealPlan.xcodeproj -scheme MealPlan -destination 'platform=iOS Simulator,OS=10.3, name=iPhone 7' clean build test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
